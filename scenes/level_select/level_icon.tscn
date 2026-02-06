@@ -1,0 +1,33 @@
+[gd_scene format=3 uid="uid://qv7dqu8taiae"]
+
+[ext_resource type="Script" uid="uid://ctapt5nltteqm" path="res://scenes/level_select/level_icon.gd" id="1_bibaq"]
+
+[sub_resource type="Gradient" id="Gradient_rwejn"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_bibaq"]
+gradient = SubResource("Gradient_rwejn")
+width = 64
+use_hdr = true
+
+[node name="WorldIcon" type="Control" unique_id=1552134196]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 64.0
+offset_bottom = 64.0
+pivot_offset_ratio = Vector2(32, 32)
+script = ExtResource("1_bibaq")
+
+[node name="Label" type="Label" parent="." unique_id=1353909494]
+layout_mode = 0
+offset_top = -24.0
+offset_right = 64.0
+text = "level 0"
+horizontal_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=427321160]
+layout_mode = 0
+offset_right = 64.0
+offset_bottom = 64.0
+texture = SubResource("GradientTexture1D_bibaq")
