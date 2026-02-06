@@ -62,8 +62,40 @@ shortcut_keys_enabled = false
 [node name="PauseMenu" type="Node2D" parent="." unique_id=1494151468]
 visible = false
 position = Vector2(577, 309)
-scale = Vector2(3.9781308, 4.030223)
 script = ExtResource("3_bvqhm")
 
 [node name="BackgroundMenu" type="Sprite2D" parent="PauseMenu" unique_id=271173473]
+position = Vector2(2.9999924, 12.000011)
+scale = Vector2(3.203125, 3.9062498)
 texture = ExtResource("2_q3lat")
+
+[node name="Button" type="Button" parent="PauseMenu" unique_id=724145172]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -57.5
+offset_top = 209.0
+offset_right = 57.5
+offset_bottom = 240.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Back to menu"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="PauseMenu" unique_id=1818154374]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -115.75
+offset_top = -215.5
+offset_right = 117.0
+offset_bottom = -155.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/normal_font_size = 35
+text = "PAUSE MENU"
+
+[connection signal="pressed" from="PauseMenu/Button" to="PauseMenu" method="_on_button_pressed"]
