@@ -1,0 +1,34 @@
+[gd_scene format=3 uid="uid://btran1o8c36bv"]
+
+[ext_resource type="PackedScene" uid="uid://4xw4wuwq8afp" path="res://scenes/Player/Player.tscn" id="1_yaeep"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_bosas"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_putq6"]
+
+[node name="Map" type="Node3D" unique_id=1439661301]
+
+[node name="Floor" type="StaticBody3D" parent="." unique_id=168374286]
+transform = Transform3D(10, 0, 0, 0, 1, 0, 0, 0, 234.76482, 0, -0.5, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor" unique_id=509065725]
+mesh = SubResource("BoxMesh_bosas")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor" unique_id=131638827]
+shape = SubResource("BoxShape3D_putq6")
+
+[node name="Wall" type="StaticBody3D" parent="." unique_id=1982791156]
+transform = Transform3D(-4.371139e-07, -0.99999994, 0, 10, -4.3711385e-08, 0, 0, 0, 9.999999, -0.036272526, -0.5, -5.2111073)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Wall" unique_id=1724769039]
+mesh = SubResource("BoxMesh_bosas")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Wall" unique_id=1450818339]
+shape = SubResource("BoxShape3D_putq6")
+
+[node name="Player" parent="." unique_id=858882668 instance=ExtResource("1_yaeep")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.1921737, 1.256002, 111.45476)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="." unique_id=1494287829]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3182044, 0)
+omni_range = 10.18477

@@ -20,6 +20,7 @@ offset_top = 64.0
 offset_right = 256.0
 offset_bottom = 128.0
 level_index = 1
+scene_path = "uid://btran1o8c36bv"
 next_down = NodePath("../LevelIcon4")
 next_right = NodePath("../LevelIcon2")
 

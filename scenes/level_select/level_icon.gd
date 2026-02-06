@@ -14,6 +14,9 @@ func _ready() -> void:
 	$Label.text = "level " + str(level_index)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if Engine.is_editor_hint():
 		$Label.text = "level " + str(level_index)
+
+func _on_button_pressed() -> void:
+	get_tree().change_scene_to_file(scene_path)
