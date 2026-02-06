@@ -2,10 +2,16 @@
 
 [ext_resource type="Script" uid="uid://duuxxpnjwotn1" path="res://scenes/Player/Player.gd" id="1_xhfnw"]
 [ext_resource type="Texture2D" uid="uid://dog5xa0xousvp" path="res://icon.svg" id="2_q3lat"]
+[ext_resource type="Script" uid="uid://bp02c3h7l45py" path="res://scenes/Player/pause_menu.gd" id="3_bvqhm"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_kpjcp"]
+radius = 0.5961914
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_kne1u"]
+
+[sub_resource type="GDScript" id="GDScript_bvqhm"]
+script/source = "extends MarginContainer
+"
 
 [sub_resource type="QuadMesh" id="QuadMesh_tok1r"]
 
@@ -13,8 +19,9 @@
 script = ExtResource("1_xhfnw")
 
 [node name="Collision" type="CollisionShape3D" parent="." unique_id=1158400688]
-transform = Transform3D(1.2, 0, 0, 0, 1, 0, 0, 0, 1.2, 0, 1, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("CapsuleShape3D_kpjcp")
+debug_fill = false
 
 [node name="Shape" type="MeshInstance3D" parent="." unique_id=2065531358]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
@@ -24,7 +31,6 @@ mesh = SubResource("CapsuleMesh_kne1u")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
 
 [node name="Camera3D" type="Camera3D" parent="Head" unique_id=1895542418]
-transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0)
 
 [node name="ATH" type="MarginContainer" parent="." unique_id=3403275]
 anchors_preset = 12
@@ -38,6 +44,7 @@ theme_override_constants/margin_left = 5
 theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
+script = SubResource("GDScript_bvqhm")
 
 [node name="MeshInstance2D" type="MeshInstance2D" parent="ATH" unique_id=1333808928]
 position = Vector2(575.25, 16.75)
@@ -51,3 +58,12 @@ text = "SPEED : 0 "
 scroll_active = false
 autowrap_mode = 0
 shortcut_keys_enabled = false
+
+[node name="PauseMenu" type="Node2D" parent="." unique_id=1494151468]
+visible = false
+position = Vector2(577, 309)
+scale = Vector2(3.9781308, 4.030223)
+script = ExtResource("3_bvqhm")
+
+[node name="BackgroundMenu" type="Sprite2D" parent="PauseMenu" unique_id=271173473]
+texture = ExtResource("2_q3lat")

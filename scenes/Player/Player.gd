@@ -7,6 +7,7 @@ var mouse_sensitivity = 0.002
 
 var jump_force_idle = 5.0
 var jump_force_walking = 3.0
+var wall_jump_force = 8.0
 var jump_force_walking_boost = 10.0
 
 var wall_jump_max = 2
@@ -58,7 +59,7 @@ func _handle_movement(delta: float) -> void:
 			is_walking = false
 		input_dir = input_dir.normalized()
 
-	# Direction relative à la caméra (horizontal)
+	# Camera direction
 	var forward := -camera.global_transform.basis.z
 	var right := camera.global_transform.basis.x
 	forward.y = 0
@@ -86,11 +87,10 @@ func _handle_movement(delta: float) -> void:
 				velocity.x += direction.x * jump_force_walking_boost * delta
 			else :
 				velocity.z += direction.x * jump_force_walking_boost * delta
-
 		else:
 			velocity.y = 0.0
 
-		# FRICTION (inchangée)
+		# FRICTION
 		if is_walking == false :
 			if velocity.x != 0:
 				if velocity.x < 0:
@@ -110,7 +110,7 @@ func _handle_movement(delta: float) -> void:
 	# Wall jump
 	if is_on_wall() and wall_jump_count != 0:
 		if Input.is_action_just_pressed("jump"):
-			velocity.y = jump_force_idle
+			velocity.y = wall_jump_force
 			wall_jump_count -= 1
 	
 	$ATH/RichTextLabel.text = "SPEED : " + str(abs(velocity.z))
