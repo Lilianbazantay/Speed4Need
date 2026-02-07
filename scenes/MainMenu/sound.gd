@@ -33,6 +33,27 @@ func _input(event):
 			$MusicLineEdit.text = "%.02f" % PlayerSettings.soundMusic
 
 
+func _on_effects_line_edit_text_submitted(new_text: String) -> void:
+	var test: float = PlayerSettings.soudEffects;
+	if (new_text.is_valid_float()):
+		test = new_text.to_float();
+	var prevPos: Vector2;
+	prevPos[1] = -5;
+	prevPos[0] = 12 + (test * 3);
+	$EffectsButtonLine/EffectsButton.set_position(prevPos);
+	PlayerSettings.soudEffects = test;
+
+
+func _on_music_line_edit_text_submitted(new_text: String) -> void:
+	var test: float = PlayerSettings.soundMusic;
+	if (new_text.is_valid_float()):
+		test = new_text.to_float();
+	var prevPos: Vector2;
+	prevPos[1] = -5;
+	prevPos[0] = 12 + (test * 3);
+	$MusicButtonLine/MusicButton.set_position(prevPos);
+	PlayerSettings.soundMusic = test;
+
 
 
 func _on_effects_button_button_down() -> void:
