@@ -1,0 +1,279 @@
+[gd_scene format=3 uid="uid://crgts5xtndn8h"]
+
+[ext_resource type="Script" uid="uid://bhsiyn6gs7isu" path="res://scenes/MainMenu/settings.gd" id="1_ltyju"]
+[ext_resource type="Script" uid="uid://bu4f30a05lql3" path="res://scenes/MainMenu/sensibility.gd" id="2_84fhx"]
+[ext_resource type="Script" uid="uid://bd2c4m7dgwuiy" path="res://scenes/MainMenu/key_edit.gd" id="2_dayju"]
+[ext_resource type="Script" uid="uid://7uprsvcesko0" path="res://scenes/MainMenu/sound.gd" id="3_k3nmy"]
+
+[node name="Settings" type="Control" unique_id=1481678846]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ltyju")
+
+[node name="ButtonMenu" type="Button" parent="." unique_id=54068202]
+layout_mode = 0
+offset_left = 52.0
+offset_top = 74.0
+offset_right = 306.0
+offset_bottom = 161.0
+text = "MAIN MENU"
+
+[node name="Keys" type="Panel" parent="." unique_id=988215972]
+layout_mode = 0
+offset_left = 313.0
+offset_top = 72.0
+offset_right = 1051.0
+offset_bottom = 233.0
+
+[node name="CheckBox" type="CheckBox" parent="Keys" unique_id=1209340531]
+layout_mode = 0
+offset_left = 404.0
+offset_top = 104.0
+offset_right = 555.0
+offset_bottom = 135.0
+button_pressed = true
+text = "Activate sound"
+
+[node name="KeysModifer" type="GridContainer" parent="Keys" unique_id=1728470317]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 19.0
+offset_right = 723.0
+offset_bottom = 153.0
+theme_override_constants/h_separation = 48
+theme_override_constants/v_separation = 48
+columns = 4
+
+[node name="KeyEdit" type="Label" parent="Keys/KeysModifer" unique_id=1792092278]
+layout_mode = 2
+text = "move_forward"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("2_dayju")
+
+[node name="Rebind" type="Button" parent="Keys/KeysModifer/KeyEdit" unique_id=677275869]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 25.0
+offset_right = 111.0
+offset_bottom = 56.0
+
+[node name="KeyEdit2" type="Label" parent="Keys/KeysModifer" unique_id=511626850]
+layout_mode = 2
+text = "move_backward"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("2_dayju")
+
+[node name="Rebind" type="Button" parent="Keys/KeysModifer/KeyEdit2" unique_id=1838734923]
+layout_mode = 0
+offset_left = 11.0
+offset_top = 25.0
+offset_right = 120.0
+offset_bottom = 56.0
+
+[node name="KeyEdit3" type="Label" parent="Keys/KeysModifer" unique_id=1624110892]
+layout_mode = 2
+text = "move_left"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("2_dayju")
+
+[node name="Rebind" type="Button" parent="Keys/KeysModifer/KeyEdit3" unique_id=1001968054]
+layout_mode = 0
+offset_left = -13.0
+offset_top = 25.0
+offset_right = 96.0
+offset_bottom = 56.0
+
+[node name="KeyEdit4" type="Label" parent="Keys/KeysModifer" unique_id=1087503585]
+layout_mode = 2
+text = "move_right"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("2_dayju")
+
+[node name="Rebind" type="Button" parent="Keys/KeysModifer/KeyEdit4" unique_id=705517691]
+layout_mode = 0
+offset_left = -6.0
+offset_top = 25.0
+offset_right = 103.0
+offset_bottom = 56.0
+
+[node name="KeyEdit5" type="Label" parent="Keys/KeysModifer" unique_id=1767922084]
+layout_mode = 2
+text = "jump"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("2_dayju")
+
+[node name="Rebind" type="Button" parent="Keys/KeysModifer/KeyEdit5" unique_id=1506971140]
+layout_mode = 0
+offset_left = 4.0
+offset_top = 25.0
+offset_right = 113.0
+offset_bottom = 56.0
+
+[node name="KeyEdit6" type="Label" parent="Keys/KeysModifer" unique_id=1485260645]
+layout_mode = 2
+text = "grapple"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("2_dayju")
+
+[node name="Rebind" type="Button" parent="Keys/KeysModifer/KeyEdit6" unique_id=1414694800]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 25.0
+offset_right = 121.0
+offset_bottom = 56.0
+
+[node name="Sensibility" type="Panel" parent="." unique_id=1523656301]
+layout_mode = 0
+offset_left = 313.0
+offset_top = 241.0
+offset_right = 1051.0
+offset_bottom = 324.0
+script = ExtResource("2_84fhx")
+
+[node name="LineEdit" type="LineEdit" parent="Sensibility" unique_id=191047205]
+layout_mode = 0
+offset_left = 365.0
+offset_top = 26.0
+offset_right = 433.5
+offset_bottom = 57.0
+text = "50"
+alignment = 1
+virtual_keyboard_type = 3
+
+[node name="ButtonLine" type="Panel" parent="Sensibility" unique_id=674171953]
+layout_mode = 0
+offset_left = 55.0
+offset_top = 35.0
+offset_right = 343.0
+offset_bottom = 49.0
+
+[node name="Button" type="Button" parent="Sensibility/ButtonLine" unique_id=732305255]
+modulate = Color(18.892157, 18.892157, 18.892157, 1)
+self_modulate = Color(18.892157, 18.892157, 18.892157, 1)
+layout_mode = 0
+offset_left = 126.0
+offset_top = -5.0
+offset_right = 150.0
+offset_bottom = 19.0
+
+[node name="Label" type="Label" parent="Sensibility" unique_id=842498893]
+layout_mode = 0
+offset_left = 465.0
+offset_top = 29.0
+offset_right = 625.0
+offset_bottom = 58.0
+text = "Sensibility"
+horizontal_alignment = 1
+
+[node name="Sound" type="Panel" parent="." unique_id=1055612464]
+layout_mode = 0
+offset_left = 313.0
+offset_top = 333.0
+offset_right = 1051.0
+offset_bottom = 554.0
+script = ExtResource("3_k3nmy")
+
+[node name="EffectsLineEdit" type="LineEdit" parent="Sound" unique_id=99950852]
+layout_mode = 0
+offset_left = 365.0
+offset_top = 73.0
+offset_right = 433.5
+offset_bottom = 104.0
+text = "50"
+alignment = 1
+virtual_keyboard_type = 3
+
+[node name="EffectsButtonLine" type="Panel" parent="Sound" unique_id=1688081755]
+layout_mode = 0
+offset_left = 55.0
+offset_top = 82.0
+offset_right = 343.0
+offset_bottom = 96.0
+
+[node name="EffectsButton" type="Button" parent="Sound/EffectsButtonLine" unique_id=8691254]
+modulate = Color(18.892157, 18.892157, 18.892157, 1)
+self_modulate = Color(18.892157, 18.892157, 18.892157, 1)
+layout_mode = 0
+offset_left = 126.0
+offset_top = -5.0
+offset_right = 150.0
+offset_bottom = 19.0
+
+[node name="EffectsLabel" type="Label" parent="Sound" unique_id=100298190]
+layout_mode = 0
+offset_left = 465.0
+offset_top = 76.0
+offset_right = 625.0
+offset_bottom = 105.0
+text = "Sound Effects"
+horizontal_alignment = 1
+
+[node name="MusicLineEdit" type="LineEdit" parent="Sound" unique_id=790149807]
+layout_mode = 0
+offset_left = 365.0
+offset_top = 141.0
+offset_right = 433.5
+offset_bottom = 172.0
+text = "50"
+alignment = 1
+virtual_keyboard_type = 3
+
+[node name="MusicButtonLine" type="Panel" parent="Sound" unique_id=1008197733]
+layout_mode = 0
+offset_left = 55.0
+offset_top = 150.0
+offset_right = 343.0
+offset_bottom = 164.0
+
+[node name="MusicButton" type="Button" parent="Sound/MusicButtonLine" unique_id=180689086]
+modulate = Color(18.892157, 18.892157, 18.892157, 1)
+self_modulate = Color(18.892157, 18.892157, 18.892157, 1)
+layout_mode = 0
+offset_left = 126.0
+offset_top = -5.0
+offset_right = 150.0
+offset_bottom = 19.0
+
+[node name="MusicLabel" type="Label" parent="Sound" unique_id=1727654926]
+layout_mode = 0
+offset_left = 465.0
+offset_top = 144.0
+offset_right = 625.0
+offset_bottom = 173.0
+text = "Music Effects"
+horizontal_alignment = 1
+
+[node name="CheckBox" type="CheckBox" parent="Sound" unique_id=886365467]
+layout_mode = 0
+offset_left = 277.0
+offset_top = 14.0
+offset_right = 428.0
+offset_bottom = 45.0
+button_pressed = true
+text = "Activate sound"
+
+[connection signal="pressed" from="ButtonMenu" to="." method="_on_back_to_menu_pressed"]
+[connection signal="pressed" from="Keys/CheckBox" to="." method="_on_check_box_pressed"]
+[connection signal="pressed" from="Keys/KeysModifer/KeyEdit/Rebind" to="Keys/KeysModifer/KeyEdit" method="_on_rebind_pressed"]
+[connection signal="pressed" from="Keys/KeysModifer/KeyEdit2/Rebind" to="Keys/KeysModifer/KeyEdit2" method="_on_rebind_pressed"]
+[connection signal="pressed" from="Keys/KeysModifer/KeyEdit3/Rebind" to="Keys/KeysModifer/KeyEdit3" method="_on_rebind_pressed"]
+[connection signal="pressed" from="Keys/KeysModifer/KeyEdit4/Rebind" to="Keys/KeysModifer/KeyEdit4" method="_on_rebind_pressed"]
+[connection signal="pressed" from="Keys/KeysModifer/KeyEdit5/Rebind" to="Keys/KeysModifer/KeyEdit5" method="_on_rebind_pressed"]
+[connection signal="pressed" from="Keys/KeysModifer/KeyEdit6/Rebind" to="Keys/KeysModifer/KeyEdit6" method="_on_rebind_pressed"]
+[connection signal="button_down" from="Sensibility/ButtonLine/Button" to="Sensibility" method="_on_button_button_down"]
+[connection signal="button_up" from="Sensibility/ButtonLine/Button" to="Sensibility" method="_on_button_button_up"]
+[connection signal="button_down" from="Sound/EffectsButtonLine/EffectsButton" to="Sound" method="_on_effects_button_button_down"]
+[connection signal="button_up" from="Sound/EffectsButtonLine/EffectsButton" to="Sound" method="_on_effects_button_button_up"]
+[connection signal="button_down" from="Sound/MusicButtonLine/MusicButton" to="Sound" method="_on_music_button_button_down"]
+[connection signal="button_up" from="Sound/MusicButtonLine/MusicButton" to="Sound" method="_on_music_button_button_up"]
+[connection signal="pressed" from="Sound/CheckBox" to="Sound" method="_on_check_box_pressed"]

@@ -1,0 +1,35 @@
+[gd_scene format=3 uid="uid://c3likalig43ke"]
+
+[sub_resource type="GDScript" id="GDScript_4xetl"]
+script/source = "extends Control
+
+
+func _on_button_pressed() -> void: # Going back to menu boys
+	pass # Replace with function body.
+"
+
+[node name="Control" type="Control" unique_id=1937841592]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = SubResource("GDScript_4xetl")
+
+[node name="Button" type="Button" parent="." unique_id=1912136750]
+layout_mode = 0
+offset_left = 31.0
+offset_top = 35.0
+offset_right = 234.0
+offset_bottom = 112.0
+text = "back to menu"
+
+[node name="Panel" type="Panel" parent="." unique_id=1355792735]
+layout_mode = 0
+offset_left = 276.0
+offset_top = 36.0
+offset_right = 1023.0
+offset_bottom = 568.0
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
