@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://bq72rtkyvmkou"]
 
 [ext_resource type="Script" uid="uid://xo1l24u3xdfe" path="res://scenes/level_select/level_select.gd" id="1_jsq2b"]
-[ext_resource type="PackedScene" uid="uid://qv7dqu8taiae" path="res://scenes/level_select/level_icon.tscn" id="2_06eje"]
+[ext_resource type="Script" uid="uid://cqpuk7g7wxqas" path="res://scenes/level_select/level_container.gd" id="2_3c84o"]
 [ext_resource type="PackedScene" uid="uid://cu5uenq80hxel" path="res://scenes/level_select/square_selector.tscn" id="3_vdlig"]
 
 [node name="LevelSelect" type="Control" unique_id=548847070]
@@ -13,7 +13,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_jsq2b")
 
-[node name="GridContainer" type="GridContainer" parent="." unique_id=108116020]
+[node name="LevelContainer" type="GridContainer" parent="." unique_id=108116020]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -26,46 +26,16 @@ offset_right = 198.5
 offset_bottom = 149.0
 grow_horizontal = 2
 grow_vertical = 2
+scale = Vector2(0.655, 0.655)
 size_flags_horizontal = 4
 theme_override_constants/h_separation = 339
 theme_override_constants/v_separation = 166
-columns = 3
-
-[node name="LevelIcon" parent="GridContainer" unique_id=1552134196 instance=ExtResource("2_06eje")]
-layout_mode = 2
-size_flags_horizontal = 2
-
-[node name="LevelIcon2" parent="GridContainer" unique_id=205646348 instance=ExtResource("2_06eje")]
-layout_mode = 2
-size_flags_horizontal = 2
-level_index = 1
-
-[node name="LevelIcon3" parent="GridContainer" unique_id=1405662643 instance=ExtResource("2_06eje")]
-layout_mode = 2
-size_flags_horizontal = 2
-level_index = 2
-
-[node name="LevelIcon4" parent="GridContainer" unique_id=2008233529 instance=ExtResource("2_06eje")]
-layout_mode = 2
-size_flags_horizontal = 2
-level_index = 3
-
-[node name="LevelIcon5" parent="GridContainer" unique_id=466600180 instance=ExtResource("2_06eje")]
-layout_mode = 2
-size_flags_horizontal = 2
-level_index = 4
-
-[node name="LevelIcon6" parent="GridContainer" unique_id=943180301 instance=ExtResource("2_06eje")]
-layout_mode = 2
-size_flags_horizontal = 2
-level_index = 6
-
-[node name="LevelIcon7" parent="GridContainer" unique_id=915434661 instance=ExtResource("2_06eje")]
-layout_mode = 2
-size_flags_horizontal = 2
-level_index = 7
+columns = 5
+script = ExtResource("2_3c84o")
 
 [node name="PlayerIcon" parent="." unique_id=498701359 instance=ExtResource("3_vdlig")]
 layout_mode = 1
 offset_right = -1088.0
 offset_bottom = -584.0
+
+[connection signal="ready_to_deploy" from="LevelContainer" to="." method="_on_level_container_ready_to_deploy"]

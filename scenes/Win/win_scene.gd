@@ -18,8 +18,10 @@ func _ready() -> void:
 			print("TestPath: ", room.scenePath)
 			if (GameRoomsData.prevRoomPath == room.scenePath):
 				print("Saving data !")
-				room.bestSpeed = PlayerRecord.max_speed;
-				room.bestTime = (PlayerRecord.timer / 1000.0)
+				if (room.bestSpeed == -1 || room.bestSpeed > PlayerRecord.max_speed):
+					room.bestSpeed = PlayerRecord.max_speed;
+				if (room.bestTime == -1 || room.bestTime > (PlayerRecord.timer / 1000.0)):
+					room.bestTime = (PlayerRecord.timer / 1000.0)
 				room.won = true;
 				break;
 
