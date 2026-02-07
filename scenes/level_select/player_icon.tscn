@@ -1,11 +1,15 @@
 [gd_scene format=3 uid="uid://noj40gcmeb0g"]
 
-[ext_resource type="Texture2D" uid="uid://dog5xa0xousvp" path="res://icon.svg" id="1_2p2ps"]
+[ext_resource type="PackedScene" uid="uid://cu5uenq80hxel" path="res://scenes/level_select/square_selector.tscn" id="1_phvjc"]
 
-[node name="PlayerIcon" type="TextureRect" unique_id=735070891]
+[node name="PlayerIcon" type="Control" unique_id=1873672551]
+layout_mode = 3
+anchors_preset = 0
 offset_right = 64.0
 offset_bottom = 64.0
 pivot_offset_ratio = Vector2(32, 32)
 mouse_filter = 2
-texture = ExtResource("1_2p2ps")
-expand_mode = 1
+
+[node name="SquareSelector" parent="." unique_id=498701359 instance=ExtResource("1_phvjc")]
+layout_mode = 1
+metadata/_edit_use_anchors_ = true

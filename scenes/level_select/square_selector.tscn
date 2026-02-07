@@ -1,0 +1,55 @@
+[gd_scene format=3 uid="uid://cu5uenq80hxel"]
+
+[ext_resource type="Texture2D" uid="uid://c3hnbrf5kd75m" path="res://Assets/selection_square.png" id="1_5feng"]
+
+[node name="SquareSelector" type="Control" unique_id=498701359]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="TopLeft" type="TextureRect" parent="." unique_id=1558925242]
+layout_mode = 0
+offset_right = 16.0
+offset_bottom = 16.0
+texture = ExtResource("1_5feng")
+
+[node name="TopRight" type="TextureRect" parent="." unique_id=1549773367]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -16.0
+offset_bottom = 16.0
+grow_horizontal = 0
+texture = ExtResource("1_5feng")
+flip_h = true
+
+[node name="BottomLeft" type="TextureRect" parent="." unique_id=1973455534]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -16.0
+offset_right = 16.0
+grow_vertical = 0
+texture = ExtResource("1_5feng")
+flip_v = true
+
+[node name="BottomRight" type="TextureRect" parent="." unique_id=873054498]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -16.0
+offset_top = -16.0
+grow_horizontal = 0
+grow_vertical = 0
+texture = ExtResource("1_5feng")
+flip_h = true
+flip_v = true

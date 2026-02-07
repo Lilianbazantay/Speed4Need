@@ -2,8 +2,7 @@
 
 [ext_resource type="Script" uid="uid://xo1l24u3xdfe" path="res://scenes/level_select/level_select.gd" id="1_jsq2b"]
 [ext_resource type="PackedScene" uid="uid://qv7dqu8taiae" path="res://scenes/level_select/level_icon.tscn" id="2_06eje"]
-[ext_resource type="PackedScene" uid="uid://noj40gcmeb0g" path="res://scenes/level_select/player_icon.tscn" id="3_yhcoq"]
-[ext_resource type="Texture2D" uid="uid://c3hnbrf5kd75m" path="res://Assets/selection_square.png" id="4_3c84o"]
+[ext_resource type="PackedScene" uid="uid://cu5uenq80hxel" path="res://scenes/level_select/square_selector.tscn" id="3_vdlig"]
 
 [node name="LevelSelect" type="Control" unique_id=548847070]
 layout_mode = 3
@@ -63,6 +62,7 @@ layout_mode = 2
 size_flags_horizontal = 2
 level_index = 6
 
-[node name="PlayerIcon" parent="." unique_id=735070891 instance=ExtResource("3_yhcoq")]
+[node name="PlayerIcon" parent="." unique_id=498701359 instance=ExtResource("3_vdlig")]
 layout_mode = 1
-texture = ExtResource("4_3c84o")
+offset_right = -1088.0
+offset_bottom = -584.0
