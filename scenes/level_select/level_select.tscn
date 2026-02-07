@@ -41,7 +41,7 @@ theme_override_constants/v_separation = 100
 [node name="LevelIcon" parent="HBoxContainer/GridContainer" unique_id=1552134196 node_paths=PackedStringArray("next_down", "next_right") instance=ExtResource("2_06eje")]
 layout_mode = 2
 level_index = 1
-scene_path = "uid://btran1o8c36bv"
+scene_path = "uid://cvbco5oubjo8"
 next_down = NodePath("../LevelIcon4")
 next_right = NodePath("../../GridContainer2/LevelIcon2")
 
@@ -58,6 +58,7 @@ theme_override_constants/v_separation = 100
 [node name="LevelIcon2" parent="HBoxContainer/GridContainer2" unique_id=205646348 node_paths=PackedStringArray("next_down", "next_left", "next_right") instance=ExtResource("2_06eje")]
 layout_mode = 2
 level_index = 2
+scene_path = "uid://btran1o8c36bv"
 next_down = NodePath("../LevelIcon5")
 next_left = NodePath("../../GridContainer/LevelIcon")
 next_right = NodePath("../../GridContainer3/LevelIcon3")
@@ -76,7 +77,6 @@ theme_override_constants/v_separation = 100
 [node name="LevelIcon3" parent="HBoxContainer/GridContainer3" unique_id=1405662643 node_paths=PackedStringArray("next_down", "next_left") instance=ExtResource("2_06eje")]
 layout_mode = 2
 level_index = 3
-scene_path = "uid://cvbco5oubjo8"
 next_down = NodePath("../LevelIcon6")
 next_left = NodePath("../../GridContainer2/LevelIcon2")
 

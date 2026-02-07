@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://ciq44fdwd2f70" path="res://Assets/SpeedBar.png" id="4_puxyr"]
 [ext_resource type="AudioStream" uid="uid://db1fduk1jivw4" path="res://Assets/Break.mp3" id="5_xcisb"]
 [ext_resource type="AudioStream" uid="uid://bwdgfyn8p5x53" path="res://Assets/Grapple.mp3" id="6_socpp"]
+[ext_resource type="Script" uid="uid://c4cpivd3r066g" path="res://scenes/Player/timer.gd" id="7_mmokv"]
 [ext_resource type="Texture2D" uid="uid://bvvisbkagfi26" path="res://Assets/Cursor.png" id="8_mmokv"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_kpjcp"]
@@ -20,10 +21,6 @@ albedo_color = Color(0.19313219, 0.07850107, 0, 1)
 [sub_resource type="BoxMesh" id="BoxMesh_ved6o"]
 material = SubResource("StandardMaterial3D_ved6o")
 size = Vector3(0.5, 0.5, 0.5)
-
-[sub_resource type="GDScript" id="GDScript_bvqhm"]
-script/source = "extends MarginContainer
-"
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_bvqhm"]
 radius = 0.5966797
@@ -59,31 +56,6 @@ mesh = SubResource("BoxMesh_ved6o")
 [node name="GrappleSound" type="AudioStreamPlayer3D" parent="Head" unique_id=264215233]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.5, 0)
 stream = ExtResource("6_socpp")
-
-[node name="ATH" type="MarginContainer" parent="." unique_id=3403275]
-anchors_preset = 12
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = -36.0
-grow_horizontal = 2
-grow_vertical = 0
-theme_override_constants/margin_left = 5
-theme_override_constants/margin_top = 5
-theme_override_constants/margin_right = 5
-theme_override_constants/margin_bottom = 5
-script = SubResource("GDScript_bvqhm")
-
-[node name="SpeedBar" type="Sprite2D" parent="ATH" unique_id=1887572479]
-position = Vector2(574.5, 18)
-texture = ExtResource("4_puxyr")
-
-[node name="RichTextLabel" type="RichTextLabel" parent="ATH" unique_id=1691160473]
-layout_mode = 2
-text = "SPEED : 0 "
-scroll_active = false
-autowrap_mode = 0
-shortcut_keys_enabled = false
 
 [node name="PauseMenu" type="Node2D" parent="." unique_id=1494151468]
 visible = false
@@ -124,6 +96,46 @@ grow_vertical = 2
 theme_override_font_sizes/normal_font_size = 35
 text = "PAUSE MENU"
 
+[node name="ATH" type="MarginContainer" parent="." unique_id=3403275]
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -36.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="SpeedBar" type="Sprite2D" parent="ATH" unique_id=1887572479]
+position = Vector2(574.5, 18)
+texture = ExtResource("4_puxyr")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="ATH" unique_id=1691160473]
+layout_mode = 2
+text = "SPEED : 0 "
+scroll_active = false
+autowrap_mode = 0
+shortcut_keys_enabled = false
+
+[node name="Timer" type="MarginContainer" parent="." unique_id=912378480]
+offset_right = 85.0
+offset_bottom = 26.0
+script = ExtResource("7_mmokv")
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="Timer" unique_id=1227604407]
+layout_mode = 2
+text = "Timer : 0.0 s"
+scroll_active = false
+autowrap_mode = 0
+shortcut_keys_enabled = false
+
+[node name="Timer" type="Timer" parent="Timer" unique_id=1774075730]
+wait_time = 0.1
+autostart = true
+
 [node name="Area3D" type="Area3D" parent="." unique_id=340971583]
 collision_mask = 2
 
@@ -142,3 +154,4 @@ scale = Vector2(0.2, 0.2)
 texture = ExtResource("8_mmokv")
 
 [connection signal="pressed" from="PauseMenu/Button" to="PauseMenu" method="_on_button_pressed"]
+[connection signal="timeout" from="Timer/Timer" to="Timer" method="_on_timer_timeout"]

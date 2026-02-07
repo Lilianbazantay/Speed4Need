@@ -6,7 +6,7 @@ extends Control
 func _ready() -> void:
 	ResourceLoader.load_threaded_request(scene_path)
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if ResourceLoader.load_threaded_get_status(scene_path) == ResourceLoader.THREAD_LOAD_LOADED:
 		set_process(false)
 		await get_tree().create_timer(min_load_time).timeout

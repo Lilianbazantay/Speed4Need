@@ -55,5 +55,35 @@ text = "QUIT AS A WINNER"
 stream = ExtResource("2_vbwbp")
 volume_db = 24.0
 
+[node name="MaxSpeedDisplay" type="RichTextLabel" parent="." unique_id=453665506]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -129.0
+offset_top = -20.0
+offset_right = 129.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Max Speed : "
+
+[node name="TimerDisplay" type="RichTextLabel" parent="." unique_id=1782126613]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -129.0
+offset_top = 23.0
+offset_right = 129.0
+offset_bottom = 63.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Timer          : "
+
 [connection signal="pressed" from="MarginContainer/VBoxContainer/BackToMainMenu" to="." method="_on_back_to_main_menu_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Quit" to="." method="_on_quit_pressed"]

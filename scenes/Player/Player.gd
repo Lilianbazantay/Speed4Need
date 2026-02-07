@@ -124,6 +124,8 @@ func _handle_movement(delta: float) -> void:
 			velocity.y = wall_jump_force
 			wall_jump_count -= 1
 
+	if velocity.z > PlayerRecord.max_speed :
+		PlayerRecord.max_speed = velocity.z
 	$ATH/RichTextLabel.text = "SPEED : " + str(abs(velocity.z))
 
 	# Crouch
