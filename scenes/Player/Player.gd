@@ -21,16 +21,20 @@ const gravity: float = 9.81
 @export var wall_jump_max = 2
 var wall_jump_count = 0
 
-# Crouch
-var is_crouching = false
-var friction_crouch_boost = 2.5
-var crouch_scale = 0.5
+@export_category("Slide")
+var is_sliding = false
+@export var slide_duration = 0.6
+var slide_timer = 0.0
+@export var slide_speed_boost = 1.5
+@export var slide_min_speed = 3.0
+var slide_scale = 0.25
 
 # Camera
 var y_rot := 0.0
 var x_rot := 0.0
 
 @onready var original_collision_height: float
+@onready var original_area_collision_height: float
 @onready var original_pos: Vector3 = global_position
 
 
@@ -38,6 +42,7 @@ func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	PlayerRecord.max_speed = 0.0
 	original_collision_height = $Collision.shape.height
+	original_area_collision_height = $Area3D/CollisionShape3D.shape.height
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
@@ -53,7 +58,7 @@ func _process(delta: float) -> void:
 		$HUD/Sprite2D.frame = 2
 		return
 	if is_on_floor():
-		if is_crouching:
+		if is_sliding:
 			$HUD/Sprite2D.frame = 3
 			return
 		$HUD/Sprite2D.frame = 0
@@ -62,6 +67,7 @@ func _process(delta: float) -> void:
 
 func _physics_process(delta: float) -> void:
 	handle_gravity(delta)
+	handle_slide(delta)
 	handle_movement(delta)
 	move_and_slide()
 	handle_break_sound()
@@ -88,11 +94,10 @@ func handle_movement(delta: float) -> void:
 	apply_acceleration(direction, delta)
 	handle_floor_movement(direction)
 	handle_wall_jump()
-	handle_crouch()
 	update_speed_display()
 
 func get_input_direction() -> Vector2:
-	if is_crouching:
+	if is_sliding:
 		return Vector2.ZERO
 
 	var input_dir = Input.get_vector("move_left", "move_right", "move_backward", "move_forward")
@@ -109,20 +114,20 @@ func calculate_movement_direction(input_dir: Vector2) -> Vector3:
 
 func apply_acceleration(direction: Vector3, delta: float) -> void:
 	if is_on_floor():
-		# GROUND LOGIC: Snappy and limited to max speed
+		if is_sliding:
+			return
 		var target_velocity = Vector3.ZERO
 		if direction.length() > 0:
-			target_velocity = direction * speed
+			target_velocity = direction * max_speed
+		else:
+			max_speed = speed
 		velocity.x = move_toward(velocity.x, target_velocity.x, acceleration * delta)
 		velocity.z = move_toward(velocity.z, target_velocity.z, acceleration * delta)
 	else:
-		# AIR LOGIC: Floaty and not limited by max speed
 		if direction.length() > 0:
-			# We add velocity directly so we can go faster than 'speed'
 			velocity.x += direction.x * air_acceleration * delta
 			velocity.z += direction.z * air_acceleration * delta
 		else:
-			# We use low air_friction so we barely slow down
 			velocity.x = move_toward(velocity.x, 0.0, air_friction * delta)
 			velocity.z = move_toward(velocity.z, 0.0, air_friction * delta)
 
@@ -154,19 +159,38 @@ func handle_wall_jump() -> void:
 			velocity.z += wall_normal.z * wall_jump_force
 			wall_jump_count -= 1
 
-func handle_crouch() -> void:
-	if Input.is_action_just_pressed("crouch"):
-		is_crouching = true
-		friction += friction_crouch_boost
-		$Collision.shape.height = original_collision_height * crouch_scale
-		$Collision.position.y = original_collision_height * crouch_scale / 2
-		$Head.position.y = original_collision_height * crouch_scale
-	if Input.is_action_just_released("crouch") and can_uncrouch():
-		is_crouching = false
-		friction -= friction_crouch_boost
-		$Collision.shape.height = original_collision_height
-		$Collision.position.y = original_collision_height / 2
-		$Head.position.y = original_collision_height * 0.75
+func handle_slide(delta: float) -> void:
+	if is_sliding:
+		slide_timer -= delta
+		if slide_timer <= 0 or not is_on_floor():
+			end_slide()
+		return
+	if Input.is_action_just_pressed("crouch") and is_on_floor():
+		var horizontal_speed = Vector2(velocity.x, velocity.z).length()
+		if horizontal_speed >= slide_min_speed:
+			start_slide()
+
+func start_slide() -> void:
+	is_sliding = true
+	slide_timer = slide_duration
+	var horizontal_velocity = Vector2(velocity.x, velocity.z) * slide_speed_boost
+	velocity.x = horizontal_velocity.x
+	velocity.z = horizontal_velocity.y
+	$Collision.shape.height = original_collision_height * slide_scale
+	$Collision.position.y = original_collision_height * slide_scale / 2
+	$Head.position.y = original_collision_height * slide_scale
+	$Area3D/CollisionShape3D.shape.height = original_area_collision_height * slide_scale
+	$Area3D/CollisionShape3D.position.y = original_area_collision_height * slide_scale / 2
+
+func end_slide() -> void:
+	if not can_uncrouch():
+		return
+	is_sliding = false
+	$Collision.shape.height = original_collision_height
+	$Collision.position.y = original_collision_height / 2
+	$Head.position.y = original_collision_height * 0.75
+	$Area3D/CollisionShape3D.shape.height = original_area_collision_height
+	$Area3D/CollisionShape3D.position.y = original_area_collision_height / 2
 
 func can_uncrouch() -> bool:
 	var space_state = get_world_3d().direct_space_state
@@ -186,8 +210,7 @@ func update_speed_display() -> void:
 	$HUD/Speed.text = "Speed: %.2f" % horizontal_speed
 
 func handle_break_sound() -> void:
-	var horizontal_speed = Vector2(velocity.x, velocity.z).length()
-	if is_on_floor() and Input.is_action_pressed("crouch") and horizontal_speed > 0.5:
+	if is_sliding:
 		if not $BreakSound.playing:
 			$BreakSound.play()
 	else:
