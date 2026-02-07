@@ -19,4 +19,4 @@ func _process(_delta: float) -> void:
 		$Label.text = "level " + str(level_index)
 
 func _on_button_pressed() -> void:
-	get_tree().change_scene_to_file(scene_path)
+	Utils.load_screen_to_scene(scene_path)
