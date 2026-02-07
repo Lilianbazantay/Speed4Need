@@ -23,8 +23,20 @@ var friction = 2.5
 @onready var camera: Camera3D = $Head/Camera3D
 @onready var break_sound: AudioStreamPlayer3D = $BreakSound
 
+#Controller
 var y_rot := 0.0
 var x_rot := 0.0
+var smooth_y_rot := 0.0
+var smooth_x_rot := 0.0
+var look_smoothness := 12.0
+
+# Manette
+var controller_sensi_x := 7.0
+var controller_sensi_y := 9.0
+var controller_curve := 1.7
+var controller_accel := 6.0
+var controller_vel_x := 0.0
+var controller_vel_y := 0.0
 
 func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
@@ -37,6 +49,16 @@ func _unhandled_input(event: InputEvent) -> void:
 func _physics_process(delta: float) -> void:
 	_handle_gravity(delta)
 	_handle_movement(delta)
+	_handle_keyboard_look(delta)
+	_handle_controller_look(delta)
+
+	# Interpolation fluide
+	smooth_y_rot = lerp(smooth_y_rot, y_rot, delta * look_smoothness)
+	smooth_x_rot = lerp(smooth_x_rot, x_rot, delta * look_smoothness)
+
+	rotation.y = smooth_y_rot
+	head.rotation.x = smooth_x_rot
+
 	move_and_slide()
 
 	if is_on_floor() and Input.is_action_pressed("crouch") and velocity.length() > 0.5:
@@ -49,7 +71,6 @@ func _physics_process(delta: float) -> void:
 func _handle_movement(delta: float) -> void:
 	var input_dir := Vector2.ZERO
 
-	# Input
 	if is_crouching == false:
 		if Input.is_action_pressed("move_forward"):
 			is_walking = true
@@ -70,7 +91,6 @@ func _handle_movement(delta: float) -> void:
 			is_walking = false
 		input_dir = input_dir.normalized()
 
-	# Camera direction
 	var forward := -camera.global_transform.basis.z
 	var right := camera.global_transform.basis.x
 	forward.y = 0
@@ -82,7 +102,6 @@ func _handle_movement(delta: float) -> void:
 	velocity.x += direction.x * move_speed * delta
 	velocity.z += direction.z * move_speed * delta
 
-	# Ground
 	if is_on_floor():
 		if wall_jump_count < wall_jump_max:
 			wall_jump_count = wall_jump_max
@@ -101,7 +120,6 @@ func _handle_movement(delta: float) -> void:
 		else:
 			velocity.y = 0.0
 
-		# FRICTION
 		if is_walking == false:
 			if velocity.x != 0:
 				if velocity.x < 0:
@@ -119,7 +137,6 @@ func _handle_movement(delta: float) -> void:
 			if velocity.z < friction and velocity.z > -friction:
 				velocity.z = 0.0
 
-	# Wall jump
 	if is_on_wall() and wall_jump_count != 0:
 		if Input.is_action_just_pressed("jump"):
 			velocity.y = wall_jump_force
@@ -129,7 +146,6 @@ func _handle_movement(delta: float) -> void:
 		PlayerRecord.max_speed = velocity.z
 	$ATH/RichTextLabel.text = "SPEED : " + str(abs(velocity.z))
 
-	# Crouch
 	if Input.is_action_just_pressed("crouch"):
 		is_crouching = true
 		is_walking = false
@@ -152,8 +168,26 @@ func _handle_gravity(delta: float) -> void:
 func _handle_mouse(event: InputEventMouseMotion) -> void:
 	y_rot -= event.relative.x * mouse_sensitivity
 	x_rot -= event.relative.y * mouse_sensitivity
+	x_rot = clamp(x_rot, deg_to_rad(-90), deg_to_rad(90))
+
+func _handle_keyboard_look(delta: float) -> void:
+	var look_speed := 1.5
+
+	if Input.is_action_pressed("look_right"):
+		y_rot -= look_speed * delta
+	if Input.is_action_pressed("look_left"):
+		y_rot += look_speed * delta
+
+	if Input.is_action_pressed("look_down"):
+		x_rot -= look_speed * delta
+	if Input.is_action_pressed("look_up"):
+		x_rot += look_speed * delta
 
 	x_rot = clamp(x_rot, deg_to_rad(-90), deg_to_rad(90))
 
-	rotation.y = y_rot
-	head.rotation.x = x_rot
+func _handle_controller_look(delta: float) -> void:
+
+	y_rot += controller_vel_x * controller_sensi_x * delta
+	x_rot += controller_vel_y * controller_sensi_y * delta
+
+	x_rot = clamp(x_rot, deg_to_rad(-90), deg_to_rad(90))
