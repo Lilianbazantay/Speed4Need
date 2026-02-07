@@ -1,0 +1,58 @@
+[gd_scene format=3 uid="uid://cdb6ww1mka0ft"]
+
+[ext_resource type="Script" uid="uid://vfgppgmcy5ra" path="res://scenes/Element/win_scene.gd" id="1_vbwbp"]
+[ext_resource type="AudioStream" uid="uid://c0rx73hnruyuc" path="res://Assets/winner.mp3" id="2_vbwbp"]
+
+[node name="WinScene" type="Control" unique_id=1095007018]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_vbwbp")
+
+[node name="WinLabel" type="RichTextLabel" parent="." unique_id=1972346293]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -226.0
+offset_top = 72.0
+offset_right = 226.0
+offset_bottom = 212.0
+grow_horizontal = 2
+theme_override_font_sizes/normal_font_size = 100
+text = "YOU WIN"
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=805989393]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -131.5
+offset_top = -94.0
+offset_right = 131.5
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=628386236]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="BackToMainMenu" type="Button" parent="MarginContainer/VBoxContainer" unique_id=311599929]
+layout_mode = 2
+text = "BACK TO MAIN MENU"
+
+[node name="Quit" type="Button" parent="MarginContainer/VBoxContainer" unique_id=1741860139]
+layout_mode = 2
+text = "QUIT AS A WINNER"
+
+[node name="WinnerSound" type="AudioStreamPlayer2D" parent="." unique_id=2008222307]
+stream = ExtResource("2_vbwbp")
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/BackToMainMenu" to="." method="_on_back_to_main_menu_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Quit" to="." method="_on_quit_pressed"]

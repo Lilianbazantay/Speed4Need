@@ -1,8 +1,10 @@
 [gd_scene format=3 uid="uid://btran1o8c36bv"]
 
 [ext_resource type="PackedScene" uid="uid://4xw4wuwq8afp" path="res://scenes/Player/Player.tscn" id="1_0cvc5"]
+[ext_resource type="Script" uid="uid://d1vp1etwobcej" path="res://scenes/Level/FlatMap/map.gd" id="1_12oqb"]
 [ext_resource type="PackedScene" uid="uid://ca4iu4vmd4rr1" path="res://scenes/Trap/ExplosiveTrap/Landmine.tscn" id="2_kqde4"]
 [ext_resource type="PackedScene" uid="uid://6j80vaf2ei38" path="res://scenes/Trap/ExplosiveTrap/Claymore.tscn" id="3_7ml2n"]
+[ext_resource type="PackedScene" uid="uid://cq6tvd1y5qmjt" path="res://scenes/Element/WinLine.tscn" id="5_ash2k"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_bosas"]
 size = Vector3(30, 1, 1000)
@@ -10,7 +12,11 @@ size = Vector3(30, 1, 1000)
 [sub_resource type="BoxShape3D" id="BoxShape3D_putq6"]
 size = Vector3(30, 1, 1000)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_7ml2n"]
+size = Vector3(100000, 1, 100000)
+
 [node name="Map" type="Node3D" unique_id=1439661301]
+script = ExtResource("1_12oqb")
 
 [node name="Floor" type="StaticBody3D" parent="." unique_id=168374286]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
@@ -34,3 +40,14 @@ transform = Transform3D(1.2112901, -0.0005732584, 0.0065329345, 0.0006053891, 1.
 
 [node name="Claymore" parent="." unique_id=500929977 instance=ExtResource("3_7ml2n")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.347538, 0.75492954, 473.65216)
+
+[node name="DeadZone" type="Area3D" parent="." unique_id=1986630073]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -200, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DeadZone" unique_id=283750176]
+shape = SubResource("BoxShape3D_7ml2n")
+
+[node name="WinLine" parent="." unique_id=541262595 instance=ExtResource("5_ash2k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.35188675, 0.5, -495.4896)
+
+[connection signal="area_entered" from="DeadZone" to="." method="_on_dead_zone_area_entered"]

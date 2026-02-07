@@ -1,0 +1,58 @@
+[gd_scene format=3 uid="uid://c8hyg6ql0stn8"]
+
+[ext_resource type="Script" uid="uid://dfddsxvlwu0ha" path="res://scenes/GameOver/game_over.gd" id="1_xhtoj"]
+[ext_resource type="AudioStream" uid="uid://c03yrxbp0ifmq" path="res://Assets/looser.mp3" id="2_kgfi2"]
+
+[node name="GameOver" type="Control" unique_id=2095843635]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_xhtoj")
+
+[node name="GameOverLabel" type="RichTextLabel" parent="." unique_id=1669814896]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -296.0
+offset_top = 59.0
+offset_right = 296.0
+offset_bottom = 199.0
+grow_horizontal = 2
+theme_override_font_sizes/normal_font_size = 100
+text = "GAME OVER"
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=922904350]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -131.5
+offset_top = -94.0
+offset_right = 131.5
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=1334812260]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="BackToMainMenu" type="Button" parent="MarginContainer/VBoxContainer" unique_id=1079120326]
+layout_mode = 2
+text = "BACK TO MAIN MENU"
+
+[node name="RageQuit" type="Button" parent="MarginContainer/VBoxContainer" unique_id=1522708624]
+layout_mode = 2
+text = "RAGE QUIT LIKE A KID"
+
+[node name="LooserSound" type="AudioStreamPlayer2D" parent="." unique_id=1845026121]
+stream = ExtResource("2_kgfi2")
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/BackToMainMenu" to="." method="_on_back_to_main_menu_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/RageQuit" to="." method="_on_rage_quit_pressed"]
