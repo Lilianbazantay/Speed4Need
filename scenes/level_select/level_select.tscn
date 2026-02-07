@@ -6,11 +6,9 @@
 
 [node name="LevelSelect" type="Control" unique_id=548847070]
 layout_mode = 3
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_jsq2b")
@@ -18,70 +16,65 @@ script = ExtResource("1_jsq2b")
 [node name="PlayerIcon" parent="." unique_id=735070891 instance=ExtResource("3_yhcoq")]
 layout_mode = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=1250738661]
+[node name="GridContainer" type="GridContainer" parent="." unique_id=108116020]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -134.0
+offset_left = -167.0
 offset_top = -84.0
-offset_right = 134.0
-offset_bottom = 84.0
+offset_right = 240.0
+offset_bottom = 196.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/separation = 100
-metadata/_edit_use_anchors_ = true
-
-[node name="GridContainer" type="GridContainer" parent="HBoxContainer" unique_id=108116020]
-layout_mode = 2
+size_flags_horizontal = 4
 theme_override_constants/v_separation = 100
+columns = 3
 
-[node name="LevelIcon" parent="HBoxContainer/GridContainer" unique_id=1552134196 node_paths=PackedStringArray("next_down", "next_right") instance=ExtResource("2_06eje")]
+[node name="LevelIcon" parent="GridContainer" unique_id=1552134196 node_paths=PackedStringArray("next_down", "next_right") instance=ExtResource("2_06eje")]
 layout_mode = 2
+size_flags_horizontal = 2
 level_index = 1
 scene_path = "uid://cvbco5oubjo8"
 next_down = NodePath("../LevelIcon4")
-next_right = NodePath("../../GridContainer2/LevelIcon2")
+next_right = NodePath("../LevelIcon2")
 
-[node name="LevelIcon4" parent="HBoxContainer/GridContainer" unique_id=2008233529 node_paths=PackedStringArray("next_up", "next_right") instance=ExtResource("2_06eje")]
+[node name="LevelIcon2" parent="GridContainer" unique_id=205646348 node_paths=PackedStringArray("next_down", "next_left", "next_right") instance=ExtResource("2_06eje")]
 layout_mode = 2
-level_index = 4
-next_up = NodePath("../LevelIcon")
-next_right = NodePath("../../GridContainer2/LevelIcon5")
-
-[node name="GridContainer2" type="GridContainer" parent="HBoxContainer" unique_id=580701652]
-layout_mode = 2
-theme_override_constants/v_separation = 100
-
-[node name="LevelIcon2" parent="HBoxContainer/GridContainer2" unique_id=205646348 node_paths=PackedStringArray("next_down", "next_left", "next_right") instance=ExtResource("2_06eje")]
-layout_mode = 2
+size_flags_horizontal = 2
 level_index = 2
 scene_path = "uid://b6od7uc6xc6vb"
 next_down = NodePath("../LevelIcon5")
-next_left = NodePath("../../GridContainer/LevelIcon")
-next_right = NodePath("../../GridContainer3/LevelIcon3")
+next_left = NodePath("../LevelIcon")
+next_right = NodePath("../LevelIcon3")
 
-[node name="LevelIcon5" parent="HBoxContainer/GridContainer2" unique_id=466600180 node_paths=PackedStringArray("next_up", "next_left", "next_right") instance=ExtResource("2_06eje")]
+[node name="LevelIcon3" parent="GridContainer" unique_id=1405662643 node_paths=PackedStringArray("next_down", "next_left") instance=ExtResource("2_06eje")]
 layout_mode = 2
-level_index = 5
-next_up = NodePath("../LevelIcon2")
-next_left = NodePath("../../GridContainer/LevelIcon4")
-next_right = NodePath("../../GridContainer3/LevelIcon6")
-
-[node name="GridContainer3" type="GridContainer" parent="HBoxContainer" unique_id=2088960182]
-layout_mode = 2
-theme_override_constants/v_separation = 100
-
-[node name="LevelIcon3" parent="HBoxContainer/GridContainer3" unique_id=1405662643 node_paths=PackedStringArray("next_down", "next_left") instance=ExtResource("2_06eje")]
-layout_mode = 2
+size_flags_horizontal = 2
 level_index = 3
 next_down = NodePath("../LevelIcon6")
-next_left = NodePath("../../GridContainer2/LevelIcon2")
+next_left = NodePath("../LevelIcon2")
 
-[node name="LevelIcon6" parent="HBoxContainer/GridContainer3" unique_id=943180301 node_paths=PackedStringArray("next_up", "next_left") instance=ExtResource("2_06eje")]
+[node name="LevelIcon4" parent="GridContainer" unique_id=2008233529 node_paths=PackedStringArray("next_up", "next_right") instance=ExtResource("2_06eje")]
 layout_mode = 2
+size_flags_horizontal = 2
+level_index = 4
+next_up = NodePath("../LevelIcon")
+next_right = NodePath("../LevelIcon5")
+
+[node name="LevelIcon5" parent="GridContainer" unique_id=466600180 node_paths=PackedStringArray("next_up", "next_left", "next_right") instance=ExtResource("2_06eje")]
+layout_mode = 2
+size_flags_horizontal = 2
+level_index = 5
+next_up = NodePath("../LevelIcon2")
+next_left = NodePath("../LevelIcon4")
+next_right = NodePath("../LevelIcon6")
+
+[node name="LevelIcon6" parent="GridContainer" unique_id=943180301 node_paths=PackedStringArray("next_up", "next_left") instance=ExtResource("2_06eje")]
+layout_mode = 2
+size_flags_horizontal = 2
 level_index = 6
 next_up = NodePath("../LevelIcon3")
-next_left = NodePath("../../GridContainer2/LevelIcon5")
+next_left = NodePath("../LevelIcon5")
