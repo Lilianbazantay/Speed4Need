@@ -52,6 +52,7 @@ scene_path = "uid://dbdriax0fgpkr"
 layout_mode = 2
 size_flags_horizontal = 2
 level_index = 4
+scene_path = "uid://x2t6f5f5p26a"
 
 [node name="LevelIcon5" parent="GridContainer" unique_id=466600180 instance=ExtResource("2_06eje")]
 layout_mode = 2

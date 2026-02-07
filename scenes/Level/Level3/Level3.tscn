@@ -37,7 +37,6 @@ environment = SubResource("Environment_rme5c")
 
 [node name="Player" parent="." unique_id=858882668 instance=ExtResource("1_ptmgo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -45, 42, -40)
-visible = false
 
 [node name="Starting Point" type="StaticBody3D" parent="." unique_id=1830394231]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25, 40, -40)
@@ -57,9 +56,6 @@ shape = SubResource("BoxShape3D_ptmgo")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Obstacle1" unique_id=1168883510]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.3409748, 0, 0)
 mesh = SubResource("BoxMesh_ho3cb")
-
-[node name="StaticBody3D3" type="StaticBody3D" parent="." unique_id=1319312927]
-visible = false
 
 [node name="Claymores" type="Node3D" parent="." unique_id=436529004]
 
@@ -105,6 +101,14 @@ mesh = SubResource("BoxMesh_c6pbn")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Wall1" unique_id=1275476906]
 shape = SubResource("BoxShape3D_ho3cb")
 
+[node name="SpinningThings" type="Node3D" parent="." unique_id=1600523314]
+transform = Transform3D(2, 0, 0, 0, -8.742278e-08, 2, 0, -2, -8.742278e-08, -24.342865, 63.2834, -24.4522)
+
+[node name="SpiningThingKill2" parent="SpinningThings" unique_id=1688243070 instance=ExtResource("5_w7fsf")]
+
+[node name="SpiningThingKill" parent="SpinningThings" unique_id=1206186518 instance=ExtResource("5_w7fsf")]
+transform = Transform3D(1, 0, 0, 0, -1, 8.742278e-08, 0, -8.742278e-08, -1, 2.1714325, 9.651869, 5.8582993)
+
 [node name="Wall2" type="StaticBody3D" parent="." unique_id=1285137818]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.372124, 43.5, -24.593113)
 
@@ -113,9 +117,3 @@ mesh = SubResource("BoxMesh_c6pbn")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Wall2" unique_id=359205048]
 shape = SubResource("BoxShape3D_ho3cb")
-
-[node name="SpiningThingKill" parent="." unique_id=1206186518 instance=ExtResource("5_w7fsf")]
-transform = Transform3D(2, 0, 0, 0, -8.742278e-08, -2, 0, 2, -8.742278e-08, -20, 75, -43.75594)
-
-[node name="SpiningThingKill2" parent="." unique_id=1688243070 instance=ExtResource("5_w7fsf")]
-transform = Transform3D(2, 0, 0, 0, -8.742278e-08, 2, 0, -2, -8.742278e-08, -24.342865, 63.2834, -24.4522)
