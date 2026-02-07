@@ -2,6 +2,9 @@ extends CharacterBody3D
 
 @export_category("Movement")
 @export var speed: float = 8.0
+var max_speed: float
+@export var sprint_boost: float = 10
+var is_sprinting: bool = false
 @export var acceleration: float = 20.0
 @export var friction: float = 25.0
 
@@ -41,12 +44,16 @@ var x_rot := 0.0
 func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	PlayerRecord.max_speed = 0.0
+	max_speed = speed
 	original_collision_height = $Collision.shape.height
 	original_area_collision_height = $Area3D/CollisionShape3D.shape.height
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
 		handle_mouse_look(event)
+	if event is InputEventKey:
+		if event.keycode == KEY_SHIFT:
+			is_sprinting = true
 
 func _process(delta: float) -> void:
 	handle_controller_look(delta)
@@ -60,6 +67,9 @@ func _process(delta: float) -> void:
 	if is_on_floor():
 		if is_sliding:
 			$HUD/Sprite2D.frame = 3
+			return
+		if is_sprinting:
+			$HUD/Sprite2D.frame = 1
 			return
 		$HUD/Sprite2D.frame = 0
 		return
@@ -90,6 +100,9 @@ func apply_camera_rotation() -> void:
 
 func handle_movement(delta: float) -> void:
 	var input_dir = get_input_direction()
+	if is_sprinting:
+		is_sprinting = false
+		max_speed += sprint_boost # Voluntary bug, do not change (literally the goal of this game)
 	var direction = calculate_movement_direction(input_dir)
 	apply_acceleration(direction, delta)
 	handle_floor_movement(direction)
