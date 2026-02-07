@@ -9,8 +9,8 @@ func _ready() -> void:
 	if winner_sound != null :
 		winner_sound.play()
 	if max_speed != null && timer != null :
-		max_speed.text = "Max Speed : " + str(PlayerRecord.max_speed)
-		timer.text = "Timer          : " + str(PlayerRecord.timer)
+		max_speed.text = "Max Speed : %.2f" % PlayerRecord.max_speed
+		timer.text = "Timer          : %.2f" % (PlayerRecord.timer / 1000)
 
 func _on_back_to_main_menu_pressed() -> void:
 	get_tree().change_scene_to_file("res://scenes/MainMenu/MainMenu.tscn")
