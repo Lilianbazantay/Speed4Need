@@ -30,7 +30,7 @@ func _input(event: InputEvent) -> void:
 		if (event is InputEventMouseButton
 			|| event is InputEventJoypadButton):
 			$Rebind.text = "Mouse/Joypad"
-			if (event.keycode == MOUSE_BUTTON_LEFT):
+			if (event.button_index == MOUSE_BUTTON_LEFT):
 				prevSpace = true;
 		else:
 			if (event.keycode == KEY_ESCAPE):
