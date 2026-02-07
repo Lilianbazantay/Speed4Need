@@ -1,0 +1,241 @@
+[gd_scene format=3 uid="uid://cvbco5oubjo8"]
+
+[ext_resource type="PackedScene" uid="uid://ca4iu4vmd4rr1" path="res://scenes/Trap/ExplosiveTrap/Landmine.tscn" id="1_n32nd"]
+[ext_resource type="PackedScene" uid="uid://4xw4wuwq8afp" path="res://scenes/Player/Player.tscn" id="1_yhlec"]
+[ext_resource type="PackedScene" uid="uid://cmxf1memwkvb4" path="res://scenes/Trap/DeadZone/Rectangle10x1x10DeadZone.tscn" id="3_gi5ou"]
+[ext_resource type="PackedScene" uid="uid://bnlu0dnt4w3y0" path="res://scenes/Trap/DeadZone/Rectangle10x1x10DeadZoneWithHole.tscn" id="4_ew2qe"]
+[ext_resource type="PackedScene" uid="uid://6j80vaf2ei38" path="res://scenes/Trap/ExplosiveTrap/Claymore.tscn" id="5_cqpjn"]
+[ext_resource type="PackedScene" uid="uid://cq6tvd1y5qmjt" path="res://scenes/Win/WinLine.tscn" id="6_6r7l5"]
+[ext_resource type="AudioStream" uid="uid://b02hd7ys3tyai" path="res://Assets/OST_FirstLevel.mp3" id="7_punvs"]
+[ext_resource type="PackedScene" uid="uid://3mim5tn6c8d1" path="res://scenes/Trap/SpiningThing/SpiningThingKill.tscn" id="8_x836w"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_yau8c"]
+size = Vector3(50, 1, 30)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_yhlec"]
+size = Vector3(50, 1, 30)
+
+[sub_resource type="BoxMesh" id="BoxMesh_n32nd"]
+size = Vector3(500, 1, 500)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_gi5ou"]
+size = Vector3(500, 1, 500)
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_yhlec"]
+sky_top_color = Color(0.23456576, 0.559202, 0.99999994, 1)
+sky_horizon_color = Color(1, 1, 1, 1)
+sky_curve = 0.06529136
+ground_bottom_color = Color(0, 0, 0, 1)
+ground_horizon_color = Color(1, 1, 1, 1)
+ground_curve = 0.0492459
+
+[sub_resource type="Sky" id="Sky_n32nd"]
+sky_material = SubResource("ProceduralSkyMaterial_yhlec")
+
+[sub_resource type="Environment" id="Environment_gi5ou"]
+background_mode = 2
+background_color = Color(1, 0, 0, 1)
+sky = SubResource("Sky_n32nd")
+
+[node name="FirstLevel" type="Node3D" unique_id=634153211]
+
+[node name="StartGround" type="StaticBody3D" parent="." unique_id=280170623]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StartGround" unique_id=1678234449]
+mesh = SubResource("BoxMesh_yau8c")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StartGround" unique_id=1775761673]
+shape = SubResource("BoxShape3D_yhlec")
+
+[node name="Ground" type="StaticBody3D" parent="." unique_id=1744716849]
+transform = Transform3D(0.0073912214, 0, 0.49994537, 0, 0.5, 0, -0.49994537, 0, 0.0073912214, -34.41231, -67.69614, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Ground" unique_id=448018382]
+transform = Transform3D(-4.377216e-08, 0, 1, 0, 1, 0, -1, 0, -4.377216e-08, 0.1435073, 0, 10.361507)
+mesh = SubResource("BoxMesh_yau8c")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ground" unique_id=1279631850]
+transform = Transform3D(-4.377216e-08, 0, 1, 0, 1, 0, -1, 0, -4.377216e-08, 0.15392584, 0, 10.411602)
+shape = SubResource("BoxShape3D_yhlec")
+
+[node name="Ground2" type="StaticBody3D" parent="." unique_id=537780874]
+transform = Transform3D(8.742278e-09, 0.2, 1.7484556e-08, 0.2, -8.742278e-09, 0, 7.642742e-16, 1.7484556e-08, -0.2, -28.304064, -65.85736, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Ground2" unique_id=1416050094]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.010943, 0, -0.059295654)
+mesh = SubResource("BoxMesh_yau8c")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ground2" unique_id=1631270858]
+shape = SubResource("BoxShape3D_yhlec")
+
+[node name="Wall" type="StaticBody3D" parent="." unique_id=1613343202]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, -974.31934, 0, 15)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Wall" unique_id=2053860089]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 778.6566, 0, 0)
+mesh = SubResource("BoxMesh_n32nd")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Wall" unique_id=1815437557]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 778.6566, 0, 0)
+shape = SubResource("BoxShape3D_gi5ou")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Wall" unique_id=1281299788]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 778.6566, -30, 1.310129e-06)
+mesh = SubResource("BoxMesh_n32nd")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Wall" unique_id=100450377]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 778.6566, -30, 1.310129e-06)
+shape = SubResource("BoxShape3D_gi5ou")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="Wall" unique_id=223303806]
+transform = Transform3D(-4.3711385e-08, -0.99999994, 3.810479e-08, 0.99999994, -4.3711385e-08, 2.229386e-08, -2.2293856e-08, 3.8104787e-08, 1, 999.9739, -30, 1.310129e-06)
+mesh = SubResource("BoxMesh_n32nd")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="Wall" unique_id=2033666388]
+transform = Transform3D(-4.3711385e-08, -0.99999994, 3.810479e-08, 0.99999994, -4.3711385e-08, 2.229386e-08, -2.2293856e-08, 3.8104787e-08, 1, 999.9739, -30, 1.310129e-06)
+shape = SubResource("BoxShape3D_gi5ou")
+
+[node name="Room1" type="StaticBody3D" parent="." unique_id=1730858266]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -100, 0, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room1" unique_id=1626269018]
+mesh = SubResource("BoxMesh_yau8c")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Room1" unique_id=1217273378]
+shape = SubResource("BoxShape3D_yhlec")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Room1" unique_id=483057126]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 14.264371, 0)
+mesh = SubResource("BoxMesh_yau8c")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Room1" unique_id=49153362]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 14.264371, 0)
+shape = SubResource("BoxShape3D_yhlec")
+
+[node name="Landmine" parent="Room1" unique_id=1545580023 instance=ExtResource("1_n32nd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.400581, 1.0228868, 11.518911)
+
+[node name="Landmine2" parent="Room1" unique_id=307113317 instance=ExtResource("1_n32nd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.400581, 1.0228868, 3.7310562)
+
+[node name="Landmine3" parent="Room1" unique_id=1510871476 instance=ExtResource("1_n32nd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.400581, 1.0228868, -4.164728)
+
+[node name="Landmine4" parent="Room1" unique_id=899478161 instance=ExtResource("1_n32nd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.400581, 1.0228868, -11.388701)
+
+[node name="Landmine5" parent="Room1" unique_id=369511098 instance=ExtResource("1_n32nd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.590698, 1.0228868, 11.518911)
+
+[node name="Landmine6" parent="Room1" unique_id=591806578 instance=ExtResource("1_n32nd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.590698, 1.0228868, 3.7310562)
+
+[node name="Landmine7" parent="Room1" unique_id=408835905 instance=ExtResource("1_n32nd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.590698, 1.0228868, -4.164728)
+
+[node name="Landmine8" parent="Room1" unique_id=479400660 instance=ExtResource("1_n32nd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.590698, 1.0228868, -11.388701)
+
+[node name="Landmine9" parent="Room1" unique_id=649834396 instance=ExtResource("1_n32nd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.4203873, 1.0228868, 11.518911)
+
+[node name="Landmine10" parent="Room1" unique_id=709348191 instance=ExtResource("1_n32nd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.4203873, 1.0228868, 3.7310562)
+
+[node name="Landmine11" parent="Room1" unique_id=1290383169 instance=ExtResource("1_n32nd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.4203873, 1.0228868, -4.164728)
+
+[node name="Landmine12" parent="Room1" unique_id=188540425 instance=ExtResource("1_n32nd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.4203873, 1.0228868, -11.388701)
+
+[node name="Landmine13" parent="Room1" unique_id=1344644126 instance=ExtResource("1_n32nd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.8436203, 1.0228868, 11.518911)
+
+[node name="Landmine14" parent="Room1" unique_id=976717502 instance=ExtResource("1_n32nd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.8436203, 1.0228868, 3.7310562)
+
+[node name="Landmine15" parent="Room1" unique_id=1488872535 instance=ExtResource("1_n32nd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.8436203, 1.0228868, -4.164728)
+
+[node name="Landmine16" parent="Room1" unique_id=6058261 instance=ExtResource("1_n32nd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.8436203, 1.0228868, -11.388701)
+
+[node name="Landmine17" parent="Room1" unique_id=1229077251 instance=ExtResource("1_n32nd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.284973, 1.0228868, 11.518911)
+
+[node name="Landmine18" parent="Room1" unique_id=835290135 instance=ExtResource("1_n32nd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.284973, 1.0228868, 3.7310562)
+
+[node name="Landmine19" parent="Room1" unique_id=926976563 instance=ExtResource("1_n32nd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.284973, 1.0228868, -4.164728)
+
+[node name="Landmine20" parent="Room1" unique_id=218771562 instance=ExtResource("1_n32nd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.284973, 1.0228868, -11.388701)
+
+[node name="Landmine21" parent="Room1" unique_id=1047837633 instance=ExtResource("1_n32nd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24.3489, 1.0228868, 11.518911)
+
+[node name="Landmine22" parent="Room1" unique_id=1267559515 instance=ExtResource("1_n32nd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24.3489, 1.0228868, 3.7310562)
+
+[node name="Landmine23" parent="Room1" unique_id=951053649 instance=ExtResource("1_n32nd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24.3489, 1.0228868, -4.164728)
+
+[node name="Landmine24" parent="Room1" unique_id=11228887 instance=ExtResource("1_n32nd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24.3489, 1.0228868, -11.388701)
+
+[node name="Player" parent="." unique_id=858882668 instance=ExtResource("1_yhlec")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.893826, 0.5006896, -0.2725334)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=713109350]
+environment = SubResource("Environment_gi5ou")
+
+[node name="DeadZone" type="Node3D" parent="." unique_id=694991629]
+
+[node name="DeadZone" parent="DeadZone" unique_id=1007596897 instance=ExtResource("3_gi5ou")]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, -59.236683, -5.396632, -5.2306767)
+
+[node name="DeadZone3" parent="DeadZone" unique_id=1875999357 instance=ExtResource("3_gi5ou")]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, -122.21492, 19.31995, -5.2306767)
+
+[node name="DeadZone5" parent="DeadZone" unique_id=1976968905 instance=ExtResource("3_gi5ou")]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, -157.78445, -38.11947, -5.2306767)
+
+[node name="DeadZone7" parent="DeadZone" unique_id=2045380712 instance=ExtResource("3_gi5ou")]
+transform = Transform3D(7.9914994, 6.011318, 0, -6.011318, 7.9914994, 0, 0, 0, 10, -71.38455, -76.63164, -5.2306767)
+
+[node name="DeadZone9" parent="DeadZone" unique_id=907033269 instance=ExtResource("3_gi5ou")]
+transform = Transform3D(9.976077, 0.6912966, 0, -0.6912966, 9.976077, 0, 0, 0, 10.000001, -42.063465, -94.002205, -5.121189)
+
+[node name="DeadZone4" parent="DeadZone" unique_id=1982595314 instance=ExtResource("3_gi5ou")]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, -23.977833, 19.31995, -5.2306767)
+
+[node name="DeadZone2" parent="DeadZone" unique_id=57708223 instance=ExtResource("3_gi5ou")]
+transform = Transform3D(-4.371139e-07, -10, 0, 10, -4.371139e-07, 0, 0, 0, 10, -177.10591, -5.396632, -5.2306767)
+
+[node name="DeadZone8" parent="DeadZone" unique_id=2051156880 instance=ExtResource("3_gi5ou")]
+transform = Transform3D(-4.371139e-07, -10, 0, 10, -4.371139e-07, 0, 0, 0, 10, -11.519688, -54.463894, -5.2306767)
+
+[node name="DeadZone6" parent="DeadZone" unique_id=502901957 instance=ExtResource("4_ew2qe")]
+transform = Transform3D(-4.371139e-07, -10, 0, 10, -4.371139e-07, 0, 0, 0, 10, -34.928513, -67.7632, 10.644866)
+
+[node name="Trap" type="Node3D" parent="." unique_id=490215808]
+
+[node name="Claymore" parent="Trap" unique_id=311305821 instance=ExtResource("5_cqpjn")]
+transform = Transform3D(-0.4623369, 0, -0.88670444, 0, 1, 0, 0.88670444, 0, -0.4623369, -26.73973, -66.646454, 1.8048682)
+
+[node name="Claymore2" parent="Trap" unique_id=954581737 instance=ExtResource("5_cqpjn")]
+transform = Transform3D(-0.5252488, 0, 0.8509489, 0, 1, 0, -0.8509489, 0, -0.5252488, -26.748804, -66.646454, -1.9168179)
+
+[node name="SpiningThingKill" parent="Trap" unique_id=1206186518 instance=ExtResource("8_x836w")]
+transform = Transform3D(3.0542204, 0, 0, 0, 1.9113868, 0, 0, 0, 2.04496, -4.2183723, -0.15461016, 0.3261807)
+
+[node name="WinLine" parent="." unique_id=541262595 instance=ExtResource("6_6r7l5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.849709, -66.89742, 0.5076311)
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="." unique_id=674953617]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.849709, -63.89261, 0.5076311)
+stream = ExtResource("7_punvs")
+unit_size = 50.0
+autoplay = true
+area_mask = 2

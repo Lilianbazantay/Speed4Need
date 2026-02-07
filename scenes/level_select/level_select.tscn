@@ -20,51 +20,45 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -167.0
-offset_top = -84.0
-offset_right = 240.0
-offset_bottom = 196.0
+offset_left = -523.5
+offset_top = -75.0
+offset_right = 204.0
+offset_bottom = 215.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
-theme_override_constants/v_separation = 100
+theme_override_constants/h_separation = 339
+theme_override_constants/v_separation = 166
 columns = 3
 
 [node name="LevelIcon" parent="GridContainer" unique_id=1552134196 instance=ExtResource("2_06eje")]
 layout_mode = 2
 size_flags_horizontal = 2
-level_index = 1
-scene_path = "uid://cvbco5oubjo8"
 
 [node name="LevelIcon2" parent="GridContainer" unique_id=205646348 instance=ExtResource("2_06eje")]
 layout_mode = 2
 size_flags_horizontal = 2
-level_index = 2
-scene_path = "uid://b6od7uc6xc6vb"
+level_index = 1
 
 [node name="LevelIcon3" parent="GridContainer" unique_id=1405662643 instance=ExtResource("2_06eje")]
 layout_mode = 2
 size_flags_horizontal = 2
-level_index = 3
-scene_path = "uid://dbdriax0fgpkr"
+level_index = 2
 
 [node name="LevelIcon4" parent="GridContainer" unique_id=2008233529 instance=ExtResource("2_06eje")]
 layout_mode = 2
 size_flags_horizontal = 2
-level_index = 4
-scene_path = "uid://x2t6f5f5p26a"
+level_index = 3
 
 [node name="LevelIcon5" parent="GridContainer" unique_id=466600180 instance=ExtResource("2_06eje")]
 layout_mode = 2
 size_flags_horizontal = 2
-level_index = 5
-scene_path = "uid://dvmohkiso4ffr"
+level_index = 4
 
 [node name="LevelIcon6" parent="GridContainer" unique_id=943180301 instance=ExtResource("2_06eje")]
 layout_mode = 2
 size_flags_horizontal = 2
-level_index = 6
-scene_path = "uid://cnjvjvu08t7h5"
+level_index = 5
 
 [node name="PlayerIcon" parent="." unique_id=498701359 instance=ExtResource("3_vdlig")]
 layout_mode = 1

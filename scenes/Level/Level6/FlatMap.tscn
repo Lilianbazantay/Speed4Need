@@ -1,0 +1,73 @@
+[gd_scene format=3 uid="uid://cnjvjvu08t7h5"]
+
+[ext_resource type="PackedScene" uid="uid://4xw4wuwq8afp" path="res://scenes/Player/Player.tscn" id="1_6r1rt"]
+[ext_resource type="PackedScene" uid="uid://cq6tvd1y5qmjt" path="res://scenes/Win/WinLine.tscn" id="2_fxtef"]
+[ext_resource type="PackedScene" uid="uid://gj80ai20fb8q" path="res://scenes/Trap/DeadZone/SquareDeadZone.tscn" id="3_l2eee"]
+[ext_resource type="PackedScene" uid="uid://3mim5tn6c8d1" path="res://scenes/Trap/SpiningThing/SpiningThingKill.tscn" id="4_4dbgn"]
+[ext_resource type="PackedScene" uid="uid://ca4iu4vmd4rr1" path="res://scenes/Trap/ExplosiveTrap/Landmine.tscn" id="5_676p0"]
+[ext_resource type="PackedScene" uid="uid://6j80vaf2ei38" path="res://scenes/Trap/ExplosiveTrap/Claymore.tscn" id="6_4m4aa"]
+[ext_resource type="ArrayMesh" uid="uid://dmwky2hcolltt" path="res://Assets/Cone.obj" id="7_tmuym"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_vxef6"]
+size = Vector3(1000, 1, 200)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_wj0q7"]
+size = Vector3(1000, 1, 200)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_6r1rt"]
+points = PackedVector3Array(-0.00019085407, -1, 1, -0.43402237, -1, 0.9009397, 0.43383157, -1, 0.9009397, -0.00019085407, 1, -0.00019574165, -0.78196555, -1, 0.62333596, 0.78177464, -1, 0.62333596, 0.974928, -1, 0.22239625, 0.974928, -1, -0.222592, 0.78177464, -1, -0.6235317, 0.43383157, -1, -0.90113544, -0.00019085407, -1, -1, -0.43402237, -1, -0.90113544, -0.78196555, -1, -0.6235317, -0.974928, -1, -0.222592, -0.974928, -1, 0.22239625)
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_6r1rt"]
+sky_top_color = Color(0.15092018, 0.23654482, 1, 1)
+sky_horizon_color = Color(0, 0.59116876, 0.945486, 1)
+sky_cover_modulate = Color(0.42327985, 0.467345, 7.70092e-07, 1)
+ground_bottom_color = Color(0.67067635, 0.43888092, 0.7991669, 1)
+ground_horizon_color = Color(1, 1, 1, 1)
+ground_curve = 0.095136575
+sun_angle_max = 90.58
+
+[sub_resource type="Sky" id="Sky_fxtef"]
+sky_material = SubResource("ProceduralSkyMaterial_6r1rt")
+
+[sub_resource type="Environment" id="Environment_l2eee"]
+background_mode = 2
+sky = SubResource("Sky_fxtef")
+
+[node name="FlatMap" type="Node3D" unique_id=146734092]
+
+[node name="Ground" type="StaticBody3D" parent="." unique_id=855762941]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Ground" unique_id=1250594269]
+mesh = SubResource("BoxMesh_vxef6")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ground" unique_id=2054163438]
+shape = SubResource("BoxShape3D_wj0q7")
+
+[node name="Cone" type="MeshInstance3D" parent="Ground" unique_id=841636486]
+transform = Transform3D(50, 0, 0, 0, 50, 0, 0, 0, 50, -38.983803, 31.575493, -38.974155)
+mesh = ExtResource("7_tmuym")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Ground" unique_id=2064040700]
+transform = Transform3D(50, 0, 0, 0, 50, 0, 0, 0, 50, -38.983803, 31.575493, -38.974155)
+shape = SubResource("ConvexPolygonShape3D_6r1rt")
+
+[node name="Player" parent="." unique_id=858882668 instance=ExtResource("1_6r1rt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -82.13677, 0.5, 63.390232)
+
+[node name="WinLine" parent="." unique_id=541262595 instance=ExtResource("2_fxtef")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -31.4621, 1, 61.518333)
+
+[node name="DeadZone" parent="." unique_id=1007596897 instance=ExtResource("3_l2eee")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -58.267178, 1, 39.428608)
+
+[node name="SpiningThingKill" parent="." unique_id=1206186518 instance=ExtResource("4_4dbgn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -47.88814, 1.5, 73.67584)
+
+[node name="Landmine" parent="." unique_id=1545580023 instance=ExtResource("5_676p0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -74.17459, 1.0122738, 73.68627)
+
+[node name="Claymore" parent="." unique_id=506991295 instance=ExtResource("6_4m4aa")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -64.53862, 1.3067784, 73.125656)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=936523333]
+environment = SubResource("Environment_l2eee")

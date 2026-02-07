@@ -3,20 +3,23 @@ extends Control
 class_name LevelIcon
 
 @export var level_index: int = 0
-@export_file("*.tscn") var scene_path: String
+var scene_path: String;
 
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	$Label.text = "level " + str(level_index)
+#	$Label.text = "level " + str(level_index)
+	if (GameRoomsData.roomArray.is_empty()):
+		GameRoomsData.loadRooms();
+	if (level_index < GameRoomsData.roomArray.size()):
+		scene_path = GameRoomsData.roomArray[level_index].scenePath;
+		$Name.text = GameRoomsData.roomArray[level_index].name
+		if (GameRoomsData.roomArray[level_index].won):
+			$Crown.show();
+			$Panel/BT/Label.text = str(GameRoomsData.roomArray[level_index].bestTime) + " S"
+			$Panel/HS/Label.text = " %.3fm/S" %GameRoomsData.roomArray[level_index].bestSpeed
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta: float) -> void:
-	if Engine.is_editor_hint():
-		$Label.text = "level " + str(level_index)
-
-func _on_button_pressed() -> void:
-	if not scene_path:
+func _on_texture_button_pressed() -> void:
+	if scene_path == "":
 		print("no scene to load")
 		return
-	Utils.load_screen_to_scene(scene_path)
 	GameRoomsData.prevRoomPath = scene_path;
+	Utils.load_screen_to_scene(scene_path)
