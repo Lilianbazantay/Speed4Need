@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://den5uw7wjmli7" path="res://scenes/Player/Grapple.gd" id="2_ved6o"]
 [ext_resource type="Script" uid="uid://bp02c3h7l45py" path="res://scenes/Player/pause_menu.gd" id="3_bvqhm"]
 [ext_resource type="AudioStream" uid="uid://db1fduk1jivw4" path="res://Assets/Break.mp3" id="5_xcisb"]
+[ext_resource type="Texture2D" uid="uid://c7dbnht8g3mb4" path="res://Assets/player_movement_icon.png" id="6_puxyr"]
 [ext_resource type="AudioStream" uid="uid://bwdgfyn8p5x53" path="res://Assets/Grapple.mp3" id="6_socpp"]
 [ext_resource type="Script" uid="uid://c4cpivd3r066g" path="res://scenes/Player/timer.gd" id="7_mmokv"]
 [ext_resource type="Texture2D" uid="uid://bvvisbkagfi26" path="res://Assets/Cursor.png" id="8_mmokv"]
@@ -19,6 +20,49 @@ albedo_color = Color(0.19313219, 0.07850107, 0, 1)
 [sub_resource type="BoxMesh" id="BoxMesh_ved6o"]
 material = SubResource("StandardMaterial3D_ved6o")
 size = Vector3(0.5, 0.5, 0.5)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mmokv"]
+atlas = ExtResource("6_puxyr")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dqp0f"]
+atlas = ExtResource("6_puxyr")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tl8lu"]
+atlas = ExtResource("6_puxyr")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_puxyr"]
+atlas = ExtResource("6_puxyr")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qt7jd"]
+atlas = ExtResource("6_puxyr")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qt7jd"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mmokv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dqp0f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tl8lu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_puxyr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qt7jd")
+}],
+"loop": true,
+"name": &"player_movement_icon",
+"speed": 5.0
+}]
 
 [sub_resource type="Gradient" id="Gradient_fxc31"]
 offsets = PackedFloat32Array(0)
@@ -106,6 +150,14 @@ grow_vertical = 2
 pivot_offset = Vector2(16, 16)
 texture = ExtResource("8_mmokv")
 expand_mode = 1
+
+[node name="Sprite2D" type="AnimatedSprite2D" parent="HUD" unique_id=1126050866]
+texture_filter = 1
+position = Vector2(1120, 616)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_qt7jd")
+animation = &"player_movement_icon"
+frame_progress = 0.71225935
 
 [node name="PauseMenu" type="Control" parent="." unique_id=109016279]
 visible = false
