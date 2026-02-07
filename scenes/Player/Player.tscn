@@ -107,9 +107,6 @@ pivot_offset = Vector2(16, 16)
 texture = ExtResource("8_mmokv")
 expand_mode = 1
 
-[node name="Timer" type="Timer" parent="HUD" unique_id=1774075730]
-wait_time = 9.223372e+18
-
 [node name="PauseMenu" type="Control" parent="." unique_id=109016279]
 visible = false
 layout_mode = 3

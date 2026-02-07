@@ -3,7 +3,6 @@ extends CharacterBody3D
 var move_speed = 10.0
 var sprint_speed = 10.0
 var gravity = 10.0
-var mouse_sensitivity = 0.002
 
 var jump_force_idle = 5.0
 var jump_force_walking = 3.0
@@ -23,20 +22,9 @@ var friction = 2.5
 @onready var camera: Camera3D = $Head/Camera3D
 @onready var break_sound: AudioStreamPlayer3D = $BreakSound
 
-#Controller
+#Camera rotation
 var y_rot := 0.0
 var x_rot := 0.0
-var smooth_y_rot := 0.0
-var smooth_x_rot := 0.0
-var look_smoothness := 12.0
-
-# Manette
-var controller_sensi_x := 7.0
-var controller_sensi_y := 9.0
-var controller_curve := 1.7
-var controller_accel := 6.0
-var controller_vel_x := 0.0
-var controller_vel_y := 0.0
 
 func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
@@ -44,21 +32,28 @@ func _ready() -> void:
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
-		_handle_mouse(event)
+		y_rot -= event.relative.x * PlayerSettings.sensibility / 1000
+		x_rot -= event.relative.y * PlayerSettings.sensibility / 1000
+		x_rot = clamp(x_rot, deg_to_rad(-90), deg_to_rad(90))
+
+func handle_controller_look(delta: float) -> void:
+	var controller_input_x = Input.get_action_strength("look_right") - Input.get_action_strength("look_left")
+	var controller_input_y = Input.get_action_strength("look_down") - Input.get_action_strength("look_up")
+
+	y_rot += controller_input_x  * delta * PlayerSettings.sensibility / 1000
+	x_rot += controller_input_y  * delta * PlayerSettings.sensibility / 1000
+
+	x_rot = clamp(x_rot, deg_to_rad(-90), deg_to_rad(90))
+
+func _process(delta: float) -> void:
+	handle_controller_look(delta)
+
+	rotation.y = y_rot
+	head.rotation.x = x_rot
 
 func _physics_process(delta: float) -> void:
 	_handle_gravity(delta)
 	_handle_movement(delta)
-	_handle_keyboard_look(delta)
-	_handle_controller_look(delta)
-
-	# Interpolation fluide
-	smooth_y_rot = lerp(smooth_y_rot, y_rot, delta * look_smoothness)
-	smooth_x_rot = lerp(smooth_x_rot, x_rot, delta * look_smoothness)
-
-	rotation.y = smooth_y_rot
-	head.rotation.x = smooth_x_rot
-
 	move_and_slide()
 
 	if is_on_floor() and Input.is_action_pressed("crouch") and velocity.length() > 0.5:
@@ -164,30 +159,3 @@ func _handle_gravity(delta: float) -> void:
 		velocity.y -= gravity * delta * 0.3
 	if not is_on_floor() and not is_on_wall():
 		velocity.y -= gravity * delta
-
-func _handle_mouse(event: InputEventMouseMotion) -> void:
-	y_rot -= event.relative.x * mouse_sensitivity
-	x_rot -= event.relative.y * mouse_sensitivity
-	x_rot = clamp(x_rot, deg_to_rad(-90), deg_to_rad(90))
-
-func _handle_keyboard_look(delta: float) -> void:
-	var look_speed := 1.5
-
-	if Input.is_action_pressed("look_right"):
-		y_rot -= look_speed * delta
-	if Input.is_action_pressed("look_left"):
-		y_rot += look_speed * delta
-
-	if Input.is_action_pressed("look_down"):
-		x_rot -= look_speed * delta
-	if Input.is_action_pressed("look_up"):
-		x_rot += look_speed * delta
-
-	x_rot = clamp(x_rot, deg_to_rad(-90), deg_to_rad(90))
-
-func _handle_controller_look(delta: float) -> void:
-
-	y_rot += controller_vel_x * controller_sensi_x * delta
-	x_rot += controller_vel_y * controller_sensi_y * delta
-
-	x_rot = clamp(x_rot, deg_to_rad(-90), deg_to_rad(90))
