@@ -1,10 +1,8 @@
 [gd_scene format=3 uid="uid://4xw4wuwq8afp"]
 
 [ext_resource type="Script" uid="uid://duuxxpnjwotn1" path="res://scenes/Player/Player.gd" id="1_xhfnw"]
-[ext_resource type="Texture2D" uid="uid://dog5xa0xousvp" path="res://icon.svg" id="2_q3lat"]
 [ext_resource type="Script" uid="uid://den5uw7wjmli7" path="res://scenes/Player/Grapple.gd" id="2_ved6o"]
 [ext_resource type="Script" uid="uid://bp02c3h7l45py" path="res://scenes/Player/pause_menu.gd" id="3_bvqhm"]
-[ext_resource type="Texture2D" uid="uid://ciq44fdwd2f70" path="res://Assets/SpeedBar.png" id="4_puxyr"]
 [ext_resource type="AudioStream" uid="uid://db1fduk1jivw4" path="res://Assets/Break.mp3" id="5_xcisb"]
 [ext_resource type="AudioStream" uid="uid://bwdgfyn8p5x53" path="res://Assets/Grapple.mp3" id="6_socpp"]
 [ext_resource type="Script" uid="uid://c4cpivd3r066g" path="res://scenes/Player/timer.gd" id="7_mmokv"]
@@ -22,13 +20,21 @@ albedo_color = Color(0.19313219, 0.07850107, 0, 1)
 material = SubResource("StandardMaterial3D_ved6o")
 size = Vector3(0.5, 0.5, 0.5)
 
+[sub_resource type="Gradient" id="Gradient_fxc31"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0.50061923, 0.50061965, 0.5006196, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_puxyr"]
+gradient = SubResource("Gradient_fxc31")
+
+[sub_resource type="LabelSettings" id="LabelSettings_mmokv"]
+font_size = 32
+
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_bvqhm"]
 radius = 0.5966797
 
 [node name="Player" type="CharacterBody3D" unique_id=858882668]
 script = ExtResource("1_xhfnw")
-metadata/_edit_horizontal_guides_ = [325.0]
-metadata/_edit_vertical_guides_ = [575.0]
 
 [node name="Collision" type="CollisionShape3D" parent="." unique_id=1158400688]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
@@ -57,84 +63,107 @@ mesh = SubResource("BoxMesh_ved6o")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.5, 0)
 stream = ExtResource("6_socpp")
 
-[node name="PauseMenu" type="Node2D" parent="." unique_id=1494151468]
-visible = false
-position = Vector2(577, 309)
-script = ExtResource("3_bvqhm")
-
-[node name="BackgroundMenu" type="Sprite2D" parent="PauseMenu" unique_id=271173473]
-position = Vector2(2.9999924, 12.000011)
-scale = Vector2(3.203125, 3.9062498)
-texture = ExtResource("2_q3lat")
-
-[node name="Button" type="Button" parent="PauseMenu" unique_id=724145172]
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
+[node name="HUD" type="Control" parent="." unique_id=551151167]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -57.5
-offset_top = 209.0
-offset_right = 57.5
-offset_bottom = 240.0
 grow_horizontal = 2
-grow_vertical = 0
-text = "Back to menu"
+grow_vertical = 2
+script = ExtResource("7_mmokv")
 
-[node name="RichTextLabel" type="RichTextLabel" parent="PauseMenu" unique_id=1818154374]
+[node name="Speed" type="Label" parent="HUD" unique_id=94962792]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -23.0
+offset_right = 435.0
+grow_vertical = 0
+text = "SPEED : 0 "
+
+[node name="Time" type="Label" parent="HUD" unique_id=65123962]
+layout_mode = 0
+offset_top = 1.0
+offset_right = 93.0
+offset_bottom = 24.0
+text = "Time : 0.0 s"
+
+[node name="Cursor" type="TextureRect" parent="HUD" unique_id=1061966457]
+layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -115.75
-offset_top = -215.5
-offset_right = 117.0
-offset_bottom = -155.0
+offset_left = -16.0
+offset_top = -16.0
+offset_right = 16.0
+offset_bottom = 16.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_font_sizes/normal_font_size = 35
-text = "PAUSE MENU"
+pivot_offset = Vector2(16, 16)
+texture = ExtResource("8_mmokv")
+expand_mode = 1
 
-[node name="ATH" type="MarginContainer" parent="." unique_id=3403275]
-anchors_preset = 12
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = -36.0
-grow_horizontal = 2
-grow_vertical = 0
-theme_override_constants/margin_left = 5
-theme_override_constants/margin_top = 5
-theme_override_constants/margin_right = 5
-theme_override_constants/margin_bottom = 5
-
-[node name="SpeedBar" type="Sprite2D" parent="ATH" unique_id=1887572479]
-position = Vector2(574.5, 18)
-texture = ExtResource("4_puxyr")
-
-[node name="RichTextLabel" type="RichTextLabel" parent="ATH" unique_id=1691160473]
-layout_mode = 2
-text = "SPEED : 0 "
-scroll_active = false
-autowrap_mode = 0
-shortcut_keys_enabled = false
-
-[node name="Timer" type="MarginContainer" parent="." unique_id=912378480]
-offset_right = 85.0
-offset_bottom = 26.0
-script = ExtResource("7_mmokv")
-
-[node name="RichTextLabel2" type="RichTextLabel" parent="Timer" unique_id=1227604407]
-layout_mode = 2
-text = "Timer : 0.0 s"
-scroll_active = false
-autowrap_mode = 0
-shortcut_keys_enabled = false
-
-[node name="Timer" type="Timer" parent="Timer" unique_id=1774075730]
+[node name="Timer" type="Timer" parent="HUD" unique_id=1774075730]
 wait_time = 0.1
 autostart = true
+
+[node name="PauseMenu" type="Control" parent="." unique_id=109016279]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 384.0
+offset_top = 128.0
+offset_right = -384.0
+offset_bottom = -136.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("3_bvqhm")
+
+[node name="BackgroundMenu" type="TextureRect" parent="PauseMenu" unique_id=1641626994]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset_ratio = Vector2(0.5, 0.5)
+texture = SubResource("GradientTexture1D_puxyr")
+expand_mode = 1
+
+[node name="Button" type="Button" parent="PauseMenu" unique_id=724145172]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -64.0
+offset_top = -96.0
+offset_right = 64.0
+offset_bottom = -64.0
+grow_horizontal = 2
+grow_vertical = 0
+pivot_offset_ratio = Vector2(0.5, 1)
+text = "Back to menu"
+
+[node name="RichTextLabel" type="Label" parent="PauseMenu" unique_id=1626425770]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -102.0
+offset_top = 64.0
+offset_right = 102.0
+offset_bottom = 109.00005
+grow_horizontal = 2
+text = "pause menu"
+label_settings = SubResource("LabelSettings_mmokv")
+uppercase = true
 
 [node name="Area3D" type="Area3D" parent="." unique_id=340971583]
 collision_mask = 2
@@ -148,10 +177,4 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
 stream = ExtResource("5_xcisb")
 parameters/looping = true
 
-[node name="Cursor" type="Sprite2D" parent="." unique_id=236487170]
-position = Vector2(575, 325)
-scale = Vector2(0.2, 0.2)
-texture = ExtResource("8_mmokv")
-
 [connection signal="pressed" from="PauseMenu/Button" to="PauseMenu" method="_on_button_pressed"]
-[connection signal="timeout" from="Timer/Timer" to="Timer" method="_on_timer_timeout"]
