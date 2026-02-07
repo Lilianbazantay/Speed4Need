@@ -15,5 +15,8 @@ func _process(_delta: float) -> void:
 		$Label.text = "level " + str(level_index)
 
 func _on_button_pressed() -> void:
+	if not scene_path:
+		print("no scene to load")
+		return
 	Utils.load_screen_to_scene(scene_path)
 	GameRoomsData.prevRoomPath = scene_path;

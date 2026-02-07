@@ -10,6 +10,6 @@ class Room:
 
 var prevRoom: Room;
 
-var prevRoomPath: String = "";
+var prevRoomPath: String;
 
 var roomArray: Array;
