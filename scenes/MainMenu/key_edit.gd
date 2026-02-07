@@ -2,7 +2,9 @@ extends Label
 
 var keyStr: String;
 var prevStr: String;
+
 var waitRebind: bool = false
+var prevSpace: bool = false;
 
 func _ready():
 	keyStr = $".".text;
@@ -28,15 +30,23 @@ func _input(event: InputEvent) -> void:
 		if (event is InputEventMouseButton
 			|| event is InputEventJoypadButton):
 			$Rebind.text = "Mouse/Joypad"
+			if (event.keycode == MOUSE_BUTTON_LEFT):
+				prevSpace = true;
 		else:
 			if (event.keycode == KEY_ESCAPE):
 				$Rebind.text = prevStr;
 				return;
+			if (event.keycode == KEY_SPACE
+				|| event.keycode == KEY_ENTER):
+				prevSpace = true;
 			$Rebind.text = OS.get_keycode_string(event.keycode)
 		prevStr = $Rebind.text;
 		InputMap.action_erase_events(keyStr)
 		InputMap.action_add_event(keyStr, event);
 
 func _on_rebind_pressed() -> void:
+	if (prevSpace):
+		prevSpace = false;
+		return;
 	$Rebind.text = "Unbound"
 	waitRebind = true;
