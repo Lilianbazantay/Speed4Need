@@ -1,9 +1,12 @@
 extends CharacterBody3D
 
 # Movement
-var move_speed = 10.0
-var sprint_speed = 10.0
-var friction = 2.5
+@export var speed: float = 8.0
+@export var acceleration: float = 20.0
+@export var friction: float = 25.0
+
+@export var air_acceleration:float = 2.0
+@export var air_friction: float = 1.0
 
 # Gravity
 var gravity = 10.0
@@ -12,16 +15,14 @@ var gravity = 10.0
 var jump_force_idle = 5.0
 var jump_force_walking = 3.0
 var wall_jump_force = 8.0
-var jump_force_walking_boost = 10.0
+var jump_force_walking_boost = 5.0
 var wall_jump_max = 2
-var wall_jump_count = 2
+var wall_jump_count = 0
 
 # Crouch
 var is_crouching = false
 var friction_crouch_boost = 2.5
-
-# State
-var is_walking = false
+var crouch_scale = 0.5
 
 # Camera
 var y_rot := 0.0
@@ -30,10 +31,13 @@ var x_rot := 0.0
 @onready var head: Node3D = $Head
 @onready var camera: Camera3D = $Head/Camera3D
 @onready var break_sound: AudioStreamPlayer3D = $BreakSound
+@onready var collision: CollisionShape3D = $Collision
+@onready var original_collision_height: float
 
 func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	PlayerRecord.max_speed = 0.0
+	original_collision_height = collision.shape.height
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
@@ -71,94 +75,69 @@ func _handle_movement(delta: float) -> void:
 	var direction = _calculate_movement_direction(input_dir)
 	
 	_apply_acceleration(direction, delta)
-	_handle_floor_movement(direction, delta)
+	_handle_floor_movement(direction)
 	_handle_wall_jump()
 	_handle_crouch()
 	_update_speed_display()
 
 func _get_input_direction() -> Vector2:
-	var input_dir := Vector2.ZERO
+	if is_crouching:
+		return Vector2.ZERO
 
-	if is_crouching == false:
-		if Input.is_action_pressed("move_forward"):
-			is_walking = true
-			input_dir.y += 1
-		if Input.is_action_pressed("move_backward"):
-			is_walking = true
-			input_dir.y -= 1
-		if Input.is_action_pressed("move_left"):
-			is_walking = true
-			input_dir.x -= 1
-		if Input.is_action_pressed("move_right"):
-			is_walking = true
-			input_dir.x += 1
-		if Input.is_action_just_released("move_forward") \
-		or Input.is_action_just_released("move_backward") \
-		or Input.is_action_just_released("move_left") \
-		or Input.is_action_just_released("move_right"):
-			is_walking = false
-		input_dir = input_dir.normalized()
-
+	var input_dir = Input.get_vector("move_left", "move_right", "move_backward", "move_forward")
 	return input_dir
 
 func _calculate_movement_direction(input_dir: Vector2) -> Vector3:
-	var forward := -camera.global_transform.basis.z
-	var right := camera.global_transform.basis.x
+	var forward := -global_transform.basis.z
+	var right := global_transform.basis.x
 	forward.y = 0
 	right.y = 0
 	forward = forward.normalized()
 	right = right.normalized()
-	
+
 	return (forward * input_dir.y) + (right * input_dir.x)
 
 func _apply_acceleration(direction: Vector3, delta: float) -> void:
-	velocity.x += direction.x * move_speed * delta
-	velocity.z += direction.z * move_speed * delta
+	if is_on_floor():
+		# GROUND LOGIC: Snappy and limited to max speed
+		var target_velocity = Vector3.ZERO
+		if direction.length() > 0:
+			target_velocity = direction * speed
 
-func _handle_floor_movement(direction: Vector3, delta: float) -> void:
+		velocity.x = move_toward(velocity.x, target_velocity.x, acceleration * delta)
+		velocity.z = move_toward(velocity.z, target_velocity.z, acceleration * delta)
+
+	else:
+		# AIR LOGIC: Floaty and not limited by max speed
+		if direction.length() > 0:
+			# We add velocity directly so we can go faster than 'speed'
+			velocity.x += direction.x * air_acceleration * delta
+			velocity.z += direction.z * air_acceleration * delta
+		else:
+			# We use low air_friction so we barely slow down
+			velocity.x = move_toward(velocity.x, 0.0, air_friction * delta)
+			velocity.z = move_toward(velocity.z, 0.0, air_friction * delta)
+
+func _handle_floor_movement(direction: Vector3) -> void:
 	if not is_on_floor():
 		return
-	
+
 	_reset_wall_jump_count()
-	_handle_jump(direction, delta)
-	_apply_friction(delta)
+	_handle_jump(direction)
 
 func _reset_wall_jump_count() -> void:
-	if wall_jump_count < wall_jump_max:
-		wall_jump_count = wall_jump_max
+	wall_jump_count = wall_jump_max
 
-func _handle_jump(direction: Vector3, delta: float) -> void:
+func _handle_jump(direction: Vector3) -> void:
 	if Input.is_action_just_pressed("jump"):
-		if velocity.x == 0 and velocity.z == 0:
-			velocity.y = jump_force_idle
-		if velocity.x != 0:
-			velocity.y += jump_force_walking
-		if velocity.z != 0:
-			velocity.y += jump_force_walking
-		if velocity.x < velocity.z:
-			velocity.x += direction.x * jump_force_walking_boost * delta
+		var is_moving = velocity.x != 0 or velocity.z != 0
+
+		if is_moving:
+			velocity.y = jump_force_walking
+			velocity.x += direction.x * jump_force_walking_boost
+			velocity.z += direction.z * jump_force_walking_boost
 		else:
-			velocity.z += direction.x * jump_force_walking_boost * delta
-	else:
-		velocity.y = 0.0
-
-func _apply_friction(delta: float) -> void:
-	if is_walking == false:
-		if velocity.x != 0:
-			if velocity.x < 0:
-				velocity.x += friction * delta
-			if velocity.x > 0:
-				velocity.x -= friction * delta
-		if velocity.x < friction and velocity.x > -friction:
-			velocity.x = 0.0
-
-		if velocity.z != 0:
-			if velocity.z < 0:
-				velocity.z += move_speed * delta
-			if velocity.z > 0:
-				velocity.z -= move_speed * delta
-		if velocity.z < friction and velocity.z > -friction:
-			velocity.z = 0.0
+			velocity.y = jump_force_idle
 
 func _handle_wall_jump() -> void:
 	if is_on_wall() and wall_jump_count != 0:
@@ -169,24 +148,39 @@ func _handle_wall_jump() -> void:
 func _handle_crouch() -> void:
 	if Input.is_action_just_pressed("crouch"):
 		is_crouching = true
-		is_walking = false
 		friction += friction_crouch_boost
-		scale *= 0.5
-		$Head/Camera3D.scale *= 2
+		collision.shape.height = original_collision_height * crouch_scale
+		collision.position.y = original_collision_height * crouch_scale / 2
+		head.position.y = original_collision_height * crouch_scale
 
-	if Input.is_action_just_released("crouch"):
+	if Input.is_action_just_released("crouch") and _can_uncrouch():
 		is_crouching = false
 		friction -= friction_crouch_boost
-		scale *= 2
-		$Head/Camera3D.scale *= 0.5
+		collision.shape.height = original_collision_height
+		collision.position.y = original_collision_height / 2
+		head.position.y = original_collision_height * 0.75
+
+func _can_uncrouch() -> bool:
+	var space_state = get_world_3d().direct_space_state
+	var query = PhysicsShapeQueryParameters3D.new()
+	query.shape = collision.shape.duplicate()
+	query.shape.height = original_collision_height
+	query.transform = global_transform.translated(Vector3(0, original_collision_height / 2, 0))
+	query.collision_mask = collision_mask
+	query.exclude = [self]
+
+	var result = space_state.intersect_shape(query, 1)
+	return result.is_empty()
 
 func _update_speed_display() -> void:
-	if velocity.z > PlayerRecord.max_speed:
-		PlayerRecord.max_speed = velocity.z
-	$HUD/Speed.text = "Speed: %.2f" % abs(velocity.z)
+	var horizontal_speed = Vector2(velocity.x, velocity.z).length()
+	if horizontal_speed > PlayerRecord.max_speed:
+		PlayerRecord.max_speed = horizontal_speed
+	$HUD/Speed.text = "Speed: %.2f" % horizontal_speed
 
 func _handle_break_sound() -> void:
-	if is_on_floor() and Input.is_action_pressed("crouch") and velocity.length() > 0.5:
+	var horizontal_speed = Vector2(velocity.x, velocity.z).length()
+	if is_on_floor() and Input.is_action_pressed("crouch") and horizontal_speed > 0.5:
 		if not break_sound.playing:
 			break_sound.play()
 	else:
