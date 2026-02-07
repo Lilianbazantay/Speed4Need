@@ -1,0 +1,85 @@
+[gd_scene format=3 uid="uid://24g186m5b0cl"]
+
+[ext_resource type="Script" uid="uid://c66fqdabvktsl" path="res://scenes/Trap/ExplosiveTrap/floatingmine.gd" id="1_77mwd"]
+[ext_resource type="Script" uid="uid://blikxypp3r7vd" path="res://scenes/Trap/ExplosiveTrap/area_3d_land_mine.gd" id="2_14j4u"]
+[ext_resource type="AudioStream" uid="uid://cpoe7plxt8cpq" path="res://Assets/Explosion.mp3" id="3_lx6q1"]
+[ext_resource type="AudioStream" uid="uid://bu7ibcq7adc8j" path="res://Assets/Bip.mp3" id="4_844tk"]
+[ext_resource type="PackedScene" uid="uid://bqkokihb3jh6d" path="res://Assets/Mine.glb" id="5_77mwd"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_g2cit"]
+radius = 4.18894
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_gk2mg"]
+inherit_velocity_ratio = 1.0
+velocity_pivot = Vector3(1, 0, 0)
+spread = 90.0
+initial_velocity_max = 12.88
+gravity = Vector3(0, 0, 0)
+turbulence_noise_strength = 0.96
+turbulence_noise_scale = 0.251
+turbulence_noise_speed_random = 4.0
+turbulence_influence_min = 0.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_il7is"]
+albedo_color = Color(0.69803923, 0.019607844, 0.14117648, 1)
+emission_enabled = true
+emission = Color(0.68573314, 8.4228816e-07, 3.85046e-07, 1)
+emission_energy_multiplier = 16.0
+emission_on_uv2 = true
+
+[sub_resource type="SphereMesh" id="SphereMesh_bk2ym"]
+material = SubResource("StandardMaterial3D_il7is")
+radius = 0.25
+height = 0.5
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mp55c"]
+albedo_color = Color(0.36862746, 0.36862746, 0.36862746, 0.19215687)
+
+[sub_resource type="SphereMesh" id="SphereMesh_6l3gk"]
+material = SubResource("StandardMaterial3D_mp55c")
+
+[node name="FloatingMine" type="Node3D" unique_id=1545580023]
+script = ExtResource("1_77mwd")
+
+[node name="Area3D" type="Area3D" parent="." unique_id=1254252704]
+collision_layer = 2
+script = ExtResource("2_14j4u")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=446685629]
+shape = SubResource("SphereShape3D_g2cit")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="." unique_id=2026348685]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5312482, 0)
+light_color = Color(1, 0, 0.16078432, 1)
+light_energy = 50.0
+light_volumetric_fog_energy = 7.667
+omni_range = 4.33744
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="." unique_id=1294321848]
+stream = ExtResource("3_lx6q1")
+
+[node name="RedParticule" type="GPUParticles3D" parent="." unique_id=882254656]
+transform = Transform3D(-0.11079244, -0.99384356, 0, 0.99384356, -0.11079244, 0, 0, 0, 1, 0, 0, 0)
+emitting = false
+amount = 1000
+lifetime = 0.61
+one_shot = true
+process_material = SubResource("ParticleProcessMaterial_gk2mg")
+draw_pass_1 = SubResource("SphereMesh_bk2ym")
+
+[node name="GreyParticule" type="GPUParticles3D" parent="." unique_id=1341126183]
+transform = Transform3D(-0.11079244, -0.99384356, 0, 0.99384356, -0.11079244, 0, 0, 0, 1, 0, 0, 0)
+emitting = false
+amount = 1000
+lifetime = 0.61
+one_shot = true
+process_material = SubResource("ParticleProcessMaterial_gk2mg")
+draw_pass_1 = SubResource("SphereMesh_6l3gk")
+
+[node name="BipSound" type="AudioStreamPlayer3D" parent="." unique_id=92223015]
+stream = ExtResource("4_844tk")
+
+[node name="Mine" parent="." unique_id=267794336 instance=ExtResource("5_77mwd")]
+
+[connection signal="area_entered" from="Area3D" to="Area3D" method="_on_area_entered"]
+[connection signal="area_exited" from="Area3D" to="." method="_on_area_3d_area_exited"]

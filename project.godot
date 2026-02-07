@@ -27,6 +27,10 @@ GameRoomsData="*uid://cuvhpurmfo5oe"
 window/size/mode=3
 window/stretch/mode="viewport"
 
+[filesystem]
+
+import/blender/enabled=false
+
 [input]
 
 move_forward={
