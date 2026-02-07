@@ -58,7 +58,7 @@ theme_override_constants/v_separation = 100
 [node name="LevelIcon2" parent="HBoxContainer/GridContainer2" unique_id=205646348 node_paths=PackedStringArray("next_down", "next_left", "next_right") instance=ExtResource("2_06eje")]
 layout_mode = 2
 level_index = 2
-scene_path = "uid://btran1o8c36bv"
+scene_path = "uid://b6od7uc6xc6vb"
 next_down = NodePath("../LevelIcon5")
 next_left = NodePath("../../GridContainer/LevelIcon")
 next_right = NodePath("../../GridContainer3/LevelIcon3")

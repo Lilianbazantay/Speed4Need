@@ -185,7 +185,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24.3489, 1.0228868, -4.16472
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24.3489, 1.0228868, -11.388701)
 
 [node name="Player" parent="." unique_id=858882668 instance=ExtResource("1_yhlec")]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 22.893826, 0.5006896, -0.2725334)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.893826, 0.5006896, -0.2725334)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=713109350]
 environment = SubResource("Environment_gi5ou")
