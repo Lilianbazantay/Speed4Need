@@ -75,3 +75,6 @@ func update_rope():
 func stop_grapple():
 	is_grappling = false
 	rope.visible = false
+
+func _on_area_3d_area_entered(_area: Area3D) -> void:
+	stop_grapple()

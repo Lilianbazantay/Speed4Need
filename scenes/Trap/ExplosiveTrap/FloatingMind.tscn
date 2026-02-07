@@ -2,9 +2,9 @@
 
 [ext_resource type="Script" uid="uid://c66fqdabvktsl" path="res://scenes/Trap/ExplosiveTrap/floatingmine.gd" id="1_77mwd"]
 [ext_resource type="Script" uid="uid://blikxypp3r7vd" path="res://scenes/Trap/ExplosiveTrap/area_3d_land_mine.gd" id="2_14j4u"]
-[ext_resource type="AudioStream" uid="uid://cpoe7plxt8cpq" path="res://Assets/Explosion.mp3" id="3_lx6q1"]
-[ext_resource type="AudioStream" uid="uid://bu7ibcq7adc8j" path="res://Assets/Bip.mp3" id="4_844tk"]
-[ext_resource type="PackedScene" uid="uid://bqkokihb3jh6d" path="res://Assets/Mine.glb" id="5_77mwd"]
+[ext_resource type="AudioStream" uid="uid://cpoe7plxt8cpq" path="res://Assets/Sound/Explosion.mp3" id="3_lx6q1"]
+[ext_resource type="AudioStream" uid="uid://bu7ibcq7adc8j" path="res://Assets/Sound/Bip.mp3" id="4_844tk"]
+[ext_resource type="PackedScene" uid="uid://bqkokihb3jh6d" path="res://Assets/Item3D/Mine.glb" id="5_77mwd"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_g2cit"]
 radius = 4.18894
@@ -79,7 +79,7 @@ draw_pass_1 = SubResource("SphereMesh_6l3gk")
 [node name="BipSound" type="AudioStreamPlayer3D" parent="." unique_id=92223015]
 stream = ExtResource("4_844tk")
 
-[node name="Mine" parent="." unique_id=267794336 instance=ExtResource("5_77mwd")]
+[node name="Mine" parent="." unique_id=1169418616 instance=ExtResource("5_77mwd")]
 
 [connection signal="area_entered" from="Area3D" to="Area3D" method="_on_area_entered"]
 [connection signal="area_exited" from="Area3D" to="." method="_on_area_3d_area_exited"]

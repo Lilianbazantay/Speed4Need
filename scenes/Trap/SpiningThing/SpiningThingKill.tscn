@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://3mim5tn6c8d1"]
 
 [ext_resource type="Script" uid="uid://cjglqd4udieng" path="res://scenes/Trap/SpiningThing/spining_thing_kill.gd" id="1_t0rjq"]
-[ext_resource type="ArrayMesh" uid="uid://dmwky2hcolltt" path="res://Assets/Cone.obj" id="1_vg2uk"]
+[ext_resource type="ArrayMesh" uid="uid://dmwky2hcolltt" path="res://Assets/Item3D/Cone.obj" id="1_vg2uk"]
 [ext_resource type="PackedScene" uid="uid://cq7k5yykkgnv7" path="res://scenes/Trap/DeadZone/Rectangle2x1x1DeadZone.tscn" id="2_t0rjq"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0josi"]

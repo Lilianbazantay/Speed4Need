@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://c8hyg6ql0stn8"]
 
 [ext_resource type="Script" uid="uid://dfddsxvlwu0ha" path="res://scenes/GameOver/game_over.gd" id="1_xhtoj"]
-[ext_resource type="AudioStream" uid="uid://c03yrxbp0ifmq" path="res://Assets/looser.mp3" id="2_kgfi2"]
+[ext_resource type="AudioStream" uid="uid://c03yrxbp0ifmq" path="res://Assets/Sound/looser.mp3" id="2_kgfi2"]
 
 [node name="GameOver" type="Control" unique_id=2095843635]
 layout_mode = 3

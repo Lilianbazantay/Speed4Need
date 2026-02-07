@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://cdb6ww1mka0ft"]
 
 [ext_resource type="Script" uid="uid://vfgppgmcy5ra" path="res://scenes/Win/win_scene.gd" id="1_vbwbp"]
-[ext_resource type="AudioStream" uid="uid://c0rx73hnruyuc" path="res://Assets/winner.mp3" id="2_vbwbp"]
+[ext_resource type="AudioStream" uid="uid://c0rx73hnruyuc" path="res://Assets/Sound/winner.mp3" id="2_vbwbp"]
 
 [node name="WinScene" type="Control" unique_id=1095007018]
 layout_mode = 3

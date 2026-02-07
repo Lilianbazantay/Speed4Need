@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://3mim5tn6c8d1" path="res://scenes/Trap/SpiningThing/SpiningThingKill.tscn" id="4_4dbgn"]
 [ext_resource type="PackedScene" uid="uid://ca4iu4vmd4rr1" path="res://scenes/Trap/ExplosiveTrap/Landmine.tscn" id="5_676p0"]
 [ext_resource type="PackedScene" uid="uid://6j80vaf2ei38" path="res://scenes/Trap/ExplosiveTrap/Claymore.tscn" id="6_4m4aa"]
-[ext_resource type="ArrayMesh" uid="uid://dmwky2hcolltt" path="res://Assets/Cone.obj" id="7_tmuym"]
+[ext_resource type="ArrayMesh" uid="uid://dmwky2hcolltt" path="res://Assets/Item3D/Cone.obj" id="7_tmuym"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_vxef6"]
 size = Vector3(1000, 1, 200)

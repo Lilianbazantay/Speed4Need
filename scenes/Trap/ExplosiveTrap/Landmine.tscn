@@ -2,9 +2,9 @@
 
 [ext_resource type="Script" uid="uid://b2lxtw0tw8nkk" path="res://scenes/Trap/ExplosiveTrap/landmine.gd" id="1_g2cit"]
 [ext_resource type="Script" uid="uid://blikxypp3r7vd" path="res://scenes/Trap/ExplosiveTrap/area_3d_land_mine.gd" id="2_bk2ym"]
-[ext_resource type="AudioStream" uid="uid://cpoe7plxt8cpq" path="res://Assets/Explosion.mp3" id="2_gk2mg"]
-[ext_resource type="AudioStream" uid="uid://bu7ibcq7adc8j" path="res://Assets/Bip.mp3" id="4_6l3gk"]
-[ext_resource type="PackedScene" uid="uid://cckgsnrwhrr1" path="res://Assets/LandMine.glb" id="5_jtlla"]
+[ext_resource type="AudioStream" uid="uid://cpoe7plxt8cpq" path="res://Assets/Sound/Explosion.mp3" id="2_gk2mg"]
+[ext_resource type="AudioStream" uid="uid://bu7ibcq7adc8j" path="res://Assets/Sound/Bip.mp3" id="4_6l3gk"]
+[ext_resource type="PackedScene" uid="uid://cckgsnrwhrr1" path="res://Assets/Item3D/LandMine.glb" id="5_jtlla"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_g2cit"]
 radius = 3.0

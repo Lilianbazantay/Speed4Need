@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cu5uenq80hxel"]
 
-[ext_resource type="Texture2D" uid="uid://c3hnbrf5kd75m" path="res://Assets/selection_square.png" id="1_5feng"]
+[ext_resource type="Texture2D" uid="uid://c3hnbrf5kd75m" path="res://Assets/Item2D/selection_square.png" id="1_5feng"]
 
 [node name="SquareSelector" type="Control" unique_id=498701359]
 layout_mode = 3

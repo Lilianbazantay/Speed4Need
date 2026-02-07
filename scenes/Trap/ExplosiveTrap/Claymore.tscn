@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://6j80vaf2ei38"]
 
 [ext_resource type="Script" uid="uid://dxqlofpx8ypa5" path="res://scenes/Trap/ExplosiveTrap/claymore.gd" id="1_x1hmk"]
-[ext_resource type="AudioStream" uid="uid://cpoe7plxt8cpq" path="res://Assets/Explosion.mp3" id="2_mp55c"]
-[ext_resource type="PackedScene" uid="uid://d4idf3thl6eu1" path="res://Assets/Claymore.glb" id="2_x1hmk"]
+[ext_resource type="AudioStream" uid="uid://cpoe7plxt8cpq" path="res://Assets/Sound/Explosion.mp3" id="2_mp55c"]
+[ext_resource type="PackedScene" uid="uid://d4idf3thl6eu1" path="res://Assets/Item3D/Claymore.glb" id="2_x1hmk"]
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_5slfi"]
 points = PackedVector3Array(-0.00019085407, -1, 1, -0.43402237, -1, 0.9009397, 0.43383157, -1, 0.9009397, -0.00019085407, 1, -0.00019574165, -0.78196555, -1, 0.62333596, 0.78177464, -1, 0.62333596, 0.974928, -1, 0.22239625, 0.974928, -1, -0.222592, 0.78177464, -1, -0.6235317, 0.43383157, -1, -0.90113544, -0.00019085407, -1, -1, -0.43402237, -1, -0.90113544, -0.78196555, -1, -0.6235317, -0.974928, -1, -0.222592, -0.974928, -1, 0.22239625)
