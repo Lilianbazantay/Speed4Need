@@ -52,7 +52,7 @@ func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
 		handle_mouse_look(event)
 	if event is InputEventKey:
-		if event.keycode == KEY_SHIFT:
+		if event.keycode == KEY_SHIFT && event.pressed:
 			is_sprinting = true
 
 func _process(delta: float) -> void:
