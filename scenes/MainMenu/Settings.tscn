@@ -36,7 +36,7 @@ offset_top = 104.0
 offset_right = 555.0
 offset_bottom = 135.0
 button_pressed = true
-text = "Activate sound"
+text = "Activate Timer"
 
 [node name="KeysModifer" type="GridContainer" parent="Keys" unique_id=1728470317]
 layout_mode = 0
