@@ -144,7 +144,7 @@ func _handle_movement(delta: float) -> void:
 
 	if velocity.z > PlayerRecord.max_speed :
 		PlayerRecord.max_speed = velocity.z
-	$HUD/Speed.text = "SPEED : " + str(abs(velocity.z))
+	$HUD/Speed.text = "Speed: %.2f" % abs(velocity.z)
 
 	if Input.is_action_just_pressed("crouch"):
 		is_crouching = true

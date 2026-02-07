@@ -86,7 +86,7 @@ text = "SPEED : 0 "
 [node name="Time" type="Label" parent="HUD" unique_id=65123962]
 layout_mode = 0
 offset_top = 1.0
-offset_right = 93.0
+offset_right = 260.0
 offset_bottom = 24.0
 text = "Time : 0.0 s"
 
@@ -108,8 +108,7 @@ texture = ExtResource("8_mmokv")
 expand_mode = 1
 
 [node name="Timer" type="Timer" parent="HUD" unique_id=1774075730]
-wait_time = 0.1
-autostart = true
+wait_time = 9.223372e+18
 
 [node name="PauseMenu" type="Control" parent="." unique_id=109016279]
 visible = false
