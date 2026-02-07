@@ -1,0 +1,121 @@
+[gd_scene format=3 uid="uid://dbdriax0fgpkr"]
+
+[ext_resource type="PackedScene" uid="uid://4xw4wuwq8afp" path="res://scenes/Player/Player.tscn" id="1_ptmgo"]
+[ext_resource type="PackedScene" uid="uid://6j80vaf2ei38" path="res://scenes/Trap/ExplosiveTrap/Claymore.tscn" id="2_c6pbn"]
+[ext_resource type="PackedScene" uid="uid://bnlu0dnt4w3y0" path="res://scenes/Trap/DeadZone/Rectangle10x1x10DeadZoneWithHole.tscn" id="3_c6pbn"]
+[ext_resource type="PackedScene" uid="uid://cq6tvd1y5qmjt" path="res://scenes/Win/WinLine.tscn" id="4_ho3cb"]
+[ext_resource type="PackedScene" uid="uid://3mim5tn6c8d1" path="res://scenes/Trap/SpiningThing/SpiningThingKill.tscn" id="5_w7fsf"]
+
+[sub_resource type="Environment" id="Environment_rme5c"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_827xt"]
+size = Vector3(50, 1, 10)
+
+[sub_resource type="BoxMesh" id="BoxMesh_fnwvs"]
+size = Vector3(50, 1, 10)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ptmgo"]
+size = Vector3(58, 15, 10)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_c6pbn"]
+albedo_color = Color(0.60784316, 0.40784314, 0.18039216, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_ho3cb"]
+material = SubResource("StandardMaterial3D_c6pbn")
+size = Vector3(58, 15, 10)
+
+[sub_resource type="BoxMesh" id="BoxMesh_c6pbn"]
+size = Vector3(50, 100, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ho3cb"]
+size = Vector3(50, 100, 1)
+
+[node name="Node3D" type="Node3D" unique_id=1565219252]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1809243517]
+environment = SubResource("Environment_rme5c")
+
+[node name="Player" parent="." unique_id=858882668 instance=ExtResource("1_ptmgo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -45, 42, -40)
+visible = false
+
+[node name="Starting Point" type="StaticBody3D" parent="." unique_id=1830394231]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25, 40, -40)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Starting Point" unique_id=1289641434]
+shape = SubResource("BoxShape3D_827xt")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Starting Point" unique_id=464427156]
+mesh = SubResource("BoxMesh_fnwvs")
+
+[node name="Obstacle1" type="StaticBody3D" parent="." unique_id=252976901]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.854094, 47.5, -30)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Obstacle1" unique_id=697333389]
+shape = SubResource("BoxShape3D_ptmgo")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Obstacle1" unique_id=1168883510]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.3409748, 0, 0)
+mesh = SubResource("BoxMesh_ho3cb")
+
+[node name="StaticBody3D3" type="StaticBody3D" parent="." unique_id=1319312927]
+visible = false
+
+[node name="Claymores" type="Node3D" parent="." unique_id=436529004]
+
+[node name="Claymore4" parent="Claymores" unique_id=1545580023 instance=ExtResource("2_c6pbn")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -15, 41.5, -37)
+
+[node name="Claymore3" parent="Claymores" unique_id=28501272 instance=ExtResource("2_c6pbn")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -22, 41.5, -42)
+
+[node name="Claymore2" parent="Claymores" unique_id=1681287213 instance=ExtResource("2_c6pbn")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -30, 41.5, -37)
+
+[node name="Claymore" parent="Claymores" unique_id=1918894547 instance=ExtResource("2_c6pbn")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -35, 41.5, -40)
+
+[node name="Claymore5" parent="Claymores" unique_id=241114800 instance=ExtResource("2_c6pbn")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -10, 41.5, -40)
+
+[node name="Claymore6" parent="Claymores" unique_id=761762777 instance=ExtResource("2_c6pbn")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -2.5, 41.5, -41.5)
+
+[node name="WinLine" parent="." unique_id=541262595 instance=ExtResource("4_ho3cb")]
+transform = Transform3D(0.8868649, -0.13486853, -0.44190642, 0.03952144, 0.97508615, -0.21827757, 0.46033558, 0.17611793, 0.8700999, -25.859585, 46.60512, -59.5062)
+
+[node name="DeadZones" type="Node3D" parent="." unique_id=735872915]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -35, 47, -55)
+
+[node name="DeadZone3" parent="DeadZones" unique_id=1007596897 instance=ExtResource("3_c6pbn")]
+transform = Transform3D(-6.556708e-08, -1.5, 6.556708e-08, 0, -6.556708e-08, -1.5, 1.5, -6.556708e-08, 2.866028e-15, 8.137601, -0.44415665, -2.0051727)
+
+[node name="DeadZone2" parent="DeadZones" unique_id=338872142 instance=ExtResource("3_c6pbn")]
+transform = Transform3D(-6.556708e-08, -1.5, 6.556708e-08, 0, -6.556708e-08, -1.5, 1.5, -6.556708e-08, 2.8660283e-15, -2.9246979, -0.51244736, -2.2887516)
+
+[node name="DeadZone" parent="DeadZones" unique_id=2027358320 instance=ExtResource("3_c6pbn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.9784107, 0.14927673, -0.018306732)
+
+[node name="Wall1" type="StaticBody3D" parent="." unique_id=2073972089]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25, 43.5, -45)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Wall1" unique_id=662056843]
+mesh = SubResource("BoxMesh_c6pbn")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Wall1" unique_id=1275476906]
+shape = SubResource("BoxShape3D_ho3cb")
+
+[node name="Wall2" type="StaticBody3D" parent="." unique_id=1285137818]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.372124, 43.5, -24.593113)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Wall2" unique_id=2244944]
+mesh = SubResource("BoxMesh_c6pbn")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Wall2" unique_id=359205048]
+shape = SubResource("BoxShape3D_ho3cb")
+
+[node name="SpiningThingKill" parent="." unique_id=1206186518 instance=ExtResource("5_w7fsf")]
+transform = Transform3D(2, 0, 0, 0, -8.742278e-08, -2, 0, 2, -8.742278e-08, -20, 75, -43.75594)
+
+[node name="SpiningThingKill2" parent="." unique_id=1688243070 instance=ExtResource("5_w7fsf")]
+transform = Transform3D(2, 0, 0, 0, -8.742278e-08, 2, 0, -2, -8.742278e-08, -24.342865, 63.2834, -24.4522)
