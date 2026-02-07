@@ -140,9 +140,12 @@ func _handle_jump(direction: Vector3) -> void:
 			velocity.y = jump_force_idle
 
 func _handle_wall_jump() -> void:
-	if is_on_wall() and wall_jump_count != 0:
+	if is_on_wall() and not is_on_floor() and wall_jump_count != 0:
 		if Input.is_action_just_pressed("jump"):
 			velocity.y = wall_jump_force
+			var wall_normal = get_wall_normal()
+			velocity.x += wall_normal.x * wall_jump_force
+			velocity.z += wall_normal.z * wall_jump_force
 			wall_jump_count -= 1
 
 func _handle_crouch() -> void:
