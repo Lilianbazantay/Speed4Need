@@ -38,18 +38,12 @@ func _physics_process(delta: float) -> void:
 	_handle_movement(delta)
 	move_and_slide()
 
-	# --- SOUND FIX ---
-	# Le son joue quand :
-	# - tu es au sol
-	# - tu es accroupi
-	# - tu bouges (vitesse > 0.5)
 	if is_on_floor() and Input.is_action_pressed("crouch") and velocity.length() > 0.5:
 		if not break_sound.playing:
 			break_sound.play()
 	else:
 		if break_sound.playing:
 			break_sound.stop()
-	# --- END SOUND FIX ---
 
 func _handle_movement(delta: float) -> void:
 	var input_dir := Vector2.ZERO
@@ -137,13 +131,13 @@ func _handle_movement(delta: float) -> void:
 		is_crouching = true
 		is_walking = false
 		friction += friction_crouch_boost
-		scale.y *= 0.5
+		scale *= 0.5
 		$Head/Camera3D.scale *= 2
 
 	if Input.is_action_just_released("crouch"):
 		is_crouching = false
 		friction -= friction_crouch_boost
-		scale.y *= 2
+		scale *= 2
 		$Head/Camera3D.scale *= 0.5
 
 func _handle_gravity(delta: float) -> void:

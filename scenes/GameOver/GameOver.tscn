@@ -53,6 +53,7 @@ text = "RAGE QUIT LIKE A KID"
 
 [node name="LooserSound" type="AudioStreamPlayer2D" parent="." unique_id=1845026121]
 stream = ExtResource("2_kgfi2")
+volume_db = 24.0
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/BackToMainMenu" to="." method="_on_back_to_main_menu_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/RageQuit" to="." method="_on_rage_quit_pressed"]

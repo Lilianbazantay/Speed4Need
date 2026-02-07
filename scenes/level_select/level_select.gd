@@ -1,7 +1,7 @@
 extends Control
 class_name LevelSelect
 
-@onready var current_level: LevelIcon = $LevelIcon
+@onready var current_level: LevelIcon = $HBoxContainer/GridContainer/LevelIcon
 
 func _ready() -> void:
 	$PlayerIcon.global_position = current_level.global_position

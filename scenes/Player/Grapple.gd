@@ -13,7 +13,7 @@ var rope_length: float = 0.0
 @onready var ray: RayCast3D = $Camera3D/RayCast3D
 @onready var origin: Marker3D = $Camera3D/Marker3D
 @onready var rope: MeshInstance3D = $GrappleRope
-
+@onready var grapple_sound: AudioStreamPlayer3D = $GrappleSound
 
 func _ready():
 	rope.visible = false
@@ -41,7 +41,8 @@ func try_grapple():
 		rope_length = origin.global_position.distance_to(hook_point)
 		is_grappling = true
 		rope.visible = true
-
+		if grapple_sound != null :
+			grapple_sound.play()
 
 func pull_player(delta):
 	if not check_variable():

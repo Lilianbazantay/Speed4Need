@@ -1,0 +1,31 @@
+[gd_scene format=3 uid="uid://cq6tvd1y5qmjt"]
+
+[ext_resource type="Script" uid="uid://bnxn3l7xfrwch" path="res://scenes/Win/Win.gd" id="1_ktkhx"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cp8sh"]
+albedo_color = Color(0.7465802, 0.7465801, 1.1551381e-06, 1)
+metallic = 1.0
+metallic_specular = 1.0
+emission_enabled = true
+emission = Color(1, 1, 0.17254902, 1)
+emission_energy_multiplier = 16.0
+
+[sub_resource type="BoxMesh" id="BoxMesh_ktkhx"]
+material = SubResource("StandardMaterial3D_cp8sh")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_cp8sh"]
+size = Vector3(4, 4, 4)
+
+[node name="WinLine" type="Node3D" unique_id=541262595]
+script = ExtResource("1_ktkhx")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1861771513]
+mesh = SubResource("BoxMesh_ktkhx")
+
+[node name="Area3D" type="Area3D" parent="." unique_id=298546211]
+collision_layer = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=493735442]
+shape = SubResource("BoxShape3D_cp8sh")
+
+[connection signal="area_entered" from="Area3D" to="." method="_on_area_3d_area_entered"]

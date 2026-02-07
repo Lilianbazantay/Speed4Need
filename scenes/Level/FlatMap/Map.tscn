@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://d1vp1etwobcej" path="res://scenes/Level/FlatMap/map.gd" id="1_12oqb"]
 [ext_resource type="PackedScene" uid="uid://ca4iu4vmd4rr1" path="res://scenes/Trap/ExplosiveTrap/Landmine.tscn" id="2_kqde4"]
 [ext_resource type="PackedScene" uid="uid://6j80vaf2ei38" path="res://scenes/Trap/ExplosiveTrap/Claymore.tscn" id="3_7ml2n"]
-[ext_resource type="PackedScene" uid="uid://cq6tvd1y5qmjt" path="res://scenes/Element/WinLine.tscn" id="5_ash2k"]
+[ext_resource type="PackedScene" uid="uid://cq6tvd1y5qmjt" path="res://scenes/Win/WinLine.tscn" id="5_ash2k"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_bosas"]
 size = Vector3(30, 1, 1000)

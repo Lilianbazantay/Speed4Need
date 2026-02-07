@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://gj80ai20fb8q"]
+
+[ext_resource type="Script" uid="uid://llibsp3cxk2t" path="res://scenes/Trap/DeadZone/dead_zone.gd" id="1_ropal"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ropal"]
+albedo_color = Color(1, 0, 0, 1)
+emission_enabled = true
+emission = Color(1, 0, 0, 1)
+emission_energy_multiplier = 16.0
+
+[sub_resource type="BoxMesh" id="BoxMesh_adjds"]
+material = SubResource("StandardMaterial3D_ropal")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_7veit"]
+
+[node name="DeadZone" type="Node3D" unique_id=1007596897]
+script = ExtResource("1_ropal")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=153542348]
+mesh = SubResource("BoxMesh_adjds")
+
+[node name="Area3D" type="Area3D" parent="." unique_id=709220236]
+collision_layer = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=1644737313]
+shape = SubResource("BoxShape3D_7veit")
+
+[connection signal="area_entered" from="Area3D" to="." method="_on_area_3d_area_entered"]
