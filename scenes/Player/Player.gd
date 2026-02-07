@@ -14,7 +14,6 @@ var wall_jump_max = 2
 var wall_jump_count = 2
 
 var is_crouching = false
-var crouch_boost = 2.0
 var friction_crouch_boost = 2.5
 
 var is_walking = false
@@ -122,8 +121,7 @@ func _handle_movement(delta: float) -> void:
 		friction += friction_crouch_boost
 		scale.y *= 0.5
 		$Head/Camera3D.scale *= 2
-		velocity.x += direction.x * crouch_boost
-		velocity.z += direction.z * crouch_boost
+
 	if Input.is_action_just_released("crouch"):
 		is_crouching = false
 		friction -= friction_crouch_boost

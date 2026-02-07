@@ -1,0 +1,86 @@
+[gd_scene format=3 uid="uid://6j80vaf2ei38"]
+
+[ext_resource type="Script" uid="uid://dxqlofpx8ypa5" path="res://scenes/Trap/ExplosiveTrap/claymore.gd" id="1_x1hmk"]
+[ext_resource type="AudioStream" uid="uid://cpoe7plxt8cpq" path="res://Assets/Explosion.mp3" id="2_mp55c"]
+[ext_resource type="PackedScene" uid="uid://d4idf3thl6eu1" path="res://Assets/Claymore.glb" id="2_x1hmk"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_5slfi"]
+points = PackedVector3Array(-0.00019085407, -1, 1, -0.43402237, -1, 0.9009397, 0.43383157, -1, 0.9009397, -0.00019085407, 1, -0.00019574165, -0.78196555, -1, 0.62333596, 0.78177464, -1, 0.62333596, 0.974928, -1, 0.22239625, 0.974928, -1, -0.222592, 0.78177464, -1, -0.6235317, 0.43383157, -1, -0.90113544, -0.00019085407, -1, -1, -0.43402237, -1, -0.90113544, -0.78196555, -1, -0.6235317, -0.974928, -1, -0.222592, -0.974928, -1, 0.22239625)
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_il7is"]
+inherit_velocity_ratio = 1.0
+velocity_pivot = Vector3(1, 0, 0)
+spread = 90.0
+initial_velocity_max = 12.88
+gravity = Vector3(0, 0, 0)
+turbulence_noise_strength = 0.96
+turbulence_noise_scale = 0.251
+turbulence_noise_speed_random = 4.0
+turbulence_influence_min = 0.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mp55c"]
+albedo_color = Color(0.69803923, 0.019607844, 0.14117648, 1)
+emission_enabled = true
+emission = Color(0.68573314, 8.4228816e-07, 3.85046e-07, 1)
+emission_energy_multiplier = 16.0
+emission_on_uv2 = true
+
+[sub_resource type="SphereMesh" id="SphereMesh_x1hmk"]
+material = SubResource("StandardMaterial3D_mp55c")
+radius = 0.25
+height = 0.5
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_a7evd"]
+albedo_color = Color(0.36862746, 0.36862746, 0.36862746, 0.19215687)
+
+[sub_resource type="SphereMesh" id="SphereMesh_a7evd"]
+material = SubResource("StandardMaterial3D_a7evd")
+
+[node name="Claymore" type="Node3D" unique_id=1545580023]
+script = ExtResource("1_x1hmk")
+
+[node name="Area3D" type="Area3D" parent="." unique_id=1254252704]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.46402133, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=365385760]
+transform = Transform3D(-8.742278e-08, -2, 0, 2, -8.742278e-08, 0, 0, 0, 2, 2, 0.449059, 0)
+shape = SubResource("ConvexPolygonShape3D_5slfi")
+
+[node name="SpotLight3D" type="SpotLight3D" parent="." unique_id=2119882536]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0.17893845, -0.017120242, 0)
+light_color = Color(0.74538225, 0.11473244, 0.0016841913, 1)
+light_energy = 16.0
+spot_range = 4.331413
+spot_angle = 27.48883
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="." unique_id=162026806]
+stream = ExtResource("2_mp55c")
+
+[node name="RedParticule" type="GPUParticles3D" parent="." unique_id=2053177228]
+transform = Transform3D(-0.11079244, -0.99384356, 0, 0.99384356, -0.11079244, 0, 0, 0, 1, 0, 0, 0)
+emitting = false
+amount = 1000
+lifetime = 0.61
+one_shot = true
+process_material = SubResource("ParticleProcessMaterial_il7is")
+draw_pass_1 = SubResource("SphereMesh_x1hmk")
+
+[node name="GreyParticule" type="GPUParticles3D" parent="." unique_id=293308875]
+transform = Transform3D(-0.11079244, -0.99384356, 0, 0.99384356, -0.11079244, 0, 0, 0, 1, 0, 0, 0)
+emitting = false
+amount = 1000
+lifetime = 0.61
+one_shot = true
+process_material = SubResource("ParticleProcessMaterial_il7is")
+draw_pass_1 = SubResource("SphereMesh_a7evd")
+
+[node name="Claymore" parent="." unique_id=1164571462 instance=ExtResource("2_x1hmk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.46402133, 0)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="." unique_id=1964921771]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.25145102, -0.008433759, 0)
+light_color = Color(0.78891283, 2.9600412e-06, 7.70092e-07, 1)
+light_energy = 16.0
+omni_range = 0.4414757
+
+[connection signal="area_entered" from="Area3D" to="." method="_on_area_3d_area_entered"]
