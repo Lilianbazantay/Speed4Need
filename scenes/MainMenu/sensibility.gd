@@ -4,7 +4,7 @@ var is_button_active: bool = false;
 
 func _ready() -> void:
 	var prevPos: Vector2;
-	prevPos[0] = 12 + (PlayerSettings.sensibility / 100);
+	prevPos[0] = (PlayerSettings.sensibility * 100) -12;
 	prevPos[1] = -5;
 	$ButtonLine/Button.set_position(prevPos);
 	$LineEdit.text = "%.4f" % PlayerSettings.sensibility
@@ -37,7 +37,7 @@ func _on_line_edit_text_submitted(new_text: String) -> void:
 	if (new_text.is_valid_float()):
 		test = new_text.to_float();
 	var prevPos: Vector2;
-	prevPos[0] = 12 + (test / 100);
+	prevPos[0] = (test * 100) -12;
 	prevPos[1] = -5;
 	$ButtonLine/Button.set_position(prevPos);
 	PlayerSettings.sensibility = test

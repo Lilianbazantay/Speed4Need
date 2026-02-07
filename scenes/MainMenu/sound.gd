@@ -6,10 +6,10 @@ var is_music_active: bool = false;
 func _ready() -> void:
 	var prevPos: Vector2;
 	prevPos[1] = -5;
-	prevPos[0] = 12 + (PlayerSettings.soudEffects * 3);
+	prevPos[0] = (PlayerSettings.soudEffects * 3) -12;
 	$EffectsButtonLine/EffectsButton.set_position(prevPos);
 	$EffectsLineEdit.text = "%.02f" % PlayerSettings.soudEffects
-	prevPos[0] = 12 + (PlayerSettings.soundMusic * 3);
+	prevPos[0] = (PlayerSettings.soundMusic * 3) -12;
 	$MusicButtonLine/MusicButton.set_position(prevPos);
 	$MusicLineEdit.text = "%.02f" % PlayerSettings.soundMusic
 
@@ -39,7 +39,7 @@ func _on_effects_line_edit_text_submitted(new_text: String) -> void:
 		test = new_text.to_float();
 	var prevPos: Vector2;
 	prevPos[1] = -5;
-	prevPos[0] = 12 + (test * 3);
+	prevPos[0] = (test * 3) -12;
 	$EffectsButtonLine/EffectsButton.set_position(prevPos);
 	PlayerSettings.soudEffects = test;
 
@@ -50,7 +50,7 @@ func _on_music_line_edit_text_submitted(new_text: String) -> void:
 		test = new_text.to_float();
 	var prevPos: Vector2;
 	prevPos[1] = -5;
-	prevPos[0] = 12 + (test * 3);
+	prevPos[0] = (test * 3) -12;
 	$MusicButtonLine/MusicButton.set_position(prevPos);
 	PlayerSettings.soundMusic = test;
 
