@@ -62,6 +62,7 @@ level_index = 5
 layout_mode = 2
 size_flags_horizontal = 2
 level_index = 6
+scene_path = "uid://cnjvjvu08t7h5"
 
 [node name="PlayerIcon" parent="." unique_id=498701359 instance=ExtResource("3_vdlig")]
 layout_mode = 1
