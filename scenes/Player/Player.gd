@@ -31,6 +31,8 @@ var y_rot := 0.0
 var x_rot := 0.0
 
 @onready var original_collision_height: float
+@onready var original_pos: Vector3 = global_position
+
 
 func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
@@ -44,6 +46,9 @@ func _unhandled_input(event: InputEvent) -> void:
 func _process(delta: float) -> void:
 	_handle_controller_look(delta)
 	_apply_camera_rotation()
+	if global_position.y < -100:
+		global_position = original_pos
+		velocity = Vector3.ZERO
 	if is_on_wall_only():
 		$HUD/Sprite2D.frame = 2
 		return
