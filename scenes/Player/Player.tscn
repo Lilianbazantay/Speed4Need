@@ -2,12 +2,20 @@
 
 [ext_resource type="Script" uid="uid://duuxxpnjwotn1" path="res://scenes/Player/Player.gd" id="1_xhfnw"]
 [ext_resource type="Texture2D" uid="uid://dog5xa0xousvp" path="res://icon.svg" id="2_q3lat"]
+[ext_resource type="Script" uid="uid://den5uw7wjmli7" path="res://scenes/Player/Grapple.gd" id="2_ved6o"]
 [ext_resource type="Script" uid="uid://bp02c3h7l45py" path="res://scenes/Player/pause_menu.gd" id="3_bvqhm"]
+[ext_resource type="AudioStream" uid="uid://db1fduk1jivw4" path="res://Assets/Break.mp3" id="5_xcisb"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_kpjcp"]
 radius = 0.5961914
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_kne1u"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ved6o"]
+albedo_color = Color(0.19313219, 0.07850107, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_ved6o"]
+material = SubResource("StandardMaterial3D_ved6o")
 
 [sub_resource type="GDScript" id="GDScript_bvqhm"]
 script/source = "extends MarginContainer
@@ -15,11 +23,15 @@ script/source = "extends MarginContainer
 
 [sub_resource type="QuadMesh" id="QuadMesh_tok1r"]
 
+[sub_resource type="QuadMesh" id="QuadMesh_ved6o"]
+
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_bvqhm"]
 radius = 0.5966797
 
 [node name="Player" type="CharacterBody3D" unique_id=858882668]
 script = ExtResource("1_xhfnw")
+metadata/_edit_horizontal_guides_ = [325.0]
+metadata/_edit_vertical_guides_ = [575.0]
 
 [node name="Collision" type="CollisionShape3D" parent="." unique_id=1158400688]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
@@ -32,8 +44,17 @@ mesh = SubResource("CapsuleMesh_kne1u")
 
 [node name="Head" type="Node3D" parent="." unique_id=1756613865]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+script = ExtResource("2_ved6o")
 
 [node name="Camera3D" type="Camera3D" parent="Head" unique_id=1895542418]
+
+[node name="RayCast3D" type="RayCast3D" parent="Head/Camera3D" unique_id=241536720]
+
+[node name="Marker3D" type="Marker3D" parent="Head/Camera3D" unique_id=631200243]
+
+[node name="GrappleRope" type="MeshInstance3D" parent="Head" unique_id=1925314272]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
+mesh = SubResource("BoxMesh_ved6o")
 
 [node name="ATH" type="MarginContainer" parent="." unique_id=3403275]
 anchors_preset = 12
@@ -61,6 +82,17 @@ text = "SPEED : 0 "
 scroll_active = false
 autowrap_mode = 0
 shortcut_keys_enabled = false
+
+[node name="MeshInstance2D2" type="MeshInstance2D" parent="ATH" unique_id=492543109]
+position = Vector2(575, -287)
+scale = Vector2(1, 15)
+mesh = SubResource("QuadMesh_ved6o")
+
+[node name="MeshInstance2D3" type="MeshInstance2D" parent="ATH" unique_id=1845659653]
+position = Vector2(575.00006, -287)
+rotation = 1.5707964
+scale = Vector2(1, 15)
+mesh = SubResource("QuadMesh_ved6o")
 
 [node name="PauseMenu" type="Node2D" parent="." unique_id=1494151468]
 visible = false
@@ -106,5 +138,10 @@ text = "PAUSE MENU"
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=630651908]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("CapsuleShape3D_bvqhm")
+
+[node name="BreakSound" type="AudioStreamPlayer3D" parent="." unique_id=194540480]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+stream = ExtResource("5_xcisb")
+parameters/looping = true
 
 [connection signal="pressed" from="PauseMenu/Button" to="PauseMenu" method="_on_button_pressed"]

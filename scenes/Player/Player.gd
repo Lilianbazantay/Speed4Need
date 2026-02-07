@@ -21,6 +21,7 @@ var friction = 2.5
 
 @onready var head: Node3D = $Head
 @onready var camera: Camera3D = $Head/Camera3D
+@onready var break_sound: AudioStreamPlayer3D = $BreakSound
 
 var y_rot := 0.0
 var x_rot := 0.0
@@ -36,6 +37,19 @@ func _physics_process(delta: float) -> void:
 	_handle_gravity(delta)
 	_handle_movement(delta)
 	move_and_slide()
+
+	# --- SOUND FIX ---
+	# Le son joue quand :
+	# - tu es au sol
+	# - tu es accroupi
+	# - tu bouges (vitesse > 0.5)
+	if is_on_floor() and Input.is_action_pressed("crouch") and velocity.length() > 0.5:
+		if not break_sound.playing:
+			break_sound.play()
+	else:
+		if break_sound.playing:
+			break_sound.stop()
+	# --- END SOUND FIX ---
 
 func _handle_movement(delta: float) -> void:
 	var input_dir := Vector2.ZERO
@@ -54,7 +68,10 @@ func _handle_movement(delta: float) -> void:
 		if Input.is_action_pressed("move_right"):
 			is_walking = true
 			input_dir.x += 1
-		if Input.is_action_just_released("move_forward") || Input.is_action_just_released("move_backward") || Input.is_action_just_released("move_left") || Input.is_action_just_released("move_right"):
+		if Input.is_action_just_released("move_forward") \
+		or Input.is_action_just_released("move_backward") \
+		or Input.is_action_just_released("move_left") \
+		or Input.is_action_just_released("move_right"):
 			is_walking = false
 		input_dir = input_dir.normalized()
 
@@ -76,34 +93,35 @@ func _handle_movement(delta: float) -> void:
 			wall_jump_count = wall_jump_max
 
 		if Input.is_action_just_pressed("jump"):
-			if velocity.x == 0 && velocity.z == 0 :
+			if velocity.x == 0 and velocity.z == 0:
 				velocity.y = jump_force_idle
-			if velocity.x != 0 :
+			if velocity.x != 0:
 				velocity.y += jump_force_walking
-			if velocity.z != 0 :
+			if velocity.z != 0:
 				velocity.y += jump_force_walking
-			if velocity.x < velocity.z :
+			if velocity.x < velocity.z:
 				velocity.x += direction.x * jump_force_walking_boost * delta
-			else :
+			else:
 				velocity.z += direction.x * jump_force_walking_boost * delta
 		else:
 			velocity.y = 0.0
 
 		# FRICTION
-		if is_walking == false :
+		if is_walking == false:
 			if velocity.x != 0:
 				if velocity.x < 0:
 					velocity.x += friction * delta
 				if velocity.x > 0:
 					velocity.x -= friction * delta
-			if velocity.x < friction && velocity.x > (friction * -1) :
+			if velocity.x < friction and velocity.x > -friction:
 				velocity.x = 0.0
+
 			if velocity.z != 0:
 				if velocity.z < 0:
 					velocity.z += move_speed * delta
 				if velocity.z > 0:
 					velocity.z -= move_speed * delta
-			if velocity.z < friction && velocity.z > (friction * -1) :
+			if velocity.z < friction and velocity.z > -friction:
 				velocity.z = 0.0
 
 	# Wall jump
@@ -111,7 +129,7 @@ func _handle_movement(delta: float) -> void:
 		if Input.is_action_just_pressed("jump"):
 			velocity.y = wall_jump_force
 			wall_jump_count -= 1
-	
+
 	$ATH/RichTextLabel.text = "SPEED : " + str(abs(velocity.z))
 
 	# Crouch
@@ -129,9 +147,9 @@ func _handle_movement(delta: float) -> void:
 		$Head/Camera3D.scale *= 0.5
 
 func _handle_gravity(delta: float) -> void:
-	if not is_on_floor() && is_on_wall() :
+	if not is_on_floor() and is_on_wall():
 		velocity.y -= gravity * delta * 0.3
-	if not is_on_floor() && not is_on_wall() :
+	if not is_on_floor() and not is_on_wall():
 		velocity.y -= gravity * delta
 
 func _handle_mouse(event: InputEventMouseMotion) -> void:

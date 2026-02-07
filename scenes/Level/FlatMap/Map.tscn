@@ -5,10 +5,10 @@
 [ext_resource type="PackedScene" uid="uid://6j80vaf2ei38" path="res://scenes/Trap/ExplosiveTrap/Claymore.tscn" id="3_7ml2n"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_bosas"]
-size = Vector3(10, 1, 1000)
+size = Vector3(30, 1, 1000)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_putq6"]
-size = Vector3(10, 1, 1000)
+size = Vector3(30, 1, 1000)
 
 [node name="Map" type="Node3D" unique_id=1439661301]
 
@@ -30,7 +30,7 @@ omni_range = 12.013
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.15653801, -3.8146973e-06, 498.08313)
 
 [node name="Landmine" parent="." unique_id=1545580023 instance=ExtResource("2_kqde4")]
-transform = Transform3D(0.99997854, -0.00044291085, 0.0065406435, 0.0004997778, 0.9999621, -0.008695048, -0.006536544, 0.008698131, 0.9999408, 0.57796955, 0.5435502, 466.56647)
+transform = Transform3D(1.2112901, -0.0005732584, 0.0065329345, 0.0006053891, 1.2942427, -0.008684802, -0.007917821, 0.01125792, 0.9987623, 7.332899, 0.5435502, 473.78455)
 
 [node name="Claymore" parent="." unique_id=500929977 instance=ExtResource("3_7ml2n")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.119422, 0.75492954, 471.33057)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.347538, 0.75492954, 473.65216)
