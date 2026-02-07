@@ -234,4 +234,4 @@ autoplay = true
 area_mask = 2
 
 [node name="SpiningThingKill" parent="." unique_id=1206186518 instance=ExtResource("8_x836w")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.2183723, 1.5, 0.596786)
+transform = Transform3D(3.0542204, 0, 0, 0, 1.9113868, 0, 0, 0, 2.04496, -4.2183723, -0.15461016, 0.3261807)
