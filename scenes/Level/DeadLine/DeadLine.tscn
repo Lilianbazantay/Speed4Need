@@ -1,6 +1,9 @@
 [gd_scene format=4 uid="uid://b6od7uc6xc6vb"]
 
 [ext_resource type="PackedScene" uid="uid://4xw4wuwq8afp" path="res://scenes/Player/Player.tscn" id="2_a25d2"]
+[ext_resource type="PackedScene" uid="uid://ca4iu4vmd4rr1" path="res://scenes/Trap/ExplosiveTrap/Landmine.tscn" id="3_8txor"]
+[ext_resource type="PackedScene" uid="uid://bnlu0dnt4w3y0" path="res://scenes/Trap/DeadZone/Rectangle10x1x10DeadZoneWithHole.tscn" id="4_a6ats"]
+[ext_resource type="PackedScene" uid="uid://cq7k5yykkgnv7" path="res://scenes/Trap/DeadZone/Rectangle2x1x1DeadZone.tscn" id="5_rqwms"]
 [ext_resource type="PackedScene" uid="uid://cq6tvd1y5qmjt" path="res://scenes/Win/WinLine.tscn" id="7_oj3ur"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_xx67s"]
@@ -93,3 +96,139 @@ shape = SubResource("ConcavePolygonShape3D_7dh1p")
 
 [node name="WinLine" parent="." unique_id=541262595 instance=ExtResource("7_oj3ur")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.212101, 468.55606, 0.85948044)
+
+[node name="Minefields" type="Node3D" parent="." unique_id=628958078]
+
+[node name="Landmine7" parent="Minefields" unique_id=745604046 instance=ExtResource("3_8txor")]
+transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, -66, 90, -48)
+
+[node name="Landmine6" parent="Minefields" unique_id=1562168574 instance=ExtResource("3_8txor")]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 46, 90, -62)
+
+[node name="Landmine5" parent="Minefields" unique_id=483820970 instance=ExtResource("3_8txor")]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, -5, 90, -62)
+
+[node name="Landmine3" parent="Minefields" unique_id=1891996832 instance=ExtResource("3_8txor")]
+transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, 66, 90, 46)
+
+[node name="Landmine21" parent="Minefields" unique_id=2058295855 instance=ExtResource("3_8txor")]
+transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, -5, 450, 15)
+
+[node name="Landmine22" parent="Minefields" unique_id=61408710 instance=ExtResource("3_8txor")]
+transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, -5, 450, -15)
+
+[node name="Landmine23" parent="Minefields" unique_id=1320640871 instance=ExtResource("3_8txor")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 450, 0)
+
+[node name="Landmine24" parent="Minefields" unique_id=1302127467 instance=ExtResource("3_8txor")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, 450, 0)
+
+[node name="Landmine" parent="Minefields" unique_id=1545580023 instance=ExtResource("3_8txor")]
+transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, 66, 90, -46)
+
+[node name="Landmine15" parent="Minefields" unique_id=24568537 instance=ExtResource("3_8txor")]
+transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, 35, 185, -5)
+
+[node name="Landmine19" parent="Minefields" unique_id=1213380707 instance=ExtResource("3_8txor")]
+transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, -20, 320, 0)
+
+[node name="Landmine20" parent="Minefields" unique_id=638065409 instance=ExtResource("3_8txor")]
+transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, 20, 320, 0)
+
+[node name="Landmine18" parent="Minefields" unique_id=1202412839 instance=ExtResource("3_8txor")]
+transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, -5, 320, -20)
+
+[node name="Landmine17" parent="Minefields" unique_id=2117685084 instance=ExtResource("3_8txor")]
+transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, -5, 320, 20)
+
+[node name="Landmine16" parent="Minefields" unique_id=1134188876 instance=ExtResource("3_8txor")]
+transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, -35, 185, -5)
+
+[node name="Landmine14" parent="Minefields" unique_id=1965477724 instance=ExtResource("3_8txor")]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, -5, 185, -35)
+
+[node name="Landmine13" parent="Minefields" unique_id=1474800082 instance=ExtResource("3_8txor")]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, -5, 185, 35)
+
+[node name="Landmine12" parent="Minefields" unique_id=164867371 instance=ExtResource("3_8txor")]
+transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, -5, 90, 60)
+
+[node name="Landmine11" parent="Minefields" unique_id=1437889994 instance=ExtResource("3_8txor")]
+transform = Transform3D(-0.0042554075, 0.99997723, -0.0052327206, -0.9999906, -0.004259479, -0.00076656154, -0.0007888517, 0.005229407, 0.99998593, 48, 90, 60)
+
+[node name="Landmine10" parent="Minefields" unique_id=1293076772 instance=ExtResource("3_8txor")]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, -48, 90, 60)
+
+[node name="Landmine9" parent="Minefields" unique_id=1875560944 instance=ExtResource("3_8txor")]
+transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, -66, 90, 48)
+
+[node name="Landmine2" parent="Minefields" unique_id=1650673632 instance=ExtResource("3_8txor")]
+transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, 66, 90, 0)
+
+[node name="Landmine4" parent="Minefields" unique_id=562455996 instance=ExtResource("3_8txor")]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, -46, 90, -62)
+
+[node name="Landmine8" parent="Minefields" unique_id=327801391 instance=ExtResource("3_8txor")]
+transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, -66, 90, -5)
+
+[node name="Deadzones" type="Node3D" parent="." unique_id=1589458474]
+
+[node name="DeadZone7" parent="Deadzones" unique_id=1007596897 instance=ExtResource("5_rqwms")]
+transform = Transform3D(52, 0, 0, 0, 30, 0, 0, 0, 30, 0, 15, 100)
+
+[node name="DeadZone6" parent="Deadzones" unique_id=1223110002 instance=ExtResource("5_rqwms")]
+transform = Transform3D(52, 0, 0, 0, 30, 0, 0, 0, 30, 0, 15, -100)
+
+[node name="DeadZone2" parent="Deadzones" unique_id=58329768 instance=ExtResource("4_a6ats")]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, -10, 90, 5)
+
+[node name="DeadZone" parent="Deadzones" unique_id=448888692 instance=ExtResource("4_a6ats")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -5, 320, 5)
+
+[node name="DeadZone3" parent="Deadzones" unique_id=1486636617 instance=ExtResource("5_rqwms")]
+transform = Transform3D(-2.272992e-06, -30, 0, -2.272992e-06, 5.732056e-14, -30, 52, -1.3113416e-06, -1.3113416e-06, 100, 15, 0)
+
+[node name="DeadZone4" parent="Deadzones" unique_id=1350291297 instance=ExtResource("5_rqwms")]
+transform = Transform3D(-2.272992e-06, -30, 0, -2.272992e-06, 5.732056e-14, -30, 52, -1.3113416e-06, -1.3113416e-06, -100, 15, 0)
+
+[node name="DeadZone5" parent="Deadzones" unique_id=767875534 instance=ExtResource("4_a6ats")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 185, 5)
+
+[node name="DeadZone8" parent="Deadzones" unique_id=472126697 instance=ExtResource("5_rqwms")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 10, 125, 43.085)
+
+[node name="DeadZone9" parent="Deadzones" unique_id=406218199 instance=ExtResource("5_rqwms")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -15, 118, -35)
+
+[node name="DeadZone10" parent="Deadzones" unique_id=1027487032 instance=ExtResource("5_rqwms")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 28, 157, 39)
+
+[node name="DeadZone11" parent="Deadzones" unique_id=1006223754 instance=ExtResource("5_rqwms")]
+transform = Transform3D(2.3, 0, 0, 0, 2.3, 0, 0, 0, 2.3, 13, 258, 20)
+
+[node name="DeadZone12" parent="Deadzones" unique_id=664862483 instance=ExtResource("5_rqwms")]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, -8, 287, -25)
+
+[node name="DeadZone13" parent="Deadzones" unique_id=638783895 instance=ExtResource("5_rqwms")]
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, 8, 430, 17)
+
+[node name="DeadZone14" parent="Deadzones" unique_id=1122538303 instance=ExtResource("5_rqwms")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -9, 415, -20)
+
+[node name="DeadZone15" parent="Deadzones" unique_id=613368642 instance=ExtResource("5_rqwms")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 25, 250, -3)
+
+[node name="DeadZone16" parent="Deadzones" unique_id=1495163132 instance=ExtResource("5_rqwms")]
+transform = Transform3D(-3.059797e-07, -7, 0, 7, -3.059797e-07, 0, 0, 0, 7, 47, 115, 0)
+
+[node name="DeadZone17" parent="Deadzones" unique_id=250853193 instance=ExtResource("5_rqwms")]
+transform = Transform3D(-6.556708e-07, -15, 0, -6.556708e-07, 2.866028e-14, -15, 15, -6.556708e-07, -6.556708e-07, -44.363747, 144.26305, -10.941879)
+
+[node name="DeadZone18" parent="Deadzones" unique_id=1902500469 instance=ExtResource("5_rqwms")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 18.956131, 355.10635, -5.7145996)
+
+[node name="DeadZone19" parent="Deadzones" unique_id=535277275 instance=ExtResource("5_rqwms")]
+transform = Transform3D(-2.1130917, -4.531539, 0, -1.9151114, 0.8930313, -4.531539, 4.106969, -1.9151114, -2.1130917, -22.306896, 340.9543, -11.125946)
+
+[node name="DeadZone20" parent="Deadzones" unique_id=1897646770 instance=ExtResource("5_rqwms")]
+transform = Transform3D(4.984291, 0.39603624, 0, -0.39603624, 4.984291, 0, 0, 0, 5, 38.03592, 410.87683, 4.686615)
