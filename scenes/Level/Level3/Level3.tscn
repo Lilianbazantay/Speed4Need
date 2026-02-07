@@ -90,7 +90,7 @@ transform = Transform3D(-6.556708e-08, -1.5, 6.556708e-08, 0, -6.556708e-08, -1.
 transform = Transform3D(-6.556708e-08, -1.5, 6.556708e-08, 0, -6.556708e-08, -1.5, 1.5, -6.556708e-08, 2.8660283e-15, -2.9246979, -0.51244736, -2.2887516)
 
 [node name="DeadZone" parent="DeadZones" unique_id=2027358320 instance=ExtResource("3_c6pbn")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.9784107, 0.14927673, -0.018306732)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.722528, 0.14927673, -0.018306732)
 
 [node name="Wall1" type="StaticBody3D" parent="." unique_id=2073972089]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25, 43.5, -45)
