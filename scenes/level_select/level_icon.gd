@@ -16,3 +16,4 @@ func _process(_delta: float) -> void:
 
 func _on_button_pressed() -> void:
 	Utils.load_screen_to_scene(scene_path)
+	GameRoomsData.prevRoomPath = scene_path;

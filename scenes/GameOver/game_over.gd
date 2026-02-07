@@ -7,8 +7,14 @@ func _ready() -> void:
 	if looser_sound != null :
 		looser_sound.play()
 
+
 func _on_back_to_main_menu_pressed() -> void:
 	get_tree().change_scene_to_file("res://scenes/MainMenu/MainMenu.tscn")
 
 func _on_rage_quit_pressed() -> void:
 	get_tree().quit()
+
+
+func _on_retry_pressed() -> void:
+	if (GameRoomsData.prevRoomPath != ""):
+		Utils.load_screen_to_scene(GameRoomsData.prevRoomPath)

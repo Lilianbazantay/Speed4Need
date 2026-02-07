@@ -25,6 +25,15 @@ grow_horizontal = 2
 theme_override_font_sizes/normal_font_size = 100
 text = "GAME OVER"
 
+[node name="Retry" type="Button" parent="." unique_id=2050436394]
+layout_mode = 0
+offset_left = 415.0
+offset_top = 292.0
+offset_right = 739.0
+offset_bottom = 399.0
+theme_override_font_sizes/font_size = 72
+text = "RETRY"
+
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=922904350]
 layout_mode = 1
 anchors_preset = 7
@@ -55,5 +64,6 @@ text = "RAGE QUIT LIKE A KID"
 stream = ExtResource("2_kgfi2")
 volume_db = 24.0
 
+[connection signal="pressed" from="Retry" to="." method="_on_retry_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/BackToMainMenu" to="." method="_on_back_to_main_menu_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/RageQuit" to="." method="_on_rage_quit_pressed"]
