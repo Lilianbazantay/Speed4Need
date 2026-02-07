@@ -4,10 +4,6 @@ class_name LevelIcon
 
 @export var level_index: int = 0
 @export_file("*.tscn") var scene_path: String
-@export var next_up: LevelIcon
-@export var next_down: LevelIcon
-@export var next_left: LevelIcon
-@export var next_right: LevelIcon
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
