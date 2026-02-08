@@ -39,4 +39,5 @@ func _input(event: InputEvent) -> void:
 		if not current_level.scene_path:
 			print("no scene to load")
 			return
+		GameRoomsData.prevRoomPath = current_level.scene_path
 		Utils.load_screen_to_scene(current_level.scene_path)

@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://bq72rtkyvmkou"]
 
 [ext_resource type="Script" uid="uid://xo1l24u3xdfe" path="res://scenes/level_select/level_select.gd" id="1_jsq2b"]
-[ext_resource type="Script" uid="uid://cqpuk7g7wxqas" path="res://scenes/level_select/level_container.gd" id="2_3c84o"]
+[ext_resource type="Script" path="res://scenes/level_select/level_container.gd" id="2_3c84o"]
 [ext_resource type="PackedScene" uid="uid://cu5uenq80hxel" path="res://scenes/level_select/square_selector.tscn" id="3_vdlig"]
 
 [node name="LevelSelect" type="Control" unique_id=548847070]
