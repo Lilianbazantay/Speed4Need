@@ -20,22 +20,23 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -529.0
-offset_top = -183.0
-offset_right = 198.5
-offset_bottom = 149.0
+offset_left = -518.0
+offset_top = -148.99998
+offset_right = 799.4999
+offset_bottom = 374.74994
 grow_horizontal = 2
 grow_vertical = 2
-scale = Vector2(0.655, 0.655)
+scale = Vector2(0.8, 0.8)
 size_flags_horizontal = 4
 theme_override_constants/h_separation = 339
 theme_override_constants/v_separation = 166
-columns = 5
+columns = 4
 script = ExtResource("2_3c84o")
 
 [node name="PlayerIcon" parent="." unique_id=498701359 instance=ExtResource("3_vdlig")]
 layout_mode = 1
 offset_right = -1088.0
 offset_bottom = -584.0
+scale = Vector2(0.8, 0.8)
 
 [connection signal="ready_to_deploy" from="LevelContainer" to="." method="_on_level_container_ready_to_deploy"]
