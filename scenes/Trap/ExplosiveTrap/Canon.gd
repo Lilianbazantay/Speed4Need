@@ -11,9 +11,17 @@ func _on_area_3d_area_entered(area: Area3D) -> void:
 
 		if Explosion != null :
 			Explosion.play()
+		$OmniLight3D.activate()
+
+		var cam = player.get_node("Head/Camera3D")
+		if cam != null :
+			print("Has camera")
+			cam.shake_for(14.0, 0.5)
+
 		await get_tree().create_timer(14.0).timeout
 		var direction = (player.global_position - global_position).normalized()
 		player.velocity += direction * explosion_force
 		if RedParticule != null && GreyParticule != null :
 			RedParticule.emitting = true
 			GreyParticule.emitting = true
+			$OmniLight3D.disable()

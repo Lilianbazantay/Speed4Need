@@ -11,10 +11,18 @@ func _on_area_3d_area_exited(area: Area3D) -> void:
 
 		var direction = (player.global_position - global_position).normalized()
 		player.velocity += direction * explosion_force
-		if Explosion != null :
+
+		var cam = player.get_node("Head/Camera3D")
+		if cam != null :
+			print("Has camera")
+			cam.shake_for(0.2, 2.5)
+
+		if Explosion != null:
 			Explosion.play()
-		if RedParticule != null && GreyParticule != null :
+
+		if RedParticule != null && GreyParticule != null:
 			RedParticule.emitting = true
 			GreyParticule.emitting = true
+
 		await get_tree().create_timer(1.5).timeout
 		queue_free()

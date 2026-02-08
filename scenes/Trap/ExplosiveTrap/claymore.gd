@@ -11,6 +11,12 @@ func _on_area_3d_area_entered(area: Area3D) -> void:
 
 		var direction = (player.global_position - global_position).normalized()
 		player.velocity += direction * explosion_force
+
+		var cam = player.get_node("Head/Camera3D")
+		if cam != null :
+			print("Has camera")
+			cam.shake_for(0.2, 2.5)
+
 		if Explosion != null :
 			Explosion.play()
 		if RedParticule != null && GreyParticule != null :
