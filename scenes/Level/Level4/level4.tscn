@@ -156,10 +156,9 @@ mesh = SubResource("BoxMesh_nxcac")
 shape = SubResource("BoxShape3D_unmya")
 
 [node name="Platform5" type="StaticBody3D" parent="plateforms" unique_id=1476349535]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -36.583, 85, 190)
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -36.583, 50, 190)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="plateforms/Platform5" unique_id=2136685703]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -18.737144, 0)
 mesh = SubResource("BoxMesh_nxcac")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="plateforms/Platform5" unique_id=141390097]
