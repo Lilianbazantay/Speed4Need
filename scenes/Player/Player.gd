@@ -52,6 +52,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		handle_mouse_look(event)
 	if event is InputEventKey:
 		if event.keycode == KEY_SHIFT && event.pressed:
+			max_speed += sprint_boost # Voluntary bug, do not change (literally the goal of this game)
 			is_sprinting = true
 
 func _process(delta: float) -> void:
@@ -113,9 +114,6 @@ func handle_gravity(delta: float) -> void:
 
 func handle_movement(delta: float) -> void:
 	var input_dir = get_input_direction()
-	if is_sprinting:
-		is_sprinting = false
-		max_speed += sprint_boost # Voluntary bug, do not change (literally the goal of this game)
 	var direction = calculate_movement_direction(input_dir)
 	apply_acceleration(direction, delta)
 	handle_floor_movement(direction)
@@ -147,6 +145,7 @@ func apply_acceleration(direction: Vector3, delta: float) -> void:
 			target_velocity = direction * max_speed
 		else:
 			max_speed = speed
+			is_sprinting = false
 		velocity.x = move_toward(velocity.x, target_velocity.x, acceleration * delta)
 		velocity.z = move_toward(velocity.z, target_velocity.z, acceleration * delta)
 	else:
