@@ -16,6 +16,8 @@ material = SubResource("StandardMaterial3D_cp8sh")
 [sub_resource type="BoxShape3D" id="BoxShape3D_cp8sh"]
 size = Vector3(4, 4, 4)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_rhw6m"]
+
 [node name="WinLine" type="Node3D" unique_id=541262595]
 script = ExtResource("1_ktkhx")
 
@@ -27,5 +29,10 @@ collision_layer = 2
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=493735442]
 shape = SubResource("BoxShape3D_cp8sh")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=193199108]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=806990678]
+shape = SubResource("BoxShape3D_rhw6m")
 
 [connection signal="area_entered" from="Area3D" to="." method="_on_area_3d_area_entered"]
