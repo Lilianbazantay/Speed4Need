@@ -7,6 +7,7 @@ extends Node3D
 var is_grappling := false
 var hook_point: Vector3
 var rope_length: float = 0.0
+var can_use_grapple: bool = true;
 
 @onready var player: CharacterBody3D = $".."
 @onready var cam: Camera3D = $Camera3D
@@ -45,7 +46,10 @@ func check_variable():
 func try_grapple():
 	if not check_variable():
 		return
-
+	if (!can_use_grapple):
+		return;
+	can_use_grapple = false;
+	$CooldownGrapple.start();
 	ray.target_position = Vector3(0, 0, -max_distance)
 	ray.force_raycast_update()
 
@@ -112,3 +116,7 @@ func update_cursor_state():
 	else:
 		cursor.show()
 		cursor_ok.hide()
+
+
+func _on_cooldown_grapple_timeout() -> void:
+	can_use_grapple = true;
