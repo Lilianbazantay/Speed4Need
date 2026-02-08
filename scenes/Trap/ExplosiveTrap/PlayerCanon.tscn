@@ -1,0 +1,160 @@
+[gd_scene format=3 uid="uid://6t6amddr1shn"]
+
+[ext_resource type="Script" uid="uid://clj4fjo25sfwq" path="res://scenes/Trap/ExplosiveTrap/Canon.gd" id="1_py27o"]
+[ext_resource type="AudioStream" uid="uid://ca35d34774m53" path="res://Assets/Sound/EXPLOOOOSION.mp3" id="2_py27o"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2rqm4"]
+albedo_color = Color(0, 0, 0, 1)
+metallic = 1.0
+metallic_specular = 1.0
+
+[sub_resource type="BoxMesh" id="BoxMesh_2rqm4"]
+material = SubResource("StandardMaterial3D_2rqm4")
+size = Vector3(5, 0.2, 2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_erjmy"]
+size = Vector3(5, 0.2, 2)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_erjmy"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_erjmy"]
+material = SubResource("StandardMaterial3D_erjmy")
+size = Vector3(2, 0.2, 2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_2rqm4"]
+size = Vector3(2, 0.2, 2)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_2rqm4"]
+height = 0.2
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_erjmy"]
+height = 0.2
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_il7is"]
+inherit_velocity_ratio = 1.0
+velocity_pivot = Vector3(1, 0, 0)
+spread = 90.0
+initial_velocity_max = 12.88
+gravity = Vector3(0, 0, 0)
+turbulence_noise_strength = 0.96
+turbulence_noise_scale = 0.251
+turbulence_noise_speed_random = 4.0
+turbulence_influence_min = 0.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mp55c"]
+albedo_color = Color(0.69803923, 0.019607844, 0.14117648, 1)
+emission_enabled = true
+emission = Color(0.68573314, 8.4228816e-07, 3.85046e-07, 1)
+emission_energy_multiplier = 16.0
+emission_on_uv2 = true
+
+[sub_resource type="SphereMesh" id="SphereMesh_x1hmk"]
+material = SubResource("StandardMaterial3D_mp55c")
+radius = 0.25
+height = 0.5
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_a7evd"]
+albedo_color = Color(0.36862746, 0.36862746, 0.36862746, 0.19215687)
+
+[sub_resource type="SphereMesh" id="SphereMesh_a7evd"]
+material = SubResource("StandardMaterial3D_a7evd")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_py27o"]
+size = Vector3(1.758728, 0.66152954, 1.7156372)
+
+[node name="PlayerCanon" type="Node3D" unique_id=16736158]
+script = ExtResource("1_py27o")
+
+[node name="wall" type="StaticBody3D" parent="." unique_id=1001130139]
+transform = Transform3D(0.97347116, -0.22880964, 0, 0.22880964, 0.97347116, 0, 0, 0, 1, 0, 0, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="wall" unique_id=1503287778]
+mesh = SubResource("BoxMesh_2rqm4")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="wall" unique_id=658534905]
+shape = SubResource("BoxShape3D_erjmy")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="wall" unique_id=699131120]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+mesh = SubResource("BoxMesh_2rqm4")
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="wall" unique_id=1102554871]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+shape = SubResource("BoxShape3D_erjmy")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="wall" unique_id=1872104881]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 1, 1)
+mesh = SubResource("BoxMesh_2rqm4")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="wall" unique_id=680996539]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 1, 1)
+shape = SubResource("BoxShape3D_erjmy")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="wall" unique_id=1210139499]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 1, -1)
+mesh = SubResource("BoxMesh_2rqm4")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="wall" unique_id=144742396]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 1, -1)
+shape = SubResource("BoxShape3D_erjmy")
+
+[node name="MeshInstance3D5" type="MeshInstance3D" parent="wall" unique_id=872315566]
+transform = Transform3D(-4.371139e-08, 1, -4.371139e-08, 0, -4.371139e-08, -1, -1, -4.371139e-08, 1.9106855e-15, -2.5, 1, 0)
+mesh = SubResource("BoxMesh_erjmy")
+
+[node name="CollisionShape3D5" type="CollisionShape3D" parent="wall" unique_id=43845892]
+transform = Transform3D(-4.371139e-08, 1, -4.371139e-08, 0, -4.371139e-08, -1, -1, -4.371139e-08, 1.9106855e-15, -2.5, 1, 0)
+shape = SubResource("BoxShape3D_2rqm4")
+
+[node name="Wheel" type="StaticBody3D" parent="." unique_id=967885616]
+transform = Transform3D(1, 0, 0, 0, -4.3711385e-08, -0.99999994, 0, 0.99999994, -4.3711385e-08, 0, 0, 1.15)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Wheel" unique_id=545461363]
+mesh = SubResource("CylinderMesh_2rqm4")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Wheel" unique_id=463303772]
+shape = SubResource("CylinderShape3D_erjmy")
+
+[node name="Wheel2" type="StaticBody3D" parent="." unique_id=85323033]
+transform = Transform3D(1, 0, 0, 0, -4.3711385e-08, -0.99999994, 0, 0.99999994, -4.3711385e-08, 0, 0, -1.15)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Wheel2" unique_id=69622410]
+mesh = SubResource("CylinderMesh_2rqm4")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Wheel2" unique_id=1028462096]
+shape = SubResource("CylinderShape3D_erjmy")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="." unique_id=474751724]
+stream = ExtResource("2_py27o")
+volume_db = 80.0
+unit_size = 50.63
+max_db = 6.0
+panning_strength = 3.0
+
+[node name="RedParticule" type="GPUParticles3D" parent="." unique_id=1663899359]
+transform = Transform3D(-0.11079244, -0.99384356, 0, 0.99384356, -0.11079244, 0, 0, 0, 1, -1.8099096, 0.20716107, 0)
+emitting = false
+amount = 1000
+lifetime = 0.61
+one_shot = true
+process_material = SubResource("ParticleProcessMaterial_il7is")
+draw_pass_1 = SubResource("SphereMesh_x1hmk")
+
+[node name="GreyParticule" type="GPUParticles3D" parent="." unique_id=903658259]
+transform = Transform3D(-0.11079244, -0.99384356, 0, 0.99384356, -0.11079244, 0, 0, 0, 1, -1.8099096, 0.20716107, 0)
+emitting = false
+amount = 1000
+lifetime = 0.61
+one_shot = true
+process_material = SubResource("ParticleProcessMaterial_il7is")
+draw_pass_1 = SubResource("SphereMesh_a7evd")
+
+[node name="Area3D" type="Area3D" parent="." unique_id=1279796001]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.412475, 0.43396527, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=1784178915]
+transform = Transform3D(-0.22495098, -0.97437, 0, 0.97437, -0.22495098, 0, 0, 0, 0.99999994, 0.0058584213, 0.06797612, -0.041555487)
+shape = SubResource("BoxShape3D_py27o")
+
+[connection signal="area_entered" from="Area3D" to="." method="_on_area_3d_area_entered"]

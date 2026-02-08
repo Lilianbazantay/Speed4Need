@@ -20,10 +20,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -523.5
-offset_top = -75.0
-offset_right = 204.0
-offset_bottom = 215.0
+offset_left = -529.0
+offset_top = -183.0
+offset_right = 198.5
+offset_bottom = 149.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
@@ -58,7 +58,12 @@ level_index = 4
 [node name="LevelIcon6" parent="GridContainer" unique_id=943180301 instance=ExtResource("2_06eje")]
 layout_mode = 2
 size_flags_horizontal = 2
-level_index = 5
+level_index = 6
+
+[node name="LevelIcon7" parent="GridContainer" unique_id=915434661 instance=ExtResource("2_06eje")]
+layout_mode = 2
+size_flags_horizontal = 2
+level_index = 7
 
 [node name="PlayerIcon" parent="." unique_id=498701359 instance=ExtResource("3_vdlig")]
 layout_mode = 1
