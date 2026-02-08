@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://bq72rtkyvmkou"]
 
 [ext_resource type="Script" uid="uid://xo1l24u3xdfe" path="res://scenes/level_select/level_select.gd" id="1_jsq2b"]
-[ext_resource type="Script" path="res://scenes/level_select/level_container.gd" id="2_3c84o"]
+[ext_resource type="Script" uid="uid://cqpuk7g7wxqas" path="res://scenes/level_select/level_container.gd" id="2_3c84o"]
 [ext_resource type="PackedScene" uid="uid://cu5uenq80hxel" path="res://scenes/level_select/square_selector.tscn" id="3_vdlig"]
 
 [node name="LevelSelect" type="Control" unique_id=548847070]
@@ -13,14 +13,6 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_jsq2b")
 
-[node name="ButtonMenu" type="Button" parent="." unique_id=1735683857]
-layout_mode = 0
-offset_left = 41.600002
-offset_top = 59.2
-offset_right = 295.6
-offset_bottom = 146.2
-text = "MAIN MENU"
-
 [node name="LevelContainer" type="GridContainer" parent="." unique_id=108116020]
 layout_mode = 1
 anchors_preset = 8
@@ -28,18 +20,27 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -518.0
-offset_top = -148.99998
-offset_right = 799.4999
-offset_bottom = 374.74994
+offset_left = -659.74994
+offset_top = -222.87497
+offset_right = 657.7501
+offset_bottom = 300.875
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.8, 0.8)
+pivot_offset_ratio = Vector2(0.5, 0.5)
 size_flags_horizontal = 4
 theme_override_constants/h_separation = 339
 theme_override_constants/v_separation = 166
 columns = 4
 script = ExtResource("2_3c84o")
+
+[node name="ButtonMenu" type="Button" parent="." unique_id=1735683857]
+layout_mode = 0
+offset_left = 41.600002
+offset_top = 45.2
+offset_right = 295.6
+offset_bottom = 132.2
+text = "MAIN MENU"
 
 [node name="PlayerIcon" parent="." unique_id=498701359 instance=ExtResource("3_vdlig")]
 layout_mode = 1
@@ -47,5 +48,5 @@ offset_right = -1088.0
 offset_bottom = -584.0
 scale = Vector2(0.8, 0.8)
 
-[connection signal="pressed" from="ButtonMenu" to="." method="_on_button_menu_pressed"]
 [connection signal="ready_to_deploy" from="LevelContainer" to="." method="_on_level_container_ready_to_deploy"]
+[connection signal="pressed" from="ButtonMenu" to="." method="_on_button_menu_pressed"]

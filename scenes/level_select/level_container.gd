@@ -10,6 +10,6 @@ func _ready() -> void:
 	for room in GameRoomsData.roomArray:
 		var newIcon = iconScene.instantiate();
 		newIcon.level_index = index;
-		await add_child(newIcon);
+		add_child(newIcon);
 		index += 1;
-		emit_signal("ready_to_deploy")
+	emit_signal("ready_to_deploy")
