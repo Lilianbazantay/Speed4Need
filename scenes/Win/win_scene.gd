@@ -6,18 +6,13 @@ extends Control
 
 func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CONFINED)
-	print("WIN")
 	if winner_sound != null :
 		winner_sound.play()
 	if max_speed != null && timer != null :
 		max_speed.text = "Max Speed : %.2f" % PlayerRecord.max_speed
 		timer.text = "Timer          : %.2f" % (PlayerRecord.timer / 1000.0)
-		print("Size: ", GameRoomsData.roomArray.size())
-		print("pPath: ", GameRoomsData.prevRoomPath)
 		for room in GameRoomsData.roomArray:
-			print("TestPath: ", room.scenePath)
 			if (GameRoomsData.prevRoomPath == room.scenePath):
-				print("Saving data !")
 				if (room.bestSpeed == -1 || room.bestSpeed < PlayerRecord.max_speed):
 					room.bestSpeed = PlayerRecord.max_speed;
 				if (room.bestTime == -1 || room.bestTime > (PlayerRecord.timer / 1000.0)):

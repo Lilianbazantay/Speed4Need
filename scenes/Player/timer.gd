@@ -6,7 +6,6 @@ var time: int = 0
 func _ready() -> void:
 
 	start = Time.get_ticks_msec()
-	print("player created at %.2f" % start)
 	if (!PlayerSettings.timerEnabled):
 		$Time.hide();
 

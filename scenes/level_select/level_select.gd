@@ -6,10 +6,7 @@ var isReady: bool = false;
 
 func _on_level_container_ready_to_deploy() -> void:
 	current_level = $LevelContainer.get_children()[0]
-	print("LevelContainer has ", $LevelContainer.get_child_count(), " children")
-	print("PlayerIcon was at ", $PlayerIcon.global_position)
 	$PlayerIcon.global_position = current_level.global_position
-	print("PlayerIcon is now at ", $PlayerIcon.global_position)
 	isReady = true;
 	pass;
 

@@ -59,9 +59,8 @@ func loadRooms():
 			index += 1;
 			correct = true;
 			pass;
-	for room in roomArray:
-		print(room.index, " | ", room.name, " | ", room.scenePath)
-	print("Room Array: ", roomArray.size())
+#	for room in roomArray:
+#		print(room.index, " | ", room.name, " | ", room.scenePath)
 	loadFromFile();
 	pass;
 
@@ -84,7 +83,6 @@ func saveToFile():
 
 
 func loadFromFile():
-	print("loading files")
 	if  (!FileAccess.file_exists(SETTINGS_PATH)):
 		return
 	var file = FileAccess.open(SETTINGS_PATH, FileAccess.READ)
@@ -92,12 +90,10 @@ func loadFromFile():
 	file.close()
 	var parsed = JSON.parse_string(content)
 	if parsed == null:
-		push_error("Failed to parse rooms save file")
 		return
 	var index: int = 0;
 	for room_dict in parsed:
 		if (index >= roomArray.size()):
-			print("Too large: ", index)
 			return;
 		roomArray[index].from_dict(room_dict)
 		index += 1;
