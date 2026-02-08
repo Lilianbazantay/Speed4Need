@@ -12,7 +12,4 @@ func _ready() -> void:
 		newIcon.level_index = index;
 		await add_child(newIcon);
 		index += 1;
-		print("children: ")
-		for child in get_children():
-			print(child.name)
 		emit_signal("ready_to_deploy")

@@ -39,5 +39,9 @@ func _input(event: InputEvent) -> void:
 		if not current_level.scene_path:
 			print("no scene to load")
 			return
-		GameRoomsData.prevRoomPath = current_level.scene_path
+		GameRoomsData.prevRoomPath = current_level.scene_path;
 		Utils.load_screen_to_scene(current_level.scene_path)
+
+
+func _on_button_menu_pressed() -> void:
+	get_tree().change_scene_to_file("res://scenes/MainMenu/MainMenu.tscn")

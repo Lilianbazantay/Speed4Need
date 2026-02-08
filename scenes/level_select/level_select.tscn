@@ -13,6 +13,14 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_jsq2b")
 
+[node name="ButtonMenu" type="Button" parent="." unique_id=1735683857]
+layout_mode = 0
+offset_left = 41.600002
+offset_top = 59.2
+offset_right = 295.6
+offset_bottom = 146.2
+text = "MAIN MENU"
+
 [node name="LevelContainer" type="GridContainer" parent="." unique_id=108116020]
 layout_mode = 1
 anchors_preset = 8
@@ -39,4 +47,5 @@ offset_right = -1088.0
 offset_bottom = -584.0
 scale = Vector2(0.8, 0.8)
 
+[connection signal="pressed" from="ButtonMenu" to="." method="_on_button_menu_pressed"]
 [connection signal="ready_to_deploy" from="LevelContainer" to="." method="_on_level_container_ready_to_deploy"]

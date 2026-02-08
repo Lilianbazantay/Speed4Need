@@ -16,13 +16,26 @@ class Room:
 		won = false;
 		bestSpeed = -1;
 		bestTime = -1;
+	func to_dict() -> Dictionary:
+		return {
+			"won": won,
+			"bestSpeed": bestSpeed,
+			"bestTime": bestTime
+		};
+	func from_dict(data: Dictionary):
+		print("loading from dict: ", name, " / ", data.won);
+		won = data.won;
+		bestSpeed = data.bestSpeed;
+		bestTime = data.bestTime;
+
+
+var roomArray: Array[Room];
 
 
 var prevRoom: Room;
 
 var prevRoomPath: String;
 
-var roomArray: Array[Room];
 
 func loadRooms():
 	if (!roomArray.is_empty()):
@@ -48,4 +61,43 @@ func loadRooms():
 			pass;
 	for room in roomArray:
 		print(room.index, " | ", room.name, " | ", room.scenePath)
+	print("Room Array: ", roomArray.size())
+	loadFromFile();
 	pass;
+
+
+
+# LOAD / SAVE SYSTEM
+
+var SETTINGS_PATH : String = "user://roomScore.save"
+
+func saveToFile():
+	print("saving files")
+	var roomsData: Array = []
+
+	for room in roomArray:
+		roomsData.append(room.to_dict())
+
+	var file = FileAccess.open(SETTINGS_PATH, FileAccess.WRITE)
+	file.store_string(JSON.stringify(roomsData))
+	file.close()
+
+
+func loadFromFile():
+	print("loading files")
+	if  (!FileAccess.file_exists(SETTINGS_PATH)):
+		return
+	var file = FileAccess.open(SETTINGS_PATH, FileAccess.READ)
+	var content = file.get_as_text()
+	file.close()
+	var parsed = JSON.parse_string(content)
+	if parsed == null:
+		push_error("Failed to parse rooms save file")
+		return
+	var index: int = 0;
+	for room_dict in parsed:
+		if (index >= roomArray.size()):
+			print("Too large: ", index)
+			return;
+		roomArray[index].from_dict(room_dict)
+		index += 1;
