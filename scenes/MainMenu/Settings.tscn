@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://bhsiyn6gs7isu" path="res://scenes/MainMenu/settings.gd" id="1_ltyju"]
 [ext_resource type="Script" uid="uid://bu4f30a05lql3" path="res://scenes/MainMenu/sensibility.gd" id="2_84fhx"]
 [ext_resource type="Script" uid="uid://bd2c4m7dgwuiy" path="res://scenes/MainMenu/key_edit.gd" id="2_dayju"]
+[ext_resource type="Texture2D" uid="uid://b3t2agc261sge" path="res://Assets/Item2D/Background3.png" id="2_ne8ka"]
 [ext_resource type="Script" uid="uid://7uprsvcesko0" path="res://scenes/MainMenu/sound.gd" id="3_k3nmy"]
 
 [node name="Settings" type="Control" unique_id=1481678846]
@@ -13,6 +14,14 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_ltyju")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1389340738]
+self_modulate = Color(1, 1, 1, 0.70000005)
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+texture = ExtResource("2_ne8ka")
+expand_mode = 1
 
 [node name="ButtonMenu" type="Button" parent="." unique_id=54068202]
 layout_mode = 0

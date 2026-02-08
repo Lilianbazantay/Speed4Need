@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dfddsxvlwu0ha" path="res://scenes/GameOver/game_over.gd" id="1_xhtoj"]
 [ext_resource type="AudioStream" uid="uid://c03yrxbp0ifmq" path="res://Assets/Sound/looser.mp3" id="2_kgfi2"]
+[ext_resource type="Texture2D" uid="uid://dhu2jwq5jstdw" path="res://Assets/Item2D/failure.jpg" id="2_ppu1c"]
 
 [node name="GameOver" type="Control" unique_id=2095843635]
 layout_mode = 3
@@ -12,7 +13,15 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_xhtoj")
 
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1133623373]
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+texture = ExtResource("2_ppu1c")
+expand_mode = 1
+
 [node name="GameOverLabel" type="RichTextLabel" parent="." unique_id=1669814896]
+visible = false
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -28,9 +37,9 @@ text = "GAME OVER"
 [node name="Retry" type="Button" parent="." unique_id=2050436394]
 layout_mode = 0
 offset_left = 415.0
-offset_top = 292.0
+offset_top = 428.0
 offset_right = 739.0
-offset_bottom = 399.0
+offset_bottom = 535.0
 theme_override_font_sizes/font_size = 72
 text = "RETRY"
 

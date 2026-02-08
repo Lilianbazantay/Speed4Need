@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://xo1l24u3xdfe" path="res://scenes/level_select/level_select.gd" id="1_jsq2b"]
 [ext_resource type="Script" uid="uid://cqpuk7g7wxqas" path="res://scenes/level_select/level_container.gd" id="2_3c84o"]
+[ext_resource type="Texture2D" uid="uid://nkmhs0akv3km" path="res://Assets/Item2D/Background2.png" id="2_7g617"]
 [ext_resource type="PackedScene" uid="uid://cu5uenq80hxel" path="res://scenes/level_select/square_selector.tscn" id="3_vdlig"]
 
 [node name="LevelSelect" type="Control" unique_id=548847070]
@@ -12,6 +13,14 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_jsq2b")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=40046804]
+self_modulate = Color(1, 1, 1, 0.70000005)
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+texture = ExtResource("2_7g617")
+expand_mode = 1
 
 [node name="LevelContainer" type="GridContainer" parent="." unique_id=108116020]
 layout_mode = 1
