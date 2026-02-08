@@ -14,7 +14,6 @@ var is_sprinting: bool = false
 # Gravity
 const gravity: float = 9.81
 
-# Jump
 @export_category("Jump")
 @export var jump_force_walking = 5.0
 @export var jump_force_walking_boost = 5.0
@@ -46,7 +45,7 @@ func _ready() -> void:
 	PlayerRecord.max_speed = 0.0
 	max_speed = speed
 	original_collision_height = $Collision.shape.height
-	original_area_collision_height = $Area3D/CollisionShape3D.shape.height
+	original_area_collision_height = $TriggerZone/Collision.shape.height
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
@@ -82,6 +81,10 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 	handle_break_sound()
 
+#
+# Camera
+#
+
 func handle_mouse_look(event: InputEventMouseMotion) -> void:
 	y_rot -= event.relative.x * PlayerSettings.sensibility / 1000
 	x_rot -= event.relative.y * PlayerSettings.sensibility / 1000
@@ -97,6 +100,16 @@ func handle_controller_look(delta: float) -> void:
 func apply_camera_rotation() -> void:
 	rotation.y = y_rot
 	$Head.rotation.x = x_rot
+
+#
+# movement
+#
+
+func handle_gravity(delta: float) -> void:
+	if not is_on_floor() and is_on_wall():
+		velocity.y -= gravity * delta * 0.3
+	if not is_on_floor() and not is_on_wall():
+		velocity.y -= gravity * delta
 
 func handle_movement(delta: float) -> void:
 	var input_dir = get_input_direction()
@@ -172,6 +185,10 @@ func handle_wall_jump() -> void:
 			velocity.z += wall_normal.z * wall_jump_force
 			wall_jump_count -= 1
 
+#
+# Slide
+#
+
 func handle_slide(delta: float) -> void:
 	if is_sliding:
 		slide_timer -= delta
@@ -192,8 +209,8 @@ func start_slide() -> void:
 	$Collision.shape.height = original_collision_height * slide_scale
 	$Collision.position.y = original_collision_height * slide_scale / 2
 	$Head.position.y = original_collision_height * slide_scale
-	$Area3D/CollisionShape3D.shape.height = original_area_collision_height * slide_scale
-	$Area3D/CollisionShape3D.position.y = original_area_collision_height * slide_scale / 2
+	$TriggerZone/Collision.shape.height = original_area_collision_height * slide_scale
+	$TriggerZone/Collision.position.y = original_area_collision_height * slide_scale / 2
 
 func end_slide() -> void:
 	if not can_uncrouch():
@@ -202,8 +219,8 @@ func end_slide() -> void:
 	$Collision.shape.height = original_collision_height
 	$Collision.position.y = original_collision_height / 2
 	$Head.position.y = original_collision_height * 0.75
-	$Area3D/CollisionShape3D.shape.height = original_area_collision_height
-	$Area3D/CollisionShape3D.position.y = original_area_collision_height / 2
+	$TriggerZone/Collision.shape.height = original_area_collision_height
+	$TriggerZone/Collision.position.y = original_area_collision_height / 2
 
 func can_uncrouch() -> bool:
 	var space_state = get_world_3d().direct_space_state
@@ -215,6 +232,10 @@ func can_uncrouch() -> bool:
 	query.exclude = [self]
 	var result = space_state.intersect_shape(query, 1)
 	return result.is_empty()
+
+#
+# Interface
+#
 
 func update_speed_display() -> void:
 	var horizontal_speed = Vector2(velocity.x, velocity.z).length()
@@ -229,9 +250,3 @@ func handle_break_sound() -> void:
 	else:
 		if $BreakSound.playing:
 			$BreakSound.stop()
-
-func handle_gravity(delta: float) -> void:
-	if not is_on_floor() and is_on_wall():
-		velocity.y -= gravity * delta * 0.3
-	if not is_on_floor() and not is_on_wall():
-		velocity.y -= gravity * delta

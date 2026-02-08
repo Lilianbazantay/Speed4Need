@@ -3,14 +3,14 @@
 [ext_resource type="Script" uid="uid://duuxxpnjwotn1" path="res://scenes/Player/Player.gd" id="1_xhfnw"]
 [ext_resource type="Script" uid="uid://den5uw7wjmli7" path="res://scenes/Player/Grapple.gd" id="2_ved6o"]
 [ext_resource type="Script" uid="uid://bp02c3h7l45py" path="res://scenes/Player/pause_menu.gd" id="3_bvqhm"]
-[ext_resource type="Script" uid="uid://dx7wwvgrxibft" path="res://scenes/Player/camera_3d.gd" id="3_dqp0f"]
+[ext_resource type="Script" path="res://scenes/Player/camera_3d.gd" id="3_dqp0f"]
 [ext_resource type="AudioStream" uid="uid://db1fduk1jivw4" path="res://Assets/Sound/Break.mp3" id="5_xcisb"]
 [ext_resource type="Texture2D" uid="uid://c7dbnht8g3mb4" path="res://Assets/Item2D/player_movement_icon.png" id="6_puxyr"]
 [ext_resource type="AudioStream" uid="uid://bwdgfyn8p5x53" path="res://Assets/Sound/Grapple.mp3" id="6_socpp"]
 [ext_resource type="Script" uid="uid://c4cpivd3r066g" path="res://scenes/Player/timer.gd" id="7_mmokv"]
 [ext_resource type="Texture2D" uid="uid://bvvisbkagfi26" path="res://Assets/Item2D/Cursor.png" id="8_mmokv"]
 [ext_resource type="Texture2D" uid="uid://bckqhnos6unh8" path="res://Assets/Item2D/CursorOk.png" id="9_mmokv"]
-[ext_resource type="Script" uid="uid://wnmjeb7ydwar" path="res://scenes/Player/area_3d.gd" id="10_tl8lu"]
+[ext_resource type="Script" path="res://scenes/Player/area_3d.gd" id="10_tl8lu"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_kpjcp"]
 radius = 0.5961914
@@ -229,11 +229,11 @@ text = "pause menu"
 label_settings = SubResource("LabelSettings_mmokv")
 uppercase = true
 
-[node name="Area3D" type="Area3D" parent="." unique_id=340971583]
+[node name="TriggerZone" type="Area3D" parent="." unique_id=340971583]
 collision_mask = 2
 script = ExtResource("10_tl8lu")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=630651908]
+[node name="Collision" type="CollisionShape3D" parent="TriggerZone" unique_id=630651908]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("CapsuleShape3D_bvqhm")
 
@@ -243,4 +243,4 @@ stream = ExtResource("5_xcisb")
 parameters/looping = true
 
 [connection signal="pressed" from="PauseMenu/Button" to="PauseMenu" method="_on_button_pressed"]
-[connection signal="area_entered" from="Area3D" to="Head" method="_on_area_3d_area_entered"]
+[connection signal="area_entered" from="TriggerZone" to="Head" method="_on_area_3d_area_entered"]
