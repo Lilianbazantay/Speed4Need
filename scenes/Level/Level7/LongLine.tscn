@@ -1759,5 +1759,5 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1778.9102, -56.398426, -353.3
 [node name="PlayerCanon" parent="." unique_id=16736158 instance=ExtResource("3_rxqik")]
 transform = Transform3D(2.936227, 0.6152818, 0, -0.61528194, 2.9362273, 0, 0, 0, 3.0000005, 134.03801, -55.4037, -311.50903)
 
-[node name="Player2" parent="." unique_id=948708834 instance=ExtResource("1_qf7ew")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 140.7448, -56.898422, -319.5856)
+[node name="Player" parent="." unique_id=858882668 instance=ExtResource("1_qf7ew")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.785967, 0.5, 6.8227015)
